@@ -28,7 +28,7 @@ This is the hard part. If I take on a game that is too complex, I will end tryin
 > 
 > 2. Items you can buy will increase the amount of Renown you earn.
 > 
-> 3. In some way at some point, Renown will be used to affect the internal game at a very costly price. (maybe boosting a player's stat? costing > someone their inventory as well?)
+> 3. In some way at some point, Renown will be used to affect the internal game at a very costly price. (maybe boosting a player's stat? costing someone their inventory as well?)
 > 
 >
 . 
