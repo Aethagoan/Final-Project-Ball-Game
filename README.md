@@ -30,8 +30,9 @@ This is the hard part. If I take on a game that is too complex, I will end tryin
 > 
 > 3. In some way at some point, Renown will be used to affect the internal game at a very costly price. (maybe boosting a player's stat? costing > someone their inventory as well?)
 > 
-> 
 >
+. 
+>[!NOTE]
 > **The Game/Internal**  
 > After some contemplation, I have decided to make a cricket-baseball hybrid. Why? Baseball is too complicated (think of how runners and bases > work + stealing and where plays happen etc), and I couldn't think of a way to add visual elements of cricket to a digital looking panel, so I > thought I'd combine the two.
 > 
