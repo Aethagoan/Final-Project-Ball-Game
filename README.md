@@ -1,12 +1,12 @@
 # Intro to Web Development Final project
 
-~By Aidan~
+<sub>By Aidan</sub>
 
-**The Pitch** ~lol, pun~  
-Drawing heavy inspiration from the internet browser game [==Blaseball==](https://en.wikipedia.org/wiki/Blaseball) which recently [died](https://www.blaseball.com/) (may it rest in violence), I want to make something that provides entertainment in the form of sitting back and watching AI/randomness bots battle it out in a game ~~of *baseball* (?)~~. Of course, as a final project, it's not enough to just ***watch*** the chaos unfold, but you need to be able ***add*** to it. So, there needs to be a game element to it in the form of some type of currency, some way to get it, and some way to spend it that affects your experience or the game itself.
+**The Pitch** <sub>lol, pun</sub>  
+Drawing heavy inspiration from the internet browser game [Blaseball](https://en.wikipedia.org/wiki/Blaseball) which recently [died](https://www.blaseball.com/) (may it rest in violence), I want to make something that provides entertainment in the form of sitting back and watching AI/randomness bots battle it out in a game ~of *baseball* (?)~. Of course, as a final project, it's not enough to just ***watch*** the chaos unfold, but you need to be able ***add*** to it. So, there needs to be a game element to it in the form of some type of currency, some way to get it, and some way to spend it that affects your experience or the game itself.
 
 **Pages**  
-The ==landing page== of this website will give a brief explanation of the game (and make a player/spectator give a name if they don't have a token). There will be a ==watch page== where a game between two teams will unfold. There will be a ==league page== which will show all of the teams (probably just two for this project) with their players and ratings + wins/losses. And last but not least a ==Store Page== that will include a player's inventory (I will have to probably make a token system?) and items for sale.
+The landing page of this website will give a brief explanation of the game (and make a player/spectator give a name if they don't have a token). There will be a watch page where a game between two teams will unfold. There will be a league page which will show all of the teams (probably just two for this project) with their players and ratings + wins/losses. And last but not least a Store Page that will include a player's inventory (I will have to probably make a token system?) and items for sale.
 
 Across the top I want a navigation bar that is slim and out of the way / not distracting.
 
@@ -22,7 +22,7 @@ And further, if I want it to work in multiple instances, I need the game in the 
 **Game Mechanics, Spectating and Internal**  
 This is the hard part. If I take on a game that is too complex, I will end trying to do far too much in too little time. If I make it too simple, it won't be interesting or entertaining (I think?).
 
-> 
+> [!NOTE]
 > **Spectating**  
 > 1. The currency is "Renown", earned by watching games and when your favorite team wins.
 > 
@@ -31,7 +31,6 @@ This is the hard part. If I take on a game that is too complex, I will end tryin
 > 3. In some way at some point, Renown will be used to affect the internal game at a very costly price. (maybe boosting a player's stat? costing > someone their inventory as well?)
 > 
 > 
-.
 >
 > **The Game/Internal**  
 > After some contemplation, I have decided to make a cricket-baseball hybrid. Why? Baseball is too complicated (think of how runners and bases > work + stealing and where plays happen etc), and I couldn't think of a way to add visual elements of cricket to a digital looking panel, so I > thought I'd combine the two.
@@ -61,7 +60,7 @@ This is the hard part. If I take on a game that is too complex, I will end tryin
 > To Catch: Rand\*Batter.Bat(the prev) vs Rand\*Fielder.Run  
 > For Run: Rand\*Fielder.Throw vs Rand\*Batter.Run  
 > 
-.  
+
 **Other notes**  
 I want a dark theme, Here's my general guidelines: 80% black, 15% white, and 5% neon colors of all kinds.
 
@@ -69,11 +68,11 @@ I want a dark theme, Here's my general guidelines: 80% black, 15% white, and 5% 
 
 ## Phase 1 \- Nov 17
 
->
+>[!NOTE]
 >> - [ ] ground work  
 >> - [ ] parts currently functioning  
 >
-> .  
+>   
 > **Parts:**  
 > all pages .html  
 > - [ ] Multiple Pages Fulfilled.  
@@ -92,11 +91,12 @@ I want a dark theme, Here's my general guidelines: 80% black, 15% white, and 5% 
 
 ## Phase 2 \- Nov 24
 
->
+>[!NOTE]
+>>
 >> - [ ] ground work  
 >> - [ ] parts currently functioning  
 > 
-> .  
+>   
 > **Parts:**  
 > game simulated in API, teams created.  
 > watch page is populating with game data  
@@ -107,11 +107,12 @@ I want a dark theme, Here's my general guidelines: 80% black, 15% white, and 5% 
 
 ## Phase 3 \- Dec 1
 
->
+>[!NOTE]
+>>
 >> - [ ] ground work  
 >> - [ ] parts currently functioning  
 > 
-> .  
+>   
 > **Parts:**  
 > api data structures working + token system in effect  
 > 
@@ -132,11 +133,12 @@ I want a dark theme, Here's my general guidelines: 80% black, 15% white, and 5% 
 
 ## Phase 4 \- Dec 8
 
->
->>- [ ] ground work  
->>- [ ] parts currently functioning  
+> [!NOTE]
+>>
+>> - [ ] ground work  
+>> - [ ] parts currently functioning  
 > 
-> .  
+>   
 > **Parts:**  
 > pages finalized in look/feel  
 > Store finished, renown can affect the game (form?)
