@@ -1,6 +1,12 @@
+using System;
+using System.Collections.Generic;
+
+// web app stuff
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
 var app = builder.Build();
+
+List<jsonListItem> todo_list = new ();
 
 app.UseCors(policy => 
     policy
@@ -9,22 +15,33 @@ app.UseCors(policy =>
                 .AllowAnyHeader()
 );
 
+
+// get
 app.MapGet("/", () => {
-    return new {
-        title = "Hello World!", 
-        message = "test"
-        };
+    return todo_list;
     });
 
-app.MapPost("/", (RecievedJSON recieved) => {
-    Console.WriteLine(recieved.text);
+// post
+app.MapPost("/", (jsonListItem recieved) => {
+    Console.WriteLine(recieved.name);
+    Console.WriteLine(recieved.description);
+    // this is where the API uses the data/posts the data
+    todo_list.Add(recieved);
+
     return new {
-        message = "recieved"
+        message = " post recieved"
     };
 });
 
 app.Run();
 
+
+// my data structures
 class RecievedJSON {
     public string text { get; set;}
+}
+
+public class jsonListItem {
+    public string name { get; set;}
+    public string description { get; set;}
 }
