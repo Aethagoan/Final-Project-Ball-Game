@@ -66,6 +66,12 @@ This is the hard part. If I take on a game that is too complex, I will end tryin
 I want a dark theme, Here's my general guidelines: 80% black, 15% white, and 5% neon colors of all kinds.  
 I haven't picked a name just quite yet, but the current competitors are Cricket + Baseball = Crackball or Baseball + Cricket = Brisket
 
+> [!IMPORTANT]
+> You **will** most likely have to rebuild the web-app.
+> dotnet has a new version, version 8.0.
+> I am currently using 8.0, the lab computers have 7.0-something-
+> 
+
 ---
 
 ## Phase 1 \- Nov 17
@@ -149,8 +155,3 @@ I haven't picked a name just quite yet, but the current competitors are Cricket 
 
 ---
 
-> [!IMPORTANT]
-> You **will** most likely have to rebuild the web-app.
-> dotnet has a new version, version 8.0.
-> I am currently using 8.0, the lab computers have 7.0-something-
-> 
