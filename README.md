@@ -70,7 +70,9 @@ I haven't picked a name just quite yet, but the current competitors are Cricket 
 > You **will** most likely have to rebuild the web-app.
 > dotnet has a new version, version 8.0.
 > I am currently using 8.0, the lab computers have 7.0-something-
-> 
+> To do this, the API folder needs to be cleared and then in the api folder:
+> ```dotnet new web -o .```
+> replace the Program.cs file in the folder with the one from here (github) and update the js files to use the new port that dotnet gave the web app. You can find it in the Properties folder in launchSettings.json created by dotnet and use the new URL next to "applicationUrl".
 
 ---
 
@@ -83,13 +85,13 @@ I haven't picked a name just quite yet, but the current competitors are Cricket 
 >   
 > **Parts:**  
 > all pages .html  
-> - [ ] Multiple Pages Fulfilled.  
+> - [x] Multiple Pages Fulfilled.  
 >
 > general pass at css (layout), each page has own specific css + main css  
 > - [ ] HTML Mastery (minus forms), CSS Mastery Fulfilled.  
 >
 > nav bar installed  
-> - [ ] Shared Page Layout Fulfilled.  
+> - [x] Shared Page Layout Fulfilled.  
 > 
 > - [ ] api code started (c# is probably the easiest?)  
 
