@@ -22,17 +22,17 @@ And further, if I want it to work in multiple instances, I need the game in the 
 **Game Mechanics, Spectating and Internal**  
 This is the hard part. If I take on a game that is too complex, I will end trying to do far too much in too little time. If I make it too simple, it won't be interesting or entertaining (I think?).
 
-> [!NOTE]
-> **Spectating**  
-> 1. The currency is "Renown", earned by watching games and when your favorite team wins.
-> 
-> 2. Items you can buy will increase the amount of Renown you earn.
-> 
-> 3. In some way at some point, Renown will be used to affect the internal game at a very costly price. (maybe boosting a player's stat? costing someone their inventory as well?)
-> 
->
+<blockquote>
+**Spectating**  
+1. The currency is "Renown", earned by watching games and when your favorite team wins.
+
+2. Items you can buy will increase the amount of Renown you earn.
+
+3. In some way at some point, Renown will be used to affect the internal game at a very costly price. (maybe boosting a player's stat? costing someone their inventory as well?)
+</blockquote> 
+
 . 
->[!NOTE]
+> [!NOTE]
 > **The Game/Internal**  
 > After some contemplation, I have decided to make a cricket-baseball hybrid. Why? Baseball is too complicated (think of how runners and bases > work + stealing and where plays happen etc), and I couldn't think of a way to add visual elements of cricket to a digital looking panel, so I > thought I'd combine the two.
 > 
