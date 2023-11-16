@@ -33,6 +33,10 @@ nav {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+
+    /* HEL-LO SAILOR! this is a welcome addition */
+    position: sticky;
+    top: 0;
 }
 
 nav a {
@@ -72,6 +76,11 @@ section {
 
     display:flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
 
+    
+}
+
+footer {
+    height: 15em;
 }
