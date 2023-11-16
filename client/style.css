@@ -8,13 +8,14 @@ their respective css files */
 
 
 /* fill out the page */
-html, body {
+html,
+body {
     height: 100%;
     width: 100%;
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
     background-color: var(--main-background-color);
-    
+
 }
 
 
@@ -25,13 +26,34 @@ nav {
     border-bottom-left-radius: 1em;
     border-bottom-right-radius: 1em;
 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
 
+nav a {
+    width: 20%;
+    height: 3em;
+    background-color: rgb(66, 66, 66);
+    color:white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: .6em;
+
+    text-decoration: none;
+}
+
+nav .current {
+    background-color: rgb(165, 165, 165);
 }
 
 
 /* this will determine the general margin of all pages, plus background color */
 section {
-    min-height: 100%;
     background-color: var(--main-background-color);
 
     width: 90%;
