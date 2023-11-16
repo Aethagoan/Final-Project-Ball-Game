@@ -23,8 +23,8 @@ app.MapGet("/", () => {
 
 // post
 app.MapPost("/", (jsonListItem recieved) => {
-    Console.WriteLine(recieved.name);
-    Console.WriteLine(recieved.description);
+    // Console.WriteLine(recieved.name);
+    // Console.WriteLine(recieved.description);
     // this is where the API uses the data/posts the data
     todo_list.Add(recieved);
 

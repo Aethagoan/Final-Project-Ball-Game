@@ -1,7 +1,7 @@
 
 // request something from localhost
 let api_message = await fetch(
-    "http://localhost:5212", 
+    "http://localhost:5184", 
     {
     method: "GET"
     }
@@ -16,7 +16,7 @@ console.log(api_message)
 
 // request something from localhost
 api_message = await fetch(
-    "http://localhost:5212", {
+    "http://localhost:5184", {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -34,7 +34,7 @@ console.log(api_message)
 
 // request something from localhost
 api_message = await fetch(
-    "http://localhost:5212", 
+    "http://localhost:5184", 
     {
     method: "GET"
     }

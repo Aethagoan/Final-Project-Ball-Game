@@ -146,3 +146,11 @@ I haven't picked a name just quite yet, but the current competitors are Cricket 
 > Store finished, renown can affect the game (form?)
 > 
 >
+
+---
+
+> [!IMPORTANT]
+> You **will** most likely have to rebuild the web-app.
+> dotnet has a new version, version 8.0.
+> I am currently using 8.0, the lab computers have 7.0-something-
+> 

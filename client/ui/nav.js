@@ -1,6 +1,3 @@
-
-
-
 // makes the nav (so I don't have to copy paste changes every time)
 build_nav()
 
@@ -17,27 +14,32 @@ async function build_nav() {
     const nav = document.getElementById("nav");
 
     const home = document.createElement("a");
-    home.setAttribute("href","/client/index.html")
+    home.setAttribute("href","./")
     home.innerText = "HOME";
 
     const watch = document.createElement("a");
-    watch.setAttribute("href","/client/watch.html")
+    watch.setAttribute("href","./watch.html")
     watch.innerText = "WATCH";
 
     const league = document.createElement("a");
-    league.setAttribute("href","/client/league.html")
+    league.setAttribute("href","./league.html")
     league.innerText = "LEAGUE";
 
     const store = document.createElement("a");
-    store.setAttribute("href","/client/store.html")
+    store.setAttribute("href","./store.html")
     store.innerText = "STORE";
 
 
 
-    const currentlocation = location.href.split("/")[4].split(".")[0]
-    console.log(currentlocation)
+    let currentlocation = location.href
+    currentlocation = currentlocation.split("/")[3]
+    if (currentlocation) {
+        currentlocation = currentlocation.split(".")[0]
+    }
 
-    if (currentlocation == "index") {
+    // console.log(currentlocation)
+
+    if (currentlocation == "" || currentlocation == "index" ) {
         home.classList.add("current");
     }
 
