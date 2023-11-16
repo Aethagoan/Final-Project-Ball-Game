@@ -72,7 +72,7 @@ I haven't picked a name just quite yet, but the current competitors are Cricket 
 > I am currently using 8.0, the lab computers have 7.0-something-  
 > To do this, the API folder needs to be cleared and then in the api folder:  
 > ```dotnet new web -o .```  
-> replace the Program.cs file in the folder with the one from here (github) and update the js files to use the new port that dotnet gave the web app. You can find it in the Properties folder in launchSettings.json created by dotnet and use the new URL next to "applicationUrl".
+> replace the Program.cs file in the folder with the one from here (github) and update the js files to use the new port that dotnet gave the web app. You can find it in the Properties folder in launchSettings.json created by dotnet and use the new URL next to "applicationUrl". There should be a convinient const at the top of each JS file that calls the API for easy change.
 
 ---
 
