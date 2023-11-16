@@ -63,7 +63,8 @@ This is the hard part. If I take on a game that is too complex, I will end tryin
 > 
 
 **Other notes**  
-I want a dark theme, Here's my general guidelines: 80% black, 15% white, and 5% neon colors of all kinds.
+I want a dark theme, Here's my general guidelines: 80% black, 15% white, and 5% neon colors of all kinds.  
+I haven't picked a name just quite yet, but the current competitors are Cricket + Baseball = Crackball or Baseball + Cricket = Brisket
 
 ---
 
