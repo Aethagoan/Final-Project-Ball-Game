@@ -1,0 +1,61 @@
+article {
+    margin: 5em auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    flex: 1 0 0;
+}
+
+
+#game {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    flex: 1 0 0 ;
+
+    border-radius: 2rem;
+
+    background-color: rgb(0, 0, 29);
+    padding: 3rem;
+}
+
+#numbers {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    justify-content: space-evenly;
+}
+
+#display {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 30% ;
+    justify-content: center;
+    align-items: center;
+}
+
+#info {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex: 1 1 0;
+}
+
+#base-1, #base-2 {
+    height: 5rem;
+    width: 5rem;
+    border: .2rem solid white;
+    margin: .2rem 0;
+    border-radius: 1rem;
+}
+
+#play {
+    text-align: center;
+}
+
+/* 
+#base-1-pitcher, #batter, #base-2-pitcher {
+
+} */

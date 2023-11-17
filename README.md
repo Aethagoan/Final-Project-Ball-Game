@@ -88,12 +88,12 @@ I haven't picked a name just quite yet, but the current competitors are Cricket 
 > - [x] Multiple Pages Fulfilled.  
 >
 > general pass at css (layout), each page has own specific css + main css  
-> - [ ] HTML Mastery (minus forms), CSS Mastery Fulfilled.  
+> - [ ] HTML Mastery, CSS Mastery Fulfilled.  
 >
 > nav bar installed  
 > - [x] Shared Page Layout Fulfilled.  
 > 
-> - [ ] api code started (c# is probably the easiest?)  
+> - [x] api code started (c# is probably the easiest?)  
 
 
 
