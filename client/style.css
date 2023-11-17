@@ -24,7 +24,7 @@ body {
 
 /* nav should be same across all pages */
 nav {
-    height: 5em;
+    height: 5rem;
     background-color: rgb(30, 30, 30);
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
