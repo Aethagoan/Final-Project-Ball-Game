@@ -79,8 +79,8 @@ I haven't picked a name just quite yet, but the current competitors are Cricket 
 ## Phase 1 \- Nov 17
 
 >[!NOTE]
->> - [ ] ground work  
->> - [ ] parts currently functioning  
+>> - [x] ground work  
+>> - [x] parts currently functioning
 >
 >   
 > **Parts:**  
