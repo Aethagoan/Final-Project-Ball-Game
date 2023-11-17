@@ -26,8 +26,8 @@ body {
 nav {
     height: 5em;
     background-color: rgb(30, 30, 30);
-    border-bottom-left-radius: 1em;
-    border-bottom-right-radius: 1em;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 
     display: flex;
     flex-direction: row;
@@ -41,7 +41,7 @@ nav {
 
 nav a {
     width: 20%;
-    max-height: 3.5em;
+    max-height: 3.5rem;
     background-color: rgb(66, 66, 66);
     color:white;
 
@@ -49,10 +49,10 @@ nav a {
     justify-content: center;
     align-items: center;
 
-    border-radius: .6em;
+    border-radius: .6rem;
 
     text-decoration: none;
-    font-size: 1.5em;
+    font-size: 1.5rem;
 }
 
 nav .current {
@@ -82,5 +82,5 @@ section {
 }
 
 footer {
-    height: 15em;
+    height: 15rem;
 }

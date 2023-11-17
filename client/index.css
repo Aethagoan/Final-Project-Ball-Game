@@ -1,15 +1,15 @@
 h1 {
     text-align: center;
-    margin: 1em 0 .5em 0;
-    font-size: 4em;
+    margin: 1rem 0 .5rem 0;
+    font-size: 4rem;
     font-weight: 600;
 }
 
 article {
-    font-size: 1.7em;
+    font-size: 1.7rem;
     font-weight: 400;
 
-    max-width: 40em;
+    max-width: 60rem;
 }
 
 p {
@@ -28,4 +28,27 @@ article a {
 
 article a:hover {
     color: lightcoral;
+}
+
+.button {
+    width: 35rem;
+    max-height: 8rem;
+    background-color: red;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .5rem;
+    color:black;
+
+    flex: 0 0 0;
+
+    font-size: 5em;
+    margin: 5rem;
+
+    text-decoration: none;
+}
+
+.button:hover {
+    filter:hue-rotate(-45deg) brightness(50%);
 }

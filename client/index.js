@@ -1,50 +1,17 @@
+// import api_call from "./svc/api_call.js";
 
-// IMPORTANT: CHANGE THIS IS YOU REDO THE WEB APP!
-const API_PORT = "5184"
+while(!document.getElementsByClassName("button")) {
+    await new Promise(r => {
+        setTimeout(r, 50);
+    });
+}
 
+const button = document.getElementsByClassName("button")[0]
 
-// request something from localhost
-let api_message = await fetch(
-    "http://localhost:" + API_PORT, 
-    {
-    method: "GET"
-    }
-)
+button.addEventListener("mouseenter", () => {
+    button.innerHTML = "yes. . . >:]"
+})
 
-// turn it into json
-api_message = await api_message.json()
-
-console.log(api_message)
-// console.log(Object.entries(api_message))
-
-
-// request something from localhost
-api_message = await fetch(
-    "http://localhost:" + API_PORT, {
-        method: "POST",
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            name: "first item",
-            description: "desc"
-        })
-    }
-)
-
-// turn it into json
-api_message = await api_message.json()
-
-console.log(api_message)
-// console.log(Object.entries(api_message))
-
-// request something from localhost
-api_message = await fetch(
-    "http://localhost:" + API_PORT, 
-    {
-    method: "GET"
-    }
-)
-
-// turn it into json
-api_message = await api_message.json()
-
-console.log(api_message)
+button.addEventListener("mouseout", () => {
+    button.innerHTML = "Enter"
+})
