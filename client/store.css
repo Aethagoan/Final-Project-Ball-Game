@@ -1,0 +1,8 @@
+
+#current-renown {
+    align-self: flex-end;
+    font-size: 2rem;
+
+    position: sticky;
+    top: 0;
+}

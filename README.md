@@ -67,7 +67,7 @@ I want a dark theme, Here's my general guidelines: 80% black, 15% white, and 5% 
 I haven't picked a name just quite yet, but the current competitors are Cricket + Baseball = Crackball or Baseball + Cricket = Brisket
 
 > [!IMPORTANT]
-> You **will** most likely have to rebuild the web-app.
+> You ***will*** ~most likely~ have to rebuild the web-app.
 > dotnet has a new version, version 8.0.
 > I am currently using 8.0, the lab computers have 7.0-something-  
 > To do this, the API folder needs to be cleared and then in the api folder:  

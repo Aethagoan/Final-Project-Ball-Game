@@ -1,20 +1,4 @@
-h1 {
-    text-align: center;
-    margin: 1rem 0 .5rem 0;
-    font-size: 4rem;
-    font-weight: 600;
-}
 
-article {
-    font-size: 1.7rem;
-    font-weight: 400;
-
-    max-width: 60rem;
-}
-
-p {
-    margin: 0;
-}
 
 u {
     text-decoration: underline;
