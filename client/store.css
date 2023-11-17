@@ -24,12 +24,13 @@
     flex-direction: column;
     justify-content: space-around;
     column-count: 1;
-    height: 100%;
     width: 40%;
 
     flex: 2 0 0;
     
     margin-right: 3rem;
+
+    
 }
 
 #store figure {
@@ -64,6 +65,7 @@
 
     position: sticky;
     top: 14rem;
+    bottom: 0rem;
 }
 
 .slot {
