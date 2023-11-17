@@ -36,13 +36,13 @@ This is the hard part. If I take on a game that is too complex, I will end tryin
 > **The Game/Internal**  
 > After some contemplation, I have decided to make a cricket-baseball hybrid. Why? Baseball is too complicated (think of how runners and bases > work + stealing and where plays happen etc), and I couldn't think of a way to add visual elements of cricket to a digital looking panel, so I > thought I'd combine the two.
 > 
-> 1. Each team has 11 players. One team bats, one team feilds.
+> 1. Each team has 11 players. One team bats, one team fields.
 > 
 > 2. There are two bases. Each base has a pitcher/baseman. 
 > 
 > 3. A batter starts on a base, the pitcher on the opposite base then bowls/pitches the ball to the batter.
 > 
-> 4. A pitcher can either make a throw or miss a throw due to a strikezone, and a batter can hit or not hit a ball. Three strikes and they're out. > Four balls/Wild Throws/Misses and the batter gets to walk.
+> 4. A pitcher can either make a throw or miss a throw due to a strikezone, and a batter can hit or not hit a ball. Three strikes and they're out. Four balls/Wild Throws/Misses and the batter gets to walk.
 > 
 > 5. When a batter hits a ball, they run to the opposing base. The ball can be caught, causing an out, or thrown to the base, causing an out. If > the batter makes it, they score a point and get to bat again. There are no foul balls, there are no "home runs".
 > 
