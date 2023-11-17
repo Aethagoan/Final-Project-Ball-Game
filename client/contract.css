@@ -122,3 +122,8 @@ div {
     width: 100%;
     align-items: start;
 }
+
+article {
+    border-bottom: .2rem solid white;
+    padding-bottom: 2rem;
+}
