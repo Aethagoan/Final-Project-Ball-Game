@@ -74,6 +74,9 @@ I haven't picked a name just quite yet, but the current competitors are Cricket 
 > ```dotnet new web -o .```  
 > replace the Program.cs file in the folder with the one from here (github) and update the js files to use the new port that dotnet gave the web app. You can find it in the Properties folder in launchSettings.json created by dotnet and use the new URL next to "applicationUrl". There should be a convinient const at the top of each JS file that calls the API for easy change.
 
+> [!IMPORTANT]
+> The html root needs to be the client folder. if you run an extension in vscode like Live Server, if the workspace folder that is open is not client when you do it, stuff is going to probably break.
+
 ---
 
 ## Phase 1 \- Nov 17
