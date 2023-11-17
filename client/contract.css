@@ -12,7 +12,7 @@
     width: 14rem;
 
     background-color: black;
-    color:white;
+    color:red;
 }
 
 #alias:focus {
@@ -40,13 +40,69 @@ article {
     display: block;
 }
 
-section .button {
+#pop-corns {
+    display:block;
+    font-family: 'Eczar', serif;
+    font-size: 1.5rem;
+    text-align:start;
+    align-items: end;
+    outline: hidden;
+
+    color: red;
+
+    margin: 1rem auto;
+    height: 3rem;
+    width: 10rem;
+
+
+    border: 0;
+    border-bottom: .1em solid white;
+
+    
+
+  
+
+    background-color: black;
+}
+
+
+section .submit-button {
+    float:right;
     position: sticky;
     bottom: 3rem;
+
     padding: 3rem 3rem;
     background-color: red;
     text-decoration: none;
     color:black;
+
+    border-style: none;
+
+    margin: 0 0 0 auto;
+
+    font-family: 'Eczar', serif;
+    font-size: 3rem;
+
+    border-radius: 1rem;
+    user-select: none;
+}
+
+section .submit-button:hover {
+    filter: hue-rotate(-25deg) brightness(60%);
+}
+
+section .reset-button {
+
+
+    display:inline-block;
+
+    background-color: red;
+    text-decoration: none;
+    color:black;
+
+    padding: 3rem 3rem;
+
+    border-style: none;
 
     font-family: 'Eczar', serif;
     font-size: 3rem;
@@ -54,8 +110,15 @@ section .button {
     border-radius: 1rem;
     margin-left: auto;
     user-select: none;
+
+    margin: 0 10rem 0 0 ;
 }
 
-section .button:hover {
+section .reset-button:hover {
     filter: hue-rotate(-25deg) brightness(60%);
+}
+
+div {
+    width: 100%;
+    align-items: start;
 }
