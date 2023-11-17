@@ -11,6 +11,7 @@
     border-color: white;
     border-width: .2rem;
     border-radius: 1.2rem;
+    z-index: 2;
 }
 
 #container {
@@ -66,6 +67,8 @@
     position: sticky;
     top: 14rem;
     bottom: 0rem;
+
+    z-index: 0;
 }
 
 .slot {

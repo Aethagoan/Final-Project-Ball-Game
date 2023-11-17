@@ -33,6 +33,7 @@ nav {
     align-items: center;
     justify-content: space-around;
 
+    z-index: 3;
     /* HEL-LO SAILOR! this is a welcome addition */
     position: sticky;
     top: 0;
