@@ -1,0 +1,61 @@
+#alias {
+    display:inline-block;
+    font-family: 'Eczar', serif;
+    font-size: 1.5rem;
+    text-align: right;
+
+    height: 1.2rem;
+
+    border: 0;
+    border-bottom: .1em solid white;
+
+    width: 14rem;
+
+    background-color: black;
+    color:white;
+}
+
+#alias:focus {
+    outline:none;
+}
+
+h2 {
+    margin: 0;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+    text-decoration-thickness: .2em;
+    color: red;
+}
+
+.strikethrough u {
+    color: white;
+    text-decoration: none;
+    
+}
+
+
+article {
+    display: block;
+}
+
+section .button {
+    position: sticky;
+    bottom: 3rem;
+    padding: 3rem 3rem;
+    background-color: red;
+    text-decoration: none;
+    color:black;
+
+    font-family: 'Eczar', serif;
+    font-size: 3rem;
+
+    border-radius: 1rem;
+    margin-left: auto;
+    user-select: none;
+}
+
+section .button:hover {
+    filter: hue-rotate(-25deg) brightness(60%);
+}
