@@ -3,7 +3,6 @@
         "alias": "exampleman",
         "renown": 0,
         "favoriteteam": "team-name",
-        
         "inventory": {
             "slot1": "",
             "slot2": "",
@@ -11,12 +10,125 @@
             "slot4": "",
             "slot5": ""
         },
-
         "pop_corns": 1,
         "QFS": false,
         "DES": false,
         "TLD": false,
         "CIA": false,
+        "EPS": false,
+        "IFS": false
+    },
+    "i3ZDwJ5fEg6kgwGCjJbW": {
+        "alias": "test",
+        "renown": 0,
+        "favoriteteam": null,
+        "inventory": {
+            "slot1": "",
+            "slot2": "",
+            "slot3": "",
+            "slot4": "",
+            "slot5": ""
+        },
+        "pop_corns": 0,
+        "QFS": false,
+        "DES": false,
+        "TLD": false,
+        "CIA": false,
+        "EPS": false,
+        "IFS": false
+    },
+    "qp5S6gxAOv61KoYrwaR3": {
+        "alias": "test",
+        "renown": 0,
+        "favoriteteam": null,
+        "inventory": {
+            "slot1": "",
+            "slot2": "",
+            "slot3": "",
+            "slot4": "",
+            "slot5": ""
+        },
+        "pop_corns": 0,
+        "QFS": false,
+        "DES": false,
+        "TLD": false,
+        "CIA": false,
+        "EPS": false,
+        "IFS": false
+    },
+    "5yiPyl1DPKPHydrFkhae": {
+        "alias": "test",
+        "renown": 0,
+        "favoriteteam": null,
+        "inventory": {
+            "slot1": "",
+            "slot2": "",
+            "slot3": "",
+            "slot4": "",
+            "slot5": ""
+        },
+        "pop_corns": 0,
+        "QFS": false,
+        "DES": false,
+        "TLD": false,
+        "CIA": false,
+        "EPS": false,
+        "IFS": false
+    },
+    "iAue1aWfKTmxpAK6rH4g": {
+        "alias": "test",
+        "renown": 0,
+        "favoriteteam": null,
+        "inventory": {
+            "slot1": "",
+            "slot2": "",
+            "slot3": "",
+            "slot4": "",
+            "slot5": ""
+        },
+        "pop_corns": 0,
+        "QFS": false,
+        "DES": false,
+        "TLD": false,
+        "CIA": false,
+        "EPS": false,
+        "IFS": false
+    },
+    "JOsoElCPTbFOSzcupCsO": {
+        "alias": "test",
+        "renown": 0,
+        "favoriteteam": null,
+        "inventory": {
+            "slot1": "",
+            "slot2": "",
+            "slot3": "",
+            "slot4": "",
+            "slot5": ""
+        },
+        "pop_corns": 0,
+        "QFS": false,
+        "DES": false,
+        "TLD": false,
+        "CIA": false,
+        "EPS": false,
+        "IFS": false
+    },
+    "Pv92b4Gm8xZCzo4PbRiU": {
+        "alias": "test",
+        "renown": 0,
+        "favoriteteam": null,
+        "inventory": {
+            "slot1": "",
+            "slot2": "",
+            "slot3": "",
+            "slot4": "",
+            "slot5": ""
+        },
+        "pop_corns": 30,
+        "QFS": false,
+        "DES": true,
+        "TLD": true,
+        "CIA": true,
         "EPS": false,
         "IFS": false
     }

@@ -1,3 +1,5 @@
+import api_calls from "./svc/api_calls.js";
+
 // if there is local storage, replace the form element with a "copy" of the contract they signed, without the form elements.
 
 // otherwise the page is rendered as normal.
@@ -13,7 +15,7 @@ while(!document.getElementById("contract-form")) {
 }
 
 // when they submit the form, call this function
-document.getElementById("contract-form").addEventListener("submit", (event) =>{
+document.getElementById("contract-form").addEventListener("submit", async (event) =>{
     event.preventDefault(); //stop refresh page, I'll do that when I'm ready.
     console.clear()
    
@@ -29,13 +31,27 @@ document.getElementById("contract-form").addEventListener("submit", (event) =>{
     
     
     const alias = event.target[0].value
-    const pop_corns = event.target[1].value ?? 0; // defaults to 0 if they didn't enter anything
+
+
+    const pop_corns = event.target[1].value ? event.target[1].value : 0; // defaults to 0 if they didn't enter anything
+
     const QFS = event.target[2].checked
     const DES = event.target[3].checked
     const TLD = event.target[4].checked
     const CIA = event.target[5].checked
     const EPS = event.target[6].checked
     const IFS = event.target[7].checked
+
+    const requestObject = {
+        "alias":alias,
+        "pop_corns":pop_corns,
+        "QFS": QFS,
+        "DES": DES,
+        "TLD": TLD,
+        "CIA": CIA,
+        "EPS": EPS,
+        "IFS": IFS
+    }
 
     /* JSON for spectator
     "token" : {
@@ -73,8 +89,7 @@ document.getElementById("contract-form").addEventListener("submit", (event) =>{
     /* what the API is expecting from a new contract
     
         {
-            token: "what we generate here"
-            alias: "the thing they typed",
+            "alias": "the thing they typed",
             "pop_corns": popcorns,
             "QFS": QFS,
             "DES": DES,
@@ -84,10 +99,15 @@ document.getElementById("contract-form").addEventListener("submit", (event) =>{
             "IFS": IFS
         }    
     */
-
     
+    // console.log(await (await api_calls.testapithing()).json())
 
+    // subit the contract, get the token back, put it into local storage.
+    localStorage.setItem("token", (await (await api_calls.submit_contract(requestObject)).json()).token)
 
+    console.log(await (await api_calls.get_player_data(localStorage.getItem("token"))).json())
+
+    // window.location.replace("/")
     
 })
 
