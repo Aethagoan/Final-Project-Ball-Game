@@ -127,3 +127,10 @@ article {
     border-bottom: .2rem solid white;
     padding-bottom: 2rem;
 }
+
+.disability-checkbox {
+    filter: invert(100%) hue-rotate(-20deg) brightness(90%);
+    scale: 300%;
+    margin: 0 1rem;
+
+}
