@@ -1,4 +1,4 @@
-// import api_call from "./svc/api_call.js";
+import api_calls from "./svc/api_calls.js";
 
 // wait for the button to be on the DOM
 while(!document.getElementsByClassName("button")) {
@@ -8,6 +8,7 @@ while(!document.getElementsByClassName("button")) {
 }
 
 const button = document.getElementsByClassName("button")[0]
+const sign_message = document.getElementById("sign-message")
 
 button.addEventListener("mouseenter", () => {
     button.innerHTML = "yes. . . >:]"
@@ -19,3 +20,14 @@ button.addEventListener("mouseout", () => {
 
 
 // if there is local storage, remove the button and contract message elements.
+if (localStorage){
+    
+    const playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json())
+
+    if (playerdata.alias) {
+        button.classList.add("hide")
+        sign_message.classList.add("hide")
+    }
+
+    
+}

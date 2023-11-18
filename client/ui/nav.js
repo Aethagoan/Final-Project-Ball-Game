@@ -1,3 +1,5 @@
+import api_calls from "../svc/api_calls.js";
+
 // makes the nav (so I don't have to copy paste changes every time)
 build_nav()
 
@@ -62,5 +64,10 @@ async function build_nav() {
     nav.appendChild(store);
 
     //if localstorage exists, use the outerhtml tag to append <p>Welcome back, NAME</p>
+    if (localStorage){
 
+        const playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json())
+        // console.log(playerdata)
+        nav.outerHTML += `<p id="welcome-message">Welcome back, ${playerdata.alias}</p>`
+    }
 }

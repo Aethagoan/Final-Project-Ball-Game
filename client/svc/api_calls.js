@@ -63,8 +63,6 @@ async function testapithing() {
     )
 }
 
-
-
 async function submit_contract(requestObject) {
 
     return await fetch(

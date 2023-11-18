@@ -76,7 +76,7 @@ app.MapPost("/newcontract", async (contractEntry recieved) => {
 
     // Console.WriteLine(newclientstring);
 
-    newclientstring = newclientstring.Replace("\"inventory\":null,", "\"inventory\": { \"slot1\":\"\",\n\"slot2\":\"\",\"slot3\":\"\",\"slot4\":\"\",\"slot5\":\"\"},");
+    newclientstring = newclientstring.Replace("\"inventory\":null,", "\"inventory\": { \"slot1\":\"\",\"slot2\":\"\",\"slot3\":\"\",\"slot4\":\"\",\"slot5\":\"\"},");
 
     clientsstring = clientsstring[0..^1]; // remove the last } to add back in later.
     clientsstring += ","+  "\"" + newToken + "\"" + ":" + newclientstring + "}";
@@ -91,7 +91,7 @@ app.MapPost("/newcontract", async (contractEntry recieved) => {
 
 
 app.MapPost("/token", (tokenString recievedtoken) => {
-    return new { playerdata = getToken(recievedtoken.token) };
+    return JsonSerializer.Serialize(getToken(recievedtoken.token));
 });
 
 
@@ -119,8 +119,11 @@ app.Run();
 
 
 // functions
-spectatorJSON getToken(string token) {
-    return JsonSerializer.Deserialize<spectatorJSON>(clients[token]);
+JsonNode getToken(string token) {
+
+    clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
+
+    return clients[token];
 }
 
 string generate_random_token() {
