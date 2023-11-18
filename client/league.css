@@ -19,7 +19,6 @@ td {
     border-width: 0;
 }
 
-
 input {
     display:inline;
     
@@ -37,8 +36,20 @@ input {
     font-family: 'Eczar', serif;
 }
 
-
 #search-items {
     margin: 5rem auto 0 auto;
     width: 80%;
+}
+
+.team-stats p {
+    display: inline-block;
+}
+
+.team-stats td {
+    padding: 0 1rem;
+}
+
+.team-stats .flexdiv {
+    display:flex;
+    justify-content: space-around;
 }

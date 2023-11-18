@@ -79,10 +79,8 @@ article {
     font-size: 1.7rem;
     font-weight: 400;
     width: 100%;
-    max-width: 60rem;
-
-    display: flex;
-    flex-direction: column;
+    max-width: 80rem;
+    min-width: 50rem;
 }
 
 

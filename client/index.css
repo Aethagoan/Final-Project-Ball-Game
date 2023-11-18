@@ -36,3 +36,13 @@ article a:hover {
 .button:hover {
     filter:hue-rotate(-45deg) brightness(50%);
 }
+
+aside {
+    display: inline;
+    width: 40%;
+    float: right;
+    border-left: .2rem solid white;
+    padding: 1rem;
+    margin-left: 2rem;
+    border-radius: .5rem;
+}
