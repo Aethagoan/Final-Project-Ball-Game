@@ -9,13 +9,14 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./contract.css">
 
-    <script src="./ui/nav.js"></script>
+    <script src="./ui/nav.js" type="module"></script>
 
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Eczar:wght@400;600&display=swap" rel="stylesheet">
 
+    <script src="./contract.js" type="module"></script>
 </head>
 
 <body>
@@ -26,10 +27,10 @@
         <!-- articles, paragraphs, images etc -->
         <h1>The Contract:</h1>
         <article>
-            <form onsubmit="">
+            <form id="contract-form">
             <h2>CHAOTIC SPECTATORSHIP WAIVER AGREEMENT</h2>
 
-            <p>I, <input id="alias" placeholder="Type Your Alias Here" required pattern="[A-Za-z,. ]{3,30}" title="Must be between 3 and 30 characters, cannot include numbers or special characters but can include period, comma, and spaces" autocomplete="off">, hereby certify to bear witness to the ensuing
+            <p>I, <input id="alias" placeholder="Type Your Alias Here" required pattern="[A-Za-z,. ]{3,40}" title="Must be between 3 and 40 characters, cannot include numbers or special characters but can include period, comma, and spaces" autocomplete="off">, hereby certify to bear witness to the ensuing
                 chaos, and agree to the following terms.</p>
 
             <p>
@@ -118,7 +119,7 @@
             <br>
             <br>
             By signing, the Participant has the right to claim a number of individual Pop-corns in amount to the very same they have consumed thusfar since birth. Please sign below the number of Pop-corns owed:<br>
-            <input type="number" id="pop-corns" placeholder="300">
+            <input type="number" id="pop-corns" name="pop-corns" placeholder="300">
             By signing, The Participant waives the right of privacy in regards to investigation of this number by the Organizers.
             <br>
             <br>
@@ -263,8 +264,8 @@
 
 
 
-            <input type="reset" class="reset-button">
-            <input type="submit" class="submit-button">
+            <input type="reset" id="reset-button">
+            <input type="submit" id="submit-button">
             </form>
         </article>
 

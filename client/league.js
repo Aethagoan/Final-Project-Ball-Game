@@ -1,0 +1,1 @@
+// if there's no local storage, redirect to contract.

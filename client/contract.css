@@ -66,7 +66,7 @@ article {
 }
 
 
-section .submit-button {
+section #submit-button {
     float:right;
     position: sticky;
     bottom: 3rem;
@@ -87,11 +87,11 @@ section .submit-button {
     user-select: none;
 }
 
-section .submit-button:hover {
+section #submit-button:hover {
     filter: hue-rotate(-25deg) brightness(60%);
 }
 
-section .reset-button {
+section #reset-button {
 
 
     display:inline-block;
@@ -114,7 +114,7 @@ section .reset-button {
     margin: 0 10rem 0 0 ;
 }
 
-section .reset-button:hover {
+section #reset-button:hover {
     filter: hue-rotate(-25deg) brightness(60%);
 }
 

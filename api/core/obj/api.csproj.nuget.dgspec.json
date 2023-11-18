@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\xefin\\Desktop\\Scripts\\HTML,CSS,JS\\Final Assignment\\api\\api.csproj": {}
+    "C:\\Users\\xefin\\Desktop\\Scripts\\HTMLCSSJS\\FinalAssignment\\api\\core\\api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\xefin\\Desktop\\Scripts\\HTML,CSS,JS\\Final Assignment\\api\\api.csproj": {
+    "C:\\Users\\xefin\\Desktop\\Scripts\\HTMLCSSJS\\FinalAssignment\\api\\core\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\xefin\\Desktop\\Scripts\\HTML,CSS,JS\\Final Assignment\\api\\api.csproj",
+        "projectUniqueName": "C:\\Users\\xefin\\Desktop\\Scripts\\HTMLCSSJS\\FinalAssignment\\api\\core\\api.csproj",
         "projectName": "api",
-        "projectPath": "C:\\Users\\xefin\\Desktop\\Scripts\\HTML,CSS,JS\\Final Assignment\\api\\api.csproj",
+        "projectPath": "C:\\Users\\xefin\\Desktop\\Scripts\\HTMLCSSJS\\FinalAssignment\\api\\core\\api.csproj",
         "packagesPath": "C:\\Users\\xefin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\xefin\\Desktop\\Scripts\\HTML,CSS,JS\\Final Assignment\\api\\obj\\",
+        "outputPath": "C:\\Users\\xefin\\Desktop\\Scripts\\HTMLCSSJS\\FinalAssignment\\api\\core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\xefin\\AppData\\Roaming\\NuGet\\NuGet.Config"

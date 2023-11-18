@@ -61,4 +61,6 @@ async function build_nav() {
     nav.appendChild(league);
     nav.appendChild(store);
 
+    //if localstorage exists, use the outerhtml tag to append <p>Welcome back, NAME</p>
+
 }
