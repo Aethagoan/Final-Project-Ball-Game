@@ -6,8 +6,10 @@ if(localStorage.length < 1){
 }
 else {
     const playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json())
+
+    if (playerdata == null){
+        window.location.replace("./contract.html")
+    }
+
 }
 
-if (playerdata == null){
-    window.location.replace("./contract.html")
-}

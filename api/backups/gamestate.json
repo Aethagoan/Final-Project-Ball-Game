@@ -1,0 +1,18 @@
+{
+    "HomeTeam": "",
+    "AwayTeam": "",
+    "inning": {
+        "orientation": "",
+        "count": 0
+    },
+    "HomeScore": 0,
+    "AwayScore": 0,
+    "outs": 0,
+    "strikes": 0,
+    "balls": 0,
+    "batter": "",
+    "onbase": "first",
+    "firstbasepitcher": "",
+    "secondbasepitcher": "",
+    "play": "Play ball!"
+}

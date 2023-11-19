@@ -1,0 +1,138 @@
+{
+    "Team 1":{
+        "Player1": {
+            "alias":"Fred Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        },
+        "Player2": {
+            "alias":"Fred Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        },
+        "Player3": {
+            "alias":"Fred Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        },
+        "Player4": {
+            "alias":"Fred Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        },
+        "Player5": {
+            "alias":"Fred Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        },
+        "Player6": {
+            "alias":"Fred Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        },
+        "Player7": {
+            "alias":"Fred Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        },
+        "Player8": {
+            "alias":"Fred Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        },
+        "Player9": {
+            "alias":"Fred Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        },
+        "Player10": {
+            "alias":"Fred Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        },
+        "Player11": {
+            "alias":"Fred Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        }
+    },
+    "Team 2": {
+        "Player1": {
+            "alias":"John Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        },
+        "Player2": {
+            "alias":"John Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        },
+        "Player3": {
+            "alias":"John Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        },
+        "Player4": {
+            "alias":"John Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        },
+        "Player5": {
+            "alias":"John Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        },
+        "Player6": {
+            "alias":"John Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        },
+        "Player7": {
+            "alias":"John Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        },
+        "Player8": {
+            "alias":"John Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        },
+        "Player9": {
+            "alias":"John Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        },
+        "Player10": {
+            "alias":"John Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        },
+        "Player11": {
+            "alias":"John Burgermiester",
+            "run_score": 0.7,
+            "throw_score": 0.8,
+            "bat_score": 2.1
+        }
+    }
+}

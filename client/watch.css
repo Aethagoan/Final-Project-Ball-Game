@@ -59,3 +59,7 @@ article {
 #base-1-pitcher, #batter, #base-2-pitcher {
 
 } */
+
+.on-base{
+    background-color: white;
+}
