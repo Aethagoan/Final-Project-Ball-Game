@@ -108,8 +108,8 @@ app.MapGet("/game", async () => {
 
 
 
-
-RunGame();
+// executes in the background
+Task.Run(() => RunGame());
 
 
 
@@ -120,17 +120,26 @@ app.Run();
 
 
 // game loop? needs to run async.
-static async Task RunGame(){
+Task RunGame(){
 
     gameState game_state = JsonSerializer.Deserialize<gameState>(File.ReadAllText("../backups/gamestate.json"));
 
     var All_Team_Data = JsonObject.Parse(File.ReadAllText("../memory/teams.json"));
 
     // repeat this indefinately.
-    game("Team 1", "Team 2");
-    // game("Team 2", "Team 1");
+    while (true){
+        game("Team 1", "Team 2");
+        game("Team 2", "Team 1");
+    }
 
-    void game(string team1name, string team2name){
+    return Task.CompletedTask;
+
+    async void game(string team1name, string team2name){
+        game_state = JsonSerializer.Deserialize<gameState>(File.ReadAllText("../backups/gamestate.json"));
+
+        game_state.HomeTeam = team1name;
+        game_state.AwayTeam = team2name;
+
         var Team_1 = All_Team_Data[team1name];
         var Team_2 = All_Team_Data[team2name];
 
@@ -139,11 +148,11 @@ static async Task RunGame(){
         LinkedList<JsonNode> Team_1_Fielders = new LinkedList<JsonNode>();
         LinkedList<JsonNode> Team_2_Fielders = new LinkedList<JsonNode>();
 
-        for(int i = 0; i < 11; i++){
-            Team_1_Batters.AddLast(Team_1[$"Player {i}"]);
-            Team_1_Fielders.AddLast(Team_1[$"Player {i}"]);
-            Team_2_Batters.AddLast(Team_2[$"Player {i}"]);
-            Team_2_Fielders.AddLast(Team_2[$"Player {i}"]);
+        for(int i = 1; i < 12; i++){
+            Team_1_Batters.AddLast(Team_1[$"Player{i}"]);
+            Team_1_Fielders.AddLast(Team_1[$"Player{i}"]);
+            Team_2_Batters.AddLast(Team_2[$"Player{i}"]);
+            Team_2_Fielders.AddLast(Team_2[$"Player{i}"]);
         }
         
         LinkedListNode<JsonNode>Team_1_Batter_Up = Team_1_Batters.First;
@@ -152,21 +161,72 @@ static async Task RunGame(){
         LinkedListNode<JsonNode>Team_2_Pitcher_Up = Team_2_Fielders.First;
 
         
-
         // maybe a line here that is while gamestate.inning.count is < 10?
         game_state.inning.count++;
         game_state.inning.orientation = "top";
-        halfinning(Team_1, Team_2);
+        halfinning(Team_1, Team_1_Batter_Up, Team_2, Team_2_Pitcher_Up);
         game_state.inning.orientation = "bottom";
-        halfinning(Team_2, Team_1);
+        halfinning(Team_2, Team_2_Batter_Up, Team_1, Team_1_Pitcher_Up);
 
-        void halfinning(JsonNode inteam, JsonNode outteam){
+        void halfinning(JsonNode inteam, LinkedListNode<JsonNode> batter, JsonNode outteam, LinkedListNode<JsonNode> pitcher){
+            
             File.WriteAllText("../memory/gamestate.json", JsonSerializer.Serialize(game_state));
 
-
+            //while outs < 3
+            round();
 
             void round() {
+
+                // Console.WriteLine(JsonSerializer.Serialize(batter.Value["bat_score"]));
+                game_state.firstbasepitcher = JsonSerializer.Serialize(pitcher.Value["alias"]);
+                game_state.secondbasepitcher = JsonSerializer.Serialize(pitcher.Next != null ? pitcher.Next.Value["alias"] : pitcher.List.First.Value["alias"]);
+                game_state.batter = JsonSerializer.Serialize(batter.Value["alias"]);
+                write_to_play(JsonSerializer.Serialize(batter.Value["alias"]) + " lines up to bat.");
                 
+                pitcher = pitcher.Next != null ? pitcher.Next : pitcher.List.First;
+                batter = batter.Next != null ? batter.Next : batter.List.First;
+
+                void pitch() {
+                    // until 3 strikes, 4 balls, or a hit (break)
+                    int thrown = 0;
+                    while(true){
+                        if (thrown >= 6){
+                            // rotate pitchers
+                            pitcher = pitcher.Next ?? pitcher.List.First;
+                            write_to_play("The pitchers are rotating.");
+                            game_state.firstbasepitcher = JsonSerializer.Serialize(pitcher.Value["alias"]);
+                            game_state.secondbasepitcher = JsonSerializer.Serialize(pitcher.Next != null ? pitcher.Next.Value["alias"] : pitcher.List.First.Value["alias"]);
+                        }
+
+                        if (game_state.strikes >= 3){
+                            // out
+                            // rotate batters, break
+                            batter = batter.Next ?? batter.List.First;
+                        }
+
+                        if (game_state.balls >= 4) {
+                            // walk
+                        }
+
+                        // pitch
+                        if (game_state.onbase == "first"){
+                            // pitcher on second throws (pitcher.next)
+                        }
+
+                        if (game_state.onbase == "second"){
+                            // pitcher on first throws (pitcher)
+                        }
+                    }
+                    //
+
+                }
+
+            }
+
+            void write_to_play(string message) {
+                game_state.play = message;
+                File.WriteAllText("../memory/gamestate.json", JsonSerializer.Serialize(game_state));
+                Thread.Sleep(5*1000); // wait 5 seconds
             }
             
         }

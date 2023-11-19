@@ -29,12 +29,12 @@ const second_pitcher = document.getElementById("base-2-pitcher")
 const batter = document.getElementById("batter")
 const play = document.getElementById("play")
 
-// while(true) {
+while(true) {
     await new Promise(r => {
         setTimeout(r, 500);
     });
     const game_state = await (await api_calls.get_game_state()).json()
-    console.log(game_state)
+    // console.log(game_state)
 
     home_team.innerText = "Home Team: " + game_state.HomeTeam;
     away_team.innerText = "Away Team: " + game_state.AwayTeam;
@@ -61,6 +61,6 @@ const play = document.getElementById("play")
 
     batter.innerText = "batter: " + game_state.batter
 
-    play.innerText = game_state.play
+    play.innerText = game_state.play.replaceAll(`"`, '')
 
-// }
+}
