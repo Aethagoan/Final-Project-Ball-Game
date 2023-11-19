@@ -176,7 +176,7 @@ Task RunGame()
         // Console.WriteLine(JsonSerializer.Serialize(All_Team_Data));
 
         // maybe a line here that is while gamestate.inning.count is < 10?
-        while (game_state.inning.count < 1)
+        while (game_state.inning.count < 8)
         {
             game_state.inning.count++;
             game_state.inning.orientation = "top";
