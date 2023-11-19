@@ -64,10 +64,12 @@ async function build_nav() {
     nav.appendChild(store);
 
     //if localstorage exists, use the outerhtml tag to append <p>Welcome back, NAME</p>
-    if (localStorage){
+    if (localStorage.length > 0){
 
         const playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json())
         // console.log(playerdata)
-        nav.outerHTML += `<p id="welcome-message">Welcome back, ${playerdata.alias}</p>`
+        if (playerdata != null){
+            nav.outerHTML += `<a id="welcome-message" href="./contract.html">Welcome back, ${playerdata.alias}</a>`
+        }
     }
 }

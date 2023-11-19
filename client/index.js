@@ -20,11 +20,11 @@ button.addEventListener("mouseout", () => {
 
 
 // if there is local storage, remove the button and contract message elements.
-if (localStorage){
+if (localStorage.length > 0){
     
     const playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json())
 
-    if (playerdata.alias) {
+    if (playerdata != null) {
         button.classList.add("hide")
         sign_message.classList.add("hide")
     }

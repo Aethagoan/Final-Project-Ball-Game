@@ -152,7 +152,7 @@ public class tokenString {
 
 public class contractEntry {
     public string alias {get; set;}
-    public int pop_corns {get; set;}
+    public long pop_corns {get; set;}
     public bool QFS {get; set;}
     public bool DES {get; set;}
     public bool TLD {get; set;}
@@ -168,7 +168,7 @@ public class spectatorJSON {
         
     public inventoryJSON inventory {get; set;}
 
-    public int pop_corns {get; set;}
+    public long pop_corns {get; set;}
 
     public bool QFS {get; set;}
     public bool DES {get; set;}

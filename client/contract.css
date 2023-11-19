@@ -134,3 +134,46 @@ article {
     margin: 0 1rem;
 
 }
+
+#signed-line {
+    display: inline-block;
+    font-family: 'Eczar', serif;
+    font-size: 1.5rem;
+    text-align: right;
+
+    height: 2rem;
+
+    border: 0;
+    border-bottom: .1em solid white;
+
+    min-width: 14rem;
+
+    background-color: black;
+    color:red;
+}
+
+#signed-pop-corns {
+
+    display:block;
+    font-family: 'Eczar', serif;
+    font-size: 1.5rem;
+    text-align:start;
+    align-items: end;
+    outline: hidden;
+
+    color: red;
+
+    margin: 1rem auto;
+    height: 3rem;
+    width: 10rem;
+
+
+    border: 0;
+    border-bottom: .1em solid white;
+
+    
+
+  
+
+    background-color: black;
+}

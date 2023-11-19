@@ -28,6 +28,8 @@ nav {
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
 
+    min-width: 50rem;
+
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -111,4 +113,15 @@ footer {
     margin: 1rem 0 0 5rem ;
 
     font-size: 2rem;
+
+    text-decoration: none;
+
+}
+
+#welcome-message:hover {
+    color: red;
+}
+
+.hide {
+    display: none !important;
 }
