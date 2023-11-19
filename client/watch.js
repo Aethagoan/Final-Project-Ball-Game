@@ -31,14 +31,16 @@ const play = document.getElementById("play")
 
 while(true) {
     await new Promise(r => {
-        setTimeout(r, 500);
+        setTimeout(r, 500); // half a second in milliseconds?
     });
+
     const game_state = await (await api_calls.get_game_state()).json()
+    
     // console.log(game_state)
 
-    home_team.innerText = "Home Team: " + game_state.HomeTeam;
-    away_team.innerText = "Away Team: " + game_state.AwayTeam;
-    inning.innerText = "inning: " + game_state.inning.orientation + " of " + game_state.inning.count
+    home_team.innerText = "Home Team: " + format_string(game_state.HomeTeam);
+    away_team.innerText = "Away Team: " + format_string(game_state.AwayTeam);
+    inning.innerText = "inning: " + format_string(game_state.inning.orientation) + " of " + game_state.inning.count
     home_score.innerText = "Home Score: " + game_state.HomeScore
     away_score.innerText = "Away Score: " + game_state.AwayScore
     outs.innerText = "outs: " + game_state.outs
@@ -56,11 +58,15 @@ while(true) {
         base2.classList.add("on-base")
     }
 
-    first_pitcher.innerText = "first base pitcher: " + game_state.firstbasepitcher
-    second_pitcher.innerText = "second base pitcher: " + game_state.secondbasepitcher
+    first_pitcher.innerText = "first base pitcher: " + format_string(game_state.firstbasepitcher)
+    second_pitcher.innerText = "second base pitcher: " + format_string(game_state.secondbasepitcher)
 
-    batter.innerText = "batter: " + game_state.batter
+    batter.innerText = "batter: " + format_string(game_state.batter)
 
-    play.innerText = game_state.play.replaceAll(`"`, '')
+    play.innerText = format_string(game_state.play)
 
+}
+
+function format_string(badstring){
+    return badstring.replaceAll(`"`, '')
 }
