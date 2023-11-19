@@ -2,7 +2,8 @@ export default {
     submit_contract,
     testapithing,
     get_player_data,
-    get_game_state
+    get_game_state,
+    get_teams_data
 }
 
 // IMPORTANT: CHANGE THIS IS YOU REDO THE WEB APP!
@@ -45,6 +46,15 @@ async function get_player_data(sendtoken) {
 async function get_game_state(){
     return await fetch(
         "http://localhost:" + API_PORT + "/game",
+        {
+            method: "GET"
+        }
+    )
+}
+
+async function get_teams_data(){
+    return await fetch(
+        "http://localhost:" + API_PORT + "/teams",
         {
             method: "GET"
         }
