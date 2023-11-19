@@ -23,7 +23,7 @@ const all_teams = document.getElementById("teams")
 
 all_teams.innerHTML = ''
 
-console.log(Object.entries(teams))
+// console.log(Object.entries(teams))
 
 for (let team of Object.entries(teams)){
     const table = document.createElement("table")
@@ -52,7 +52,7 @@ function make_players_html(team){
     // console.log(team)
     let players = Object.entries(team)
     for (let i = 3; i < 11; i++){
-        console.log(players[i])
+        // console.log(players[i])
         returnstring += 
         `<tr>
             <td>${players[i][1].alias}</td>
