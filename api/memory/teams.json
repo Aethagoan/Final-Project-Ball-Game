@@ -1,7 +1,7 @@
 {
     "Team 1":{
         "Wins": 0,
-        "Loses": 0,
+        "Losses": 0,
         "Ties": 0,
         "Player1": {
             "alias":"Fred Burgermiester 1",
@@ -72,7 +72,7 @@
     },
     "Team 2": {
         "Wins": 0,
-        "Loses": 0,
+        "Losses": 0,
         "Ties": 0,
         "Player1": {
             "alias":"John Burgermiester 1",

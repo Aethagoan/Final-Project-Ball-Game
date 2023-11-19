@@ -172,6 +172,9 @@ Task RunGame()
 
         // we do the last on batters so it goes over to the first on startup
 
+        Console.WriteLine(JsonSerializer.Serialize(All_Team_Data["Team 1"]["Wins"]));
+        // Console.WriteLine(JsonSerializer.Serialize(All_Team_Data));
+
         // maybe a line here that is while gamestate.inning.count is < 10?
         while (game_state.inning.count < 10)
         {
@@ -182,6 +185,14 @@ Task RunGame()
             halfinning(team2name, Team_2_Batter_Up, team1name, Team_1_Pitcher_Up);
         }
 
+        if (game_state.HomeScore > game_state.AwayScore) {
+            
+            Team home_team = JsonSerializer.Deserialize<Team>(JsonSerializer.Serialize(All_Team_Data[game_state.HomeTeam]));
+            Team away_team = JsonSerializer.Deserialize<Team>(JsonSerializer.Serialize(All_Team_Data[game_state.AwayTeam]));
+            home_team.Wins++;
+
+            
+        }
 
         void halfinning(string inteam, LinkedListNode<JsonNode> batter, string outteam, LinkedListNode<JsonNode> pitcher)
         {
@@ -211,6 +222,7 @@ Task RunGame()
                 // strikes, balls reset
                 game_state.strikes = 0;
                 game_state.balls = 0;
+                game_state.throws = 0;
 
                 game_state.firstbasepitcher = JsonSerializer.Serialize(pitcher.Value["alias"]);
                 game_state.secondbasepitcher = JsonSerializer.Serialize(pitcher.Next != null ? pitcher.Next.Value["alias"] : pitcher.List.First.Value["alias"]);
@@ -229,17 +241,17 @@ Task RunGame()
                     write_to_play(JsonSerializer.Serialize(batter.Value["alias"]) + " lines up to bat.");
 
                     // until 3 strikes, 4 balls, or a hit (break)
-                    int thrown = 0;
+                    
                     while (true)
                     {
-                        if (thrown >= 6)
+                        if (game_state.throws >= 6)
                         {
                             // rotate pitchers
                             pitcher = pitcher.Next ?? pitcher.List.First;
                             write_to_play("The pitchers are rotating.");
                             game_state.firstbasepitcher = JsonSerializer.Serialize(pitcher.Value["alias"]);
                             game_state.secondbasepitcher = JsonSerializer.Serialize(pitcher.Next != null ? pitcher.Next.Value["alias"] : pitcher.List.First.Value["alias"]);
-                            thrown = 0;
+                            game_state.throws = 0;
                         }
 
                         if (game_state.strikes >= 3)
@@ -266,7 +278,7 @@ Task RunGame()
                         {
                             // pitcher on second throws (pitcher.next)
                             JsonNode nextpitcher = pitcher.Next != null ? pitcher.Next.Value : pitcher.List.First.Value;
-                            thrown++;
+                            game_state.throws++;
 
                             // if hurl ball returns false, break. otherwise continue.
 
@@ -281,7 +293,7 @@ Task RunGame()
                         if (game_state.onbase == "second")
                         {
                             // pitcher on first throws (pitcher)
-                            thrown++;
+                            game_state.throws++;
 
                             // if hurl ball returns false, break. otherwise continue.
 
@@ -560,10 +572,35 @@ public class gameState
     public string firstbasepitcher { get; set; }
     public string secondbasepitcher { get; set; }
     public string play { get; set; }
+    public int throws { get; set; }
 }
 
 public class currentinning
 {
     public string orientation { get; set; }
     public int count { get; set; }
+}
+
+public class Team {
+    public int Wins { get; set; }
+    public int Losses { get; set; }
+    public int Ties { get; set; }
+    public Player Player1 { get; set; }
+    public Player Player2 { get; set; }
+    public Player Player3 { get; set; }
+    public Player Player4 { get; set; }
+    public Player Player5 { get; set; }
+    public Player Player6 { get; set; }
+    public Player Player7 { get; set; }
+    public Player Player8 { get; set; }
+    public Player Player9 { get; set; }
+    public Player Player10 { get; set; }
+    public Player Player11 { get; set; }
+}
+
+public class Player {
+    public string alias { get; set; }
+    public float run_score { get; set; }
+    public float throw_score { get; set; }
+    public float bat_score { get; set; }
 }

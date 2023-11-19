@@ -14,5 +14,6 @@
     "onbase": "first",
     "firstbasepitcher": "",
     "secondbasepitcher": "",
-    "play": "Play ball!"
+    "play": "Play ball!",
+    "throws": 0
 }

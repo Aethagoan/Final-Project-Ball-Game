@@ -28,6 +28,7 @@ const first_pitcher = document.getElementById("base-1-pitcher")
 const second_pitcher = document.getElementById("base-2-pitcher")
 const batter = document.getElementById("batter")
 const play = document.getElementById("play")
+const throws = document.getElementById("throws")
 
 while(true) {
     await new Promise(r => {
@@ -46,6 +47,7 @@ while(true) {
     outs.innerText = "outs: " + game_state.outs
     strikes.innerText = "strikes: " + game_state.strikes
     balls.innerText = "balls: " + game_state.balls
+    throws.innerText = "throws: " + game_state.throws
 
     base1.classList.remove("on-base")
     base2.classList.remove("on-base")
