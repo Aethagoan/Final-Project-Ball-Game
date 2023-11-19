@@ -172,11 +172,11 @@ Task RunGame()
 
         // we do the last on batters so it goes over to the first on startup
 
-        Console.WriteLine(JsonSerializer.Serialize(All_Team_Data["Team 1"]["Wins"]));
+        // Console.WriteLine(JsonSerializer.Serialize(All_Team_Data["Team 1"]["Wins"]));
         // Console.WriteLine(JsonSerializer.Serialize(All_Team_Data));
 
         // maybe a line here that is while gamestate.inning.count is < 10?
-        while (game_state.inning.count < 10)
+        while (game_state.inning.count < 1)
         {
             game_state.inning.count++;
             game_state.inning.orientation = "top";
@@ -185,14 +185,36 @@ Task RunGame()
             halfinning(team2name, Team_2_Batter_Up, team1name, Team_1_Pitcher_Up);
         }
 
-        if (game_state.HomeScore > game_state.AwayScore) {
-            
-            Team home_team = JsonSerializer.Deserialize<Team>(JsonSerializer.Serialize(All_Team_Data[game_state.HomeTeam]));
-            Team away_team = JsonSerializer.Deserialize<Team>(JsonSerializer.Serialize(All_Team_Data[game_state.AwayTeam]));
-            home_team.Wins++;
+        Team home_team = JsonSerializer.Deserialize<Team>(JsonSerializer.Serialize(All_Team_Data[game_state.HomeTeam]));
+        Team away_team = JsonSerializer.Deserialize<Team>(JsonSerializer.Serialize(All_Team_Data[game_state.AwayTeam]));
 
-            
+        if (game_state.HomeScore > game_state.AwayScore) {
+            write_to_play("Home Team " + game_state.HomeTeam + " Wins!");
+            home_team.Wins++;
+            away_team.Losses++;
         }
+        else if (game_state.HomeScore < game_state.AwayScore){
+            write_to_play("Away Team " + game_state.AwayTeam + " Wins!");
+            home_team.Losses++;
+            away_team.Wins++;
+        }
+        else if (game_state.HomeScore == game_state.AwayScore){
+            write_to_play("It's tie??????");
+            home_team.Ties++;
+            away_team.Ties++;
+        }
+        else {
+            // ????????
+        }
+
+        string writestring = "{" + "\"" + game_state.HomeTeam + "\":" + JsonSerializer.Serialize(home_team) + ",\"" + game_state.AwayTeam + "\":" + JsonSerializer.Serialize(away_team) + "}";
+        
+        File.WriteAllText("../memory/teams.json", writestring);
+
+
+        return; // end of game -------------
+
+
 
         void halfinning(string inteam, LinkedListNode<JsonNode> batter, string outteam, LinkedListNode<JsonNode> pitcher)
         {
@@ -260,8 +282,6 @@ Task RunGame()
                             game_state.outs++;
                             write_to_play(JsonSerializer.Serialize(batter.Value["alias"]) + " struck out.");
                             // rotate batters, break
-                            write_to_play("Batters rotating.");
-                            batter = batter.Next != null ? batter.Next : batter.List.First;
                             return;
                         }
 
@@ -358,6 +378,7 @@ Task RunGame()
                                 {
                                     //caught. // return false
                                     game_state.outs++;
+                                    game_state.strikes = 0;
                                     write_to_play(JsonSerializer.Serialize(feilder["alias"]) + " caught the ball. " + JsonSerializer.Serialize(thebatter["alias"]) + " is OUT!");
                                     return false;
                                 }
@@ -436,16 +457,18 @@ Task RunGame()
                 return (float)new Random().Next(1, 4);
             }
 
-            void write_to_play(string message)
-            {
-                game_state.play = message;
-                File.WriteAllText("../memory/gamestate.json", JsonSerializer.Serialize(game_state));
-                Thread.Sleep(5 * 1000); // wait 5 seconds
-            }
+        }
 
+        void write_to_play(string message)
+        {
+            game_state.play = message;
+            File.WriteAllText("../memory/gamestate.json", JsonSerializer.Serialize(game_state));
+            Thread.Sleep(1 * 1000); // wait 5 seconds
         }
 
     }
+
+    
 
 
 }
