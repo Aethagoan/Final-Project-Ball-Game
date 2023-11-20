@@ -471,7 +471,7 @@ Task RunGame()
         void write_to_play(string message)
         {
             game_state.play = message;
-            File.WriteAllText("../memory/gamestate.json", JsonSerializer.Serialize(game_state));
+            File.WriteAllText("../memory/gamestate.json", JsonSerializer.Serialize(game_state).ToString());
             Thread.Sleep(5 * 1000); // wait 5 seconds
         }
 
