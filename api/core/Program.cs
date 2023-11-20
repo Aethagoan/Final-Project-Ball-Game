@@ -181,9 +181,8 @@ Task RunGame()
         LinkedListNode<JsonNode> Team_2_Pitcher_Up = Team_2_Fielders.First;
 
         
-
-        // maybe a line here that is while gamestate.inning.count is < 10?
-        while (game_state.inning.count < 8)
+        // 9 innings. count starts at 0.
+        while (game_state.inning.count < 9)
         {
             game_state.inning.count++;
             game_state.inning.orientation = "top";
@@ -461,8 +460,8 @@ Task RunGame()
 
             float gen_rand()
             {
-                string whole = (new Random().Next(4)).ToString();
-                string fraction = (new Random().Next(100)).ToString();
+                string whole = (new Random(Environment.TickCount).Next(4)).ToString();
+                string fraction = (new Random(Environment.TickCount).Next(100)).ToString();
                 string random = whole + "." + fraction;
                 // Console.WriteLine("Generated " + random);
                 return float.Parse(random);
