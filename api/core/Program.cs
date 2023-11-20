@@ -141,7 +141,7 @@ Task RunGame()
 
     return Task.CompletedTask;
 
-    async void game(string team1name, string team2name)
+    void game(string team1name, string team2name)
     {
         Console.WriteLine("Game has started");
         game_state = JsonSerializer.Deserialize<gameState>(File.ReadAllText("../backups/gamestate.json"));
@@ -165,15 +165,13 @@ Task RunGame()
             Team_2_Fielders.AddLast(Team_2[$"Player{i}"]);
         }
 
+        // we do the last on batters so it goes over to the first on startup
         LinkedListNode<JsonNode> Team_1_Batter_Up = Team_1_Batters.Last;
         LinkedListNode<JsonNode> Team_1_Pitcher_Up = Team_1_Fielders.First;
         LinkedListNode<JsonNode> Team_2_Batter_Up = Team_2_Batters.Last;
         LinkedListNode<JsonNode> Team_2_Pitcher_Up = Team_2_Fielders.First;
 
-        // we do the last on batters so it goes over to the first on startup
-
-        // Console.WriteLine(JsonSerializer.Serialize(All_Team_Data["Team 1"]["Wins"]));
-        // Console.WriteLine(JsonSerializer.Serialize(All_Team_Data));
+        
 
         // maybe a line here that is while gamestate.inning.count is < 10?
         while (game_state.inning.count < 8)
@@ -199,7 +197,7 @@ Task RunGame()
             away_team.Wins++;
         }
         else if (game_state.HomeScore == game_state.AwayScore){
-            write_to_play("It's tie??????");
+            write_to_play("It's a tie??????");
             home_team.Ties++;
             away_team.Ties++;
         }
@@ -207,9 +205,7 @@ Task RunGame()
             // ????????
         }
 
-        string writestring = "{" + "\"" + game_state.HomeTeam + "\":" + JsonSerializer.Serialize(home_team) + ",\"" + game_state.AwayTeam + "\":" + JsonSerializer.Serialize(away_team) + "}";
-        
-        File.WriteAllText("../memory/teams.json", writestring);
+        save_teams();
 
 
         return; // end of game -------------
@@ -454,7 +450,11 @@ Task RunGame()
 
             float gen_rand()
             {
-                return (float)new Random().Next(1, 4);
+                string whole = (new Random().Next(4)).ToString();
+                string fraction = (new Random().Next(100)).ToString();
+                string random = whole + "." + fraction;
+                // Console.WriteLine("Generated " + random);
+                return float.Parse(random);
             }
 
         }
@@ -463,13 +463,19 @@ Task RunGame()
         {
             game_state.play = message;
             File.WriteAllText("../memory/gamestate.json", JsonSerializer.Serialize(game_state));
-            Thread.Sleep(1 * 1000); // wait 5 seconds
+            Thread.Sleep(5 * 1000); // wait 5 seconds
         }
+
+
+        void save_teams(){
+            string writestring = "{" + "\"" + game_state.HomeTeam + "\":" + JsonSerializer.Serialize(home_team) + ",\"" + game_state.AwayTeam + "\":" + JsonSerializer.Serialize(away_team) + "}";
+            File.WriteAllText("../memory/teams.json", writestring);
+        }
+
 
     }
 
     
-
 
 }
 

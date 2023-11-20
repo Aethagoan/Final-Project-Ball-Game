@@ -106,14 +106,14 @@ I haven't picked a name just quite yet, but the current competitors are Cricket 
 
 >[!NOTE]
 >>
->> - [ ] ground work  
->> - [ ] parts currently functioning  
+>> - [x] ground work  
+>> - [x] parts currently functioning  
 > 
 >   
 > **Parts:**  
 > game simulated in API, teams created.  
 > watch page is populating with game data  
-> - [ ] Network call(s) to external API Fulfilled  
+> - [x] Network call(s) to external API Fulfilled  
 > 
 > 
 ---
@@ -129,7 +129,7 @@ I haven't picked a name just quite yet, but the current competitors are Cricket 
 > **Parts:**  
 > api data structures working + token system in effect  
 > 
-> - [ ] Forms Fulfilled (spectator gives name)
+> - [x] Forms Fulfilled (spectator gives name)
 > 
 > store, inventory, items added (drag and drop items in inventory spaces)  
 > 
