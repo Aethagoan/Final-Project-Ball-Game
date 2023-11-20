@@ -72,7 +72,7 @@ I haven't picked a name just quite yet, but the current competitors are Cricket 
 > I am currently using 8.0, the lab computers have 7.0-something-  
 > To do this, the api/core folder needs to be cleared and then in the /api/core folder:  
 > ```dotnet new web -o .```  
-> replace the Program.cs file in the folder with the one from here (github) and update the js files to use the new port that dotnet gave the web app. You can find it in the Properties folder in launchSettings.json created by dotnet and use the new URL next to "applicationUrl". There should be a convinient const at the top of each JS file that calls the API for easy change. (they should be located in client/svc)
+> replace the Program.cs file in the folder with the one from here (github) and update the api_calls.js file to use the new port that dotnet gave the web app. You can find the new port number in the Properties folder in launchSettings.json created by dotnet next to "applicationUrl". Because all API calls come from the same place in /client/svc/api_calls.js, I've added a super easy way to do this, all you need to do is update the API_PORT const at the top of the file. Good luck.
 
 > [!IMPORTANT]
 > The html root needs to be the client folder. if you run an extension in vscode like Live Server, if the workspace folder that is open is not client when you do it, stuff is going to probably break.
@@ -84,6 +84,7 @@ I haven't picked a name just quite yet, but the current competitors are Cricket 
 >[!NOTE]
 >> - [x] ground work  
 >> - [x] parts currently functioning
+>> - [ ] total completion of parts to my satisfaction  
 >
 >   
 > **Parts:**  
@@ -108,6 +109,7 @@ I haven't picked a name just quite yet, but the current competitors are Cricket 
 >>
 >> - [x] ground work  
 >> - [x] parts currently functioning  
+>> - [ ] total completion of parts to my satisfaction  
 > 
 >   
 > **Parts:**  
@@ -122,8 +124,9 @@ I haven't picked a name just quite yet, but the current competitors are Cricket 
 
 >[!NOTE]
 >>
->> - [ ] ground work  
+>> - [x] ground work  
 >> - [ ] parts currently functioning  
+>> - [ ] total completion of parts to my satisfaction  
 > 
 >   
 > **Parts:**  
@@ -139,7 +142,7 @@ I haven't picked a name just quite yet, but the current competitors are Cricket 
 > - [ ] Drag and Drop Fulfilled.  
 > 
 > filter search in league page for players  
-> - [ ] Filter Bar Fulfilled.  
+> - [x] Filter Bar Fulfilled.  
 > 
 >
 ---
@@ -150,6 +153,7 @@ I haven't picked a name just quite yet, but the current competitors are Cricket 
 >>
 >> - [ ] ground work  
 >> - [ ] parts currently functioning  
+>> - [ ] total completion of parts to my satisfaction  
 > 
 >   
 > **Parts:**  
