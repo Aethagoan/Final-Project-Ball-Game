@@ -110,6 +110,15 @@ app.MapGet("/game", async () =>
 });
 
 
+app.MapGet("/items", async () => {
+    return (File.ReadAllText("../memory/items.json"));
+});
+
+
+
+
+
+
 
 
 
@@ -518,6 +527,11 @@ string generate_random_token()
 public class tokenString
 {
     public string token { get; set; }
+}
+
+public class itemString 
+{
+    public string item { get; set; }
 }
 
 public class contractEntry

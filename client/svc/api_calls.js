@@ -3,7 +3,8 @@ export default {
     testapithing,
     get_player_data,
     get_game_state,
-    get_teams_data
+    get_teams_data,
+    get_items
 }
 
 // IMPORTANT: CHANGE THIS IS YOU REDO THE WEB APP!
@@ -57,6 +58,15 @@ async function get_teams_data(){
         "http://localhost:" + API_PORT + "/teams",
         {
             method: "GET"
+        }
+    )
+}
+
+async function get_items(){
+    return await fetch(
+        "http://localhost:" + API_PORT + "/items",
+        {
+            method: "GET",
         }
     )
 }

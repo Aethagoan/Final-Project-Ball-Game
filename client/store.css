@@ -93,3 +93,14 @@
     height: 100%;
 }
 
+.midsection {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 3rem 2rem 0;
+}
+
+.purchase {
+    height: 50%;
+}
