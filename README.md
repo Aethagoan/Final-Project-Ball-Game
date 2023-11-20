@@ -34,7 +34,7 @@ This is the hard part. If I take on a game that is too complex, I will end tryin
 . 
 >[!NOTE]
 > **The Game/Internal**  
-> After some contemplation, I have decided to make a cricket-baseball hybrid. Why? Baseball is too complicated (think of how runners and bases > work + stealing and where plays happen etc), and I couldn't think of a way to add visual elements of cricket to a digital looking panel, so I > thought I'd combine the two.
+> After some contemplation, I have decided to make a cricket-baseball hybrid. Why? Baseball is too complicated (think of how runners and bases work + stealing and where plays happen etc), and I couldn't think of a way to add visual elements of cricket to a digital looking panel, so I thought I'd combine the two.
 > 
 > 1. Each team has 11 players. One team bats, one team fields.
 > 
@@ -44,19 +44,19 @@ This is the hard part. If I take on a game that is too complex, I will end tryin
 > 
 > 4. A pitcher can either make a throw or miss a throw due to a strikezone, and a batter can hit or not hit a ball. Three strikes and they're out. Four balls/Wild Throws/Misses and the batter gets to walk.
 > 
-> 5. When a batter hits a ball, they run to the opposing base. The ball can be caught, causing an out, or thrown to the base, causing an out. If > the batter makes it, they score a point and get to bat again. There are no foul balls, there are no "home runs".
+> 5. When a batter hits a ball, they run to the opposing base. The ball can be caught, causing an out, or thrown to the base, causing an out. If the batter makes it, they score a point and get to bat again. There are no foul balls, there are no "home runs".
 > 
 > 6. Three outs changes the inning. There are 9 innings (18 rounds but teams swapped each round).
 > 
-> 7. Every six balls that are pitched/bowled by a team, a rotation happens. The pitcher on first goes to the outfield, the pitcher on second goes > to the first base, and a player from the outfield goes to the second base.
+> 7. Every six balls that are pitched/bowled by a team, a rotation happens. The pitcher on first goes to the outfield, the pitcher on second goes to the first base, and a player from the outfield goes to the second base.
 > 
 > 
 > Thoughts and Reasons:  
-> Two bases \- I need something visual to display. The bases are a nice touch, I can just light up whichever base the batter is on and not have to > worry about stealing or multiple players on multiple bases. The rest is easy to display, strikes, outs, the names of the batters and pitchers.  
-> Pitcher rotation \- something from cricket, but modified so I can use a circle-queue and a counter. There might be some weird interactions like > pitchers switching in between strikes but I think that makes it interesting.
+> Two bases \- I need something visual to display. The bases are a nice touch, I can just light up whichever base the batter is on and not have to worry about stealing or multiple players on multiple bases. The rest is easy to display, strikes, outs, the names of the batters and pitchers.  
+> Pitcher rotation \- something from cricket, but modified so I can use a circle-queue and a counter. There might be some weird interactions like pitchers switching in between strikes but I think that makes it interesting.
 > 
 > More details:  
-> Each player will have a Throw score, a Bat score, and a Run score. These values act as multipliers to a random number generator for comparisons > to see what happens. I have decided against a catch score, this is enough.  
+> Each player will have a Throw score, a Bat score, and a Run score. These values act as multipliers to a random number generator for comparisons to see what happens. I have decided against a catch score, this is enough.  
 > At bat: Rand\*Pitcher.Throw vs Rand\*Batter.Bat (on a good throw)  
 > To Catch: Rand\*Batter.Bat(the prev) vs Rand\*Fielder.Run  
 > For Run: Rand\*Fielder.Throw vs Rand\*Batter.Run  
