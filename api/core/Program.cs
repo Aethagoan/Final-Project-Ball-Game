@@ -187,9 +187,11 @@ Task RunGame()
         {
             game_state.inning.count++;
             game_state.inning.orientation = "top";
-            halfinning(team1name, Team_1_Batter_Up, team2name, Team_2_Pitcher_Up);
+            // Console.WriteLine(Team_1_Batter_Up.Value);
+            halfinning(team1name, ref Team_1_Batter_Up, team2name, ref Team_2_Pitcher_Up);
+            // Console.WriteLine(Team_1_Batter_Up.Value);
             game_state.inning.orientation = "bottom";
-            halfinning(team2name, Team_2_Batter_Up, team1name, Team_1_Pitcher_Up);
+            halfinning(team2name, ref Team_2_Batter_Up, team1name, ref Team_1_Pitcher_Up);
         }
 
         Team home_team = JsonSerializer.Deserialize<Team>(JsonSerializer.Serialize(All_Team_Data[game_state.HomeTeam]));
@@ -221,10 +223,11 @@ Task RunGame()
 
 
 
-        void halfinning(string inteam, LinkedListNode<JsonNode> batter, string outteam, LinkedListNode<JsonNode> pitcher)
+        void halfinning(string inteam, ref LinkedListNode<JsonNode> batter, string outteam, ref LinkedListNode<JsonNode> pitcher)
         {
             // outs reset
             game_state.outs = 0;
+            game_state.throws = 0;
 
 
 
@@ -238,18 +241,17 @@ Task RunGame()
                     write_to_play("Out 3! Changing sides. . .");
                     break;
                 }
-                round();
+                round(ref batter, ref pitcher);
             }
 
             return;
 
 
-            void round()
+            void round(ref LinkedListNode<JsonNode> batter, ref LinkedListNode<JsonNode> pitcher)
             {
                 // strikes, balls reset
                 game_state.strikes = 0;
                 game_state.balls = 0;
-                game_state.throws = 0;
 
                 game_state.firstbasepitcher = JsonSerializer.Serialize(pitcher.Value["alias"]);
                 game_state.secondbasepitcher = JsonSerializer.Serialize(pitcher.Next != null ? pitcher.Next.Value["alias"] : pitcher.List.First.Value["alias"]);
@@ -259,11 +261,11 @@ Task RunGame()
                 game_state.batter = JsonSerializer.Serialize(batter.Value["alias"]);
                 game_state.onbase = "first";
 
-                pitch();
+                pitch(ref batter, ref pitcher);
                 return;
 
 
-                void pitch()
+                void pitch(ref LinkedListNode<JsonNode> batter, ref LinkedListNode<JsonNode> pitcher)
                 {
                     write_to_play(JsonSerializer.Serialize(batter.Value["alias"]) + " lines up to bat.");
 
@@ -274,7 +276,7 @@ Task RunGame()
                         if (game_state.throws >= 6)
                         {
                             // rotate pitchers
-                            pitcher = pitcher.Next ?? pitcher.List.First;
+                            pitcher = pitcher.Next != null ? pitcher.Next : pitcher.List.First;
                             write_to_play("The pitchers are rotating.");
                             game_state.firstbasepitcher = JsonSerializer.Serialize(pitcher.Value["alias"]);
                             game_state.secondbasepitcher = JsonSerializer.Serialize(pitcher.Next != null ? pitcher.Next.Value["alias"] : pitcher.List.First.Value["alias"]);
@@ -302,12 +304,12 @@ Task RunGame()
                         if (game_state.onbase == "first")
                         {
                             // pitcher on second throws (pitcher.next)
-                            JsonNode nextpitcher = pitcher.Next != null ? pitcher.Next.Value : pitcher.List.First.Value;
+                            LinkedListNode<JsonNode> nextpitcher = pitcher.Next != null ? pitcher.Next : pitcher.List.First;
                             game_state.throws++;
 
                             // if hurl ball returns false, break. otherwise continue.
 
-                            if (!hurl_ball(nextpitcher, batter.Value))
+                            if (!hurl_ball(nextpitcher, batter))
                             {
                                 break;
                             }
@@ -322,7 +324,7 @@ Task RunGame()
 
                             // if hurl ball returns false, break. otherwise continue.
 
-                            if (!hurl_ball(pitcher.Value, batter.Value))
+                            if (!hurl_ball(pitcher, batter))
                             {
                                 break;
                             }
@@ -331,27 +333,27 @@ Task RunGame()
 
                         }
 
-                        bool hurl_ball(JsonNode thepitcher, JsonNode thebatter)
+                        bool hurl_ball(LinkedListNode<JsonNode> thepitcher, LinkedListNode<JsonNode> thebatter)
                         {
 
-                            write_to_play(JsonSerializer.Serialize(thepitcher["alias"]) + " hurls the ball down the pitch. . .");
+                            write_to_play(JsonSerializer.Serialize(thepitcher.Value["alias"]) + " hurls the ball down the pitch. . .");
 
                             float pitchmod = gen_rand();
 
-                            float pitchscore = float.Parse(JsonSerializer.Serialize(pitcher.Value["throw_score"]));
+                            float pitchscore = float.Parse(JsonSerializer.Serialize(thepitcher.Value["throw_score"]));
 
                             if (pitchmod * pitchscore < 1)
                             {
                                 // wild
                                 game_state.balls++;
-                                write_to_play(JsonSerializer.Serialize(thepitcher["alias"]) + " throws wild. Ball.");
+                                write_to_play(JsonSerializer.Serialize(thepitcher.Value["alias"]) + " throws wild. Ball.");
 
                                 return true;
                             }
 
                             float batmod = gen_rand();
 
-                            float batscore = float.Parse(JsonSerializer.Serialize(batter.Value["bat_score"]));
+                            float batscore = float.Parse(JsonSerializer.Serialize(thebatter.Value["bat_score"]));
 
                             float hit_total = batmod * batscore;
 
@@ -359,7 +361,7 @@ Task RunGame()
                             {
                                 // strike
                                 game_state.strikes++;
-                                write_to_play(JsonSerializer.Serialize(thepitcher["alias"]) + " Throws a strike!");
+                                write_to_play(JsonSerializer.Serialize(thepitcher.Value["alias"]) + " Throws a strike!");
 
                                 return true;
                             }
@@ -368,8 +370,8 @@ Task RunGame()
                             {
                                 //hit
 
-                                int target = new Random().Next(pitcher.List.Count);
-                                JsonNode feilder = pitcher.List.ElementAt<JsonNode>(target);
+                                int target = new Random().Next(thepitcher.List.Count);
+                                JsonNode feilder = thepitcher.List.ElementAt<JsonNode>(target);
 
                                 write_to_play("Ball hit towards " + JsonSerializer.Serialize(feilder["alias"]) + "!");
 
@@ -384,14 +386,14 @@ Task RunGame()
                                     //caught. // return false
                                     game_state.outs++;
                                     game_state.strikes = 0;
-                                    write_to_play(JsonSerializer.Serialize(feilder["alias"]) + " caught the ball. " + JsonSerializer.Serialize(thebatter["alias"]) + " is OUT!");
+                                    write_to_play(JsonSerializer.Serialize(feilder["alias"]) + " caught the ball. " + JsonSerializer.Serialize(thebatter.Value["alias"]) + " is OUT!");
                                     return false;
                                 }
 
                                 if (hit_total > run_total)
                                 {
                                     // not caught
-                                    write_to_play(JsonSerializer.Serialize(feilder["alias"]) + " doesn't catch the ball!");
+                                    write_to_play(JsonSerializer.Serialize(feilder["alias"]) + " picks the ball up!");
                                     write_to_play(JsonSerializer.Serialize(feilder["alias"]) + " throws the ball to " + (game_state.onbase == "first" ? "second!" : "first!"));
                                     float throwmod = gen_rand();
 
@@ -399,21 +401,21 @@ Task RunGame()
 
                                     float slidemod = gen_rand();
 
-                                    float slidescore = float.Parse(JsonSerializer.Serialize(thebatter["run_score"]));
+                                    float slidescore = float.Parse(JsonSerializer.Serialize(thebatter.Value["run_score"]));
 
                                     if (throwmod * throw_score >= slidemod * slidescore * 2)
                                     {
                                         // out at the base // return false
                                         game_state.outs++;
                                         game_state.strikes = 0;
-                                        write_to_play(JsonSerializer.Serialize(thebatter["alias"]) + " out at " + (game_state.onbase == "first" ? "second." : "first."));
+                                        write_to_play(JsonSerializer.Serialize(thebatter.Value["alias"]) + " out at " + (game_state.onbase == "first" ? "second." : "first."));
                                         return false;
                                     }
                                     else
                                     {
                                         // advanced.
                                         advance();
-                                        write_to_play("Safe! " + JsonSerializer.Serialize(thebatter["alias"]) + " now at " + game_state.onbase + ".");
+                                        write_to_play("Safe! " + JsonSerializer.Serialize(thebatter.Value["alias"]) + " now at " + game_state.onbase + ".");
                                         return true;
                                     }
 
