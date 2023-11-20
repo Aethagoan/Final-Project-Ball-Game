@@ -1,3 +1,8 @@
+:root {
+    --home-team-color: rgb(190, 38, 38);
+    --away-team-color: rgb(39, 39, 184);
+}
+
 article {
     margin: 5em auto;
     display: flex;
@@ -64,4 +69,32 @@ article {
 
 .on-base{
     background-color: white;
+}
+
+.top #base-1-pitcher, .top #base-2-pitcher {
+    color: var(--away-team-color);
+}
+
+.top #batter {
+    
+    color: var(--home-team-color);
+}
+
+
+.bottom #base-1-pitcher, .bottom #base-2-pitcher {
+    color: var(--home-team-color);
+}
+
+.bottom #batter {
+    color: var(--away-team-color);
+}
+
+#home-team, #home-score {
+    color: var(--home-team-color);
+}
+
+
+
+#away-team, #away-score {
+    color: var(--away-team-color);
 }

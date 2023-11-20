@@ -13,7 +13,7 @@ else {
 
 }
 
-
+const game = document.getElementById("game")
 const home_team = document.getElementById("home-team")
 const away_team = document.getElementById("away-team")
 const inning = document.getElementById("inning")
@@ -58,6 +58,15 @@ while(true) {
 
     if (game_state.onbase == "second"){
         base2.classList.add("on-base")
+    }
+
+    if (game_state.inning.orientation == "top"){
+        game.classList.add("top")
+        game.classList.remove("bottom")
+    }
+    if (game_state.inning.orientation == "bottom"){
+        game.classList.add("bottom")
+        game.classList.remove("top")
     }
 
     first_pitcher.innerText = "first base pitcher: " + format_string(game_state.firstbasepitcher)
