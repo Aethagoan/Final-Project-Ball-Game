@@ -15,55 +15,42 @@ else {
 
 }
 
-const items = await ( await api_calls.get_items()).json()
+load_player_data()
 
-// console.log(items)
-// console.log(playerdata)
+async function load_player_data(){
+    playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json());
+
+    document.getElementById("current-renown").innerText = `Your Renown: ${playerdata.renown}`
+    if (playerdata.inventory.slot1 != "") {
+        document.getElementById("slot1").innerHTML = `<img src="${items[playerdata.inventory.slot1].img}" draggable="false">`
+    }
+
+    if (playerdata.inventory.slot2 != "") {
+        document.getElementById("slot2").innerHTML = `<img src="${items[playerdata.inventory.slot2].img}" draggable="false">`
+    }
+
+    if (playerdata.inventory.slot3 != "") {
+        document.getElementById("slot3").innerHTML = `<img src="${items[playerdata.inventory.slot3].img}" draggable="false">`
+    }
+
+    if (playerdata.inventory.slot4 != "") {
+        document.getElementById("slot4").innerHTML = `<img src="${items[playerdata.inventory.slot4].img}" draggable="false">`
+    }
+
+    if (playerdata.inventory.slot5 != "") {
+        document.getElementById("slot5").innerHTML = `<img src="${items[playerdata.inventory.slot5].img}" draggable="false">`
+    }
 
 
+   
 
-document.getElementById("current-renown").innerText = `Your Renown: ${playerdata.renown}`
-if (playerdata.inventory.slot1 != "") {
-    document.getElementById("slot1").innerHTML = `<img src="${items[playerdata.inventory.slot1].img}" draggable="false">`
 }
 
-if (playerdata.inventory.slot2 != "") {
-    document.getElementById("slot2").innerHTML = `<img src="${items[playerdata.inventory.slot2].img}" draggable="false">`
-}
-
-if (playerdata.inventory.slot3 != "") {
-    document.getElementById("slot3").innerHTML = `<img src="${items[playerdata.inventory.slot3].img}" draggable="false">`
-}
-
-if (playerdata.inventory.slot4 != "") {
-    document.getElementById("slot4").innerHTML = `<img src="${items[playerdata.inventory.slot4].img}" draggable="false">`
-}
-
-if (playerdata.inventory.slot5 != "") {
-    document.getElementById("slot5").innerHTML = `<img src="${items[playerdata.inventory.slot5].img}" draggable="false">`
-}
+render_store();
 
 
-
-document.getElementById("slot1").addEventListener("dragover", (event) => {
-    event.preventDefault();
-})
-document.getElementById("slot2").addEventListener("dragover", (event) => {
-    event.preventDefault();
-})
-document.getElementById("slot3").addEventListener("dragover", (event) => {
-    event.preventDefault();
-})
-document.getElementById("slot4").addEventListener("dragover", (event) => {
-    event.preventDefault();
-})
-document.getElementById("slot5").addEventListener("dragover", (event) => {
-    event.preventDefault();
-})
-
-render_store()
-
-function render_store(){
+async function render_store(){
+    items = await ((await api_calls.get_items()).json());
     const store = document.getElementById("store")
 
     /*
@@ -119,61 +106,88 @@ slot3.setAttribute("draggable", "true")
 slot4.setAttribute("draggable", "true")
 slot5.setAttribute("draggable", "true")
 
+ document.getElementById("slot1").addEventListener("dragover", (event) => {
+        event.preventDefault();
+    })
+    document.getElementById("slot2").addEventListener("dragover", (event) => {
+        event.preventDefault();
+    })
+    document.getElementById("slot3").addEventListener("dragover", (event) => {
+        event.preventDefault();
+    })
+    document.getElementById("slot4").addEventListener("dragover", (event) => {
+        event.preventDefault();
+    })
+    document.getElementById("slot5").addEventListener("dragover", (event) => {
+        event.preventDefault();
+    })
+
+/* I need to send the request to /inventory, and included I need 
+    token
+    slot to switch from
+    slot to switch to
+*/
+
 
 slot1.addEventListener("dragstart", (event) => {
     // console.log(items[playerdata.inventory.slot1].name)
-    event.dataTransfer.setData("text", `slot1, ${items[playerdata.inventory.slot1].name}`)
+    // slot 1
+    event.dataTransfer.setData("text", 1)
 })
 
 slot2.addEventListener("dragstart", (event) => {
     // console.log(items[playerdata.inventory.slot1].name)
-    event.dataTransfer.setData("text", `slot2, ${items[playerdata.inventory.slot2].name}`)
+    event.dataTransfer.setData("text", 2)
 })
 
 slot3.addEventListener("dragstart", (event) => {
     // console.log(items[playerdata.inventory.slot1].name)
-    event.dataTransfer.setData("text", `slot3, ${items[playerdata.inventory.slot3].name}`)
+    event.dataTransfer.setData("text", 3)
 })
 
 slot4.addEventListener("dragstart", (event) => {
     // console.log(items[playerdata.inventory.slot1].name)
-    event.dataTransfer.setData("text", `slot4, ${items[playerdata.inventory.slot4].name}`)
+    event.dataTransfer.setData("text", 4)
 })
 
 slot5.addEventListener("dragstart", (event) => {
     // console.log(items[playerdata.inventory.slot1].name)
-    event.dataTransfer.setData("text", `slot5, ${items[playerdata.inventory.slot5].name}`)
+    event.dataTransfer.setData("text", 5)
 })
+
 
 
 slot1.addEventListener("drop", (event) =>{
-
-    console.log(event.dataTransfer.getData("text"))
-    // parse where this came from, 
-
+    console.log(event.dataTransfer.getData("text"), 1)
+    api_calls.swap_items(event.dataTransfer.getData("text"), 1)
+    load_player_data()
 })
 
 slot2.addEventListener("drop", (event) =>{
-
-    console.log(event.dataTransfer.getData("text"))
-
+    console.log(event.dataTransfer.getData("text"), 2)
+    api_calls.swap_items(event.dataTransfer.getData("text"), 2)
+    load_player_data()
+    
 })
 
 slot3.addEventListener("drop", (event) =>{
-
-    console.log(event.dataTransfer.getData("text"))
+    console.log(event.dataTransfer.getData("text"), 3)
+    api_calls.swap_items(event.dataTransfer.getData("text"), 3)
+    load_player_data()
 
 })
 
 slot4.addEventListener("drop", (event) =>{
-
-    console.log(event.dataTransfer.getData("text"))
+    console.log(event.dataTransfer.getData("text"), 4)
+    api_calls.swap_items(event.dataTransfer.getData("text"), 4)
+    load_player_data()
 
 })
 
 slot5.addEventListener("drop", (event) =>{
-
-    console.log(event.dataTransfer.getData("text"))
+    console.log(event.dataTransfer.getData("text"), 5)
+    api_calls.swap_items(event.dataTransfer.getData("text"), 5)
+    load_player_data()
 
 })
 

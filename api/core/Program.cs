@@ -115,7 +115,19 @@ app.MapGet("/items", async () => {
 });
 
 
+app.MapPost("/swap", async (SwapSlots swapping) => {
+    clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
 
+    var temp = JsonSerializer.Deserialize<string>(clients[swapping.token]["inventory"][$"slot{swapping.toslot}"]);
+
+    clients[swapping.token]["inventory"][$"slot{swapping.toslot}"] = JsonSerializer.Deserialize<string>(clients[swapping.token]["inventory"][$"slot{swapping.fromslot}"]);
+
+    clients[swapping.token]["inventory"][$"slot{swapping.fromslot}"] = temp;
+
+    File.WriteAllText("../memory/clients.json", JsonSerializer.Serialize(clients));
+
+    return true;
+});
 
 
 
@@ -647,4 +659,12 @@ public class Player {
     public float run_score { get; set; }
     public float throw_score { get; set; }
     public float bat_score { get; set; }
+}
+
+
+public class SwapSlots {
+
+    public string token {get; set;}
+    public int fromslot {get; set;}
+    public int toslot {get; set;}
 }
