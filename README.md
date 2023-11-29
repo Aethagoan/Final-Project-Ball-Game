@@ -67,13 +67,7 @@ I want a dark theme, Here's my general guidelines: 80% black, 15% white, and 5% 
 I haven't picked a name just quite yet, but the current competitors are Cricket + Baseball = Crackball or Baseball + Cricket = Brisket
 
 > [!IMPORTANT]
-> You ***will*** ~most likely~ have to rebuild the web-app.
-> dotnet has a new version, version 8.0.
-> I am currently using 8.0, the lab computers have 7.0-something-  
-> To do this, the api/core folder needs to be cleared and then in the /api/core folder:  
-> ```dotnet new web -o .```  
-> replace the Program.cs file in the folder with the one from here (github) and update the api_calls.js file to use the new port that dotnet gave the web app. You can find the new port number in the Properties folder in launchSettings.json created by dotnet next to "applicationUrl". Because all API calls come from the same place in /client/svc/api_calls.js, I've added a super easy way to do this, all you need to do is update the API_PORT const at the top of the file. Good luck.
-
+> Make sure the app builds with the correct version of dotnet you have installed. If all else fails, remake the web app and paste in the program file from github, but before that try changing the dotnet target in the .csproj file in /api/core from net8.0 to net7.0 or vice versa. Good luck.
 > [!IMPORTANT]
 > The html root needs to be the client folder. if you run an extension in vscode like Live Server, if the workspace folder that is open is not client when you do it, stuff is going to probably break.
 

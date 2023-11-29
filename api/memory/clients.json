@@ -32,7 +32,7 @@
         "pop_corns": 0,
         "QFS": false,
         "DES": false,
-        "TLD": false,
+        "TLD": true,
         "CIA": false,
         "EPS": false,
         "IFS": false

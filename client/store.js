@@ -17,30 +17,30 @@ else {
 
 const items = await ( await api_calls.get_items()).json()
 
-console.log(items)
+// console.log(items)
 // console.log(playerdata)
 
 
 
 document.getElementById("current-renown").innerText = `Your Renown: ${playerdata.renown}`
 if (playerdata.inventory.slot1 != "") {
-    document.getElementById("slot1").innerHTML = `<img src="${items[playerdata.inventory.slot1].img}">`
+    document.getElementById("slot1").innerHTML = `<img src="${items[playerdata.inventory.slot1].img}" draggable="false">`
 }
 
 if (playerdata.inventory.slot2 != "") {
-    document.getElementById("slot2").innerHTML = `<img src="${items[playerdata.inventory.slot2].img}">`
+    document.getElementById("slot2").innerHTML = `<img src="${items[playerdata.inventory.slot2].img}" draggable="false">`
 }
 
 if (playerdata.inventory.slot3 != "") {
-    document.getElementById("slot3").innerHTML = `<img src="${items[playerdata.inventory.slot3].img}">`
+    document.getElementById("slot3").innerHTML = `<img src="${items[playerdata.inventory.slot3].img}" draggable="false">`
 }
 
 if (playerdata.inventory.slot4 != "") {
-    document.getElementById("slot4").innerHTML = `<img src="${items[playerdata.inventory.slot4].img}">`
+    document.getElementById("slot4").innerHTML = `<img src="${items[playerdata.inventory.slot4].img}" draggable="false">`
 }
 
 if (playerdata.inventory.slot5 != "") {
-    document.getElementById("slot5").innerHTML = `<img src="${items[playerdata.inventory.slot5].img}">`
+    document.getElementById("slot5").innerHTML = `<img src="${items[playerdata.inventory.slot5].img}" draggable="false">`
 }
 
 
@@ -91,12 +91,12 @@ function render_store(){
 
 
     function createfigure(item) {
-        console.log(item)
+        // console.log(item)
         return `<figure>
         <dl>
             <dt>${item["name"]}</dt>
             <div class="midsection">
-                <img src="${item["img"]}">
+                <img src="${item["img"]}" draggable="false">
                 <dd class="purchase">buy for ${item["price"]} renown</dd>
             </div>
             <dd>
@@ -108,3 +108,72 @@ function render_store(){
 
 
 }
+
+
+// when you drag an inventory item around set the transfer to be the name of the slot it came from then you can do all the rest
+
+// I made the images nondraggable and the elements themselves draggable.
+slot1.setAttribute("draggable", "true")
+slot2.setAttribute("draggable", "true")
+slot3.setAttribute("draggable", "true")
+slot4.setAttribute("draggable", "true")
+slot5.setAttribute("draggable", "true")
+
+
+slot1.addEventListener("dragstart", (event) => {
+    // console.log(items[playerdata.inventory.slot1].name)
+    event.dataTransfer.setData("text", `slot1, ${items[playerdata.inventory.slot1].name}`)
+})
+
+slot2.addEventListener("dragstart", (event) => {
+    // console.log(items[playerdata.inventory.slot1].name)
+    event.dataTransfer.setData("text", `slot2, ${items[playerdata.inventory.slot2].name}`)
+})
+
+slot3.addEventListener("dragstart", (event) => {
+    // console.log(items[playerdata.inventory.slot1].name)
+    event.dataTransfer.setData("text", `slot3, ${items[playerdata.inventory.slot3].name}`)
+})
+
+slot4.addEventListener("dragstart", (event) => {
+    // console.log(items[playerdata.inventory.slot1].name)
+    event.dataTransfer.setData("text", `slot4, ${items[playerdata.inventory.slot4].name}`)
+})
+
+slot5.addEventListener("dragstart", (event) => {
+    // console.log(items[playerdata.inventory.slot1].name)
+    event.dataTransfer.setData("text", `slot5, ${items[playerdata.inventory.slot5].name}`)
+})
+
+
+slot1.addEventListener("drop", (event) =>{
+
+    console.log(event.dataTransfer.getData("text"))
+    // parse where this came from, 
+
+})
+
+slot2.addEventListener("drop", (event) =>{
+
+    console.log(event.dataTransfer.getData("text"))
+
+})
+
+slot3.addEventListener("drop", (event) =>{
+
+    console.log(event.dataTransfer.getData("text"))
+
+})
+
+slot4.addEventListener("drop", (event) =>{
+
+    console.log(event.dataTransfer.getData("text"))
+
+})
+
+slot5.addEventListener("drop", (event) =>{
+
+    console.log(event.dataTransfer.getData("text"))
+
+})
+
