@@ -67,7 +67,7 @@ I want a dark theme, Here's my general guidelines: 80% black, 15% white, and 5% 
 I haven't picked a name just quite yet, but the current competitors are Cricket + Baseball = Crackball or Baseball + Cricket = Brisket
 
 > [!IMPORTANT]
-> Make sure the app builds with the correct version of dotnet you have installed. If all else fails, remake the web app and paste in the program file from github, but before that try changing the dotnet target in the .csproj file in /api/core from net8.0 to net7.0 or vice versa. Good luck.
+> Make sure the app builds with the correct version of dotnet you have installed. If all else fails, remake the web app and paste in the program file from github, but before that try changing the dotnet target in the .csproj file in /api/core from net8.0 to net7.0 or vice versa. Good luck.  
 > [!IMPORTANT]
 > The html root needs to be the client folder. if you run an extension in vscode like Live Server, if the workspace folder that is open is not client when you do it, stuff is going to probably break.
 
