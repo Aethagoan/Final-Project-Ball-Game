@@ -16,7 +16,7 @@ else {
 }
 
 let items = await ( await api_calls.get_items()).json()
-
+console.log(items);
 
 
 load_player_data()
@@ -84,24 +84,47 @@ async function render_store(){
 
     for (let item of Object.entries(items)){
         
-        store.innerHTML += createfigure(item[1]);
+        store.appendChild(createfigure(item[0], item[1]));
+
     }
 
-
-    function createfigure(item) {
+    function createfigure(itemidentifier, item) {
         // console.log(item)
-        return `<figure>
-        <dl>
-            <dt>${item["name"]}</dt>
-            <div class="midsection">
-                <img src="${item["img"]}" draggable="false">
-                <dd class="purchase">buy for ${item["price"]} renown</dd>
-            </div>
-            <dd>
-                ${item["desc"]}
-            </dd>
-        </dl>
-    </figure>`
+
+        const figure = document.createElement("figure")
+        const dl = document.createElement("dl")
+        const dt = document.createElement("dt")
+        dt.innerHTML = `${item["name"]}`
+
+        const div = document.createElement("div")
+        div.classList.add("midsection")
+
+        const img = document.createElement("img")
+        img.setAttribute("src", `${item["img"]}`)
+        img.setAttribute("draggable", "false")
+        
+        const innerdd = document.createElement("dd")
+        innerdd.classList.add("purchase")
+        innerdd.innerHTML = `buy for ${item["price"]} renown`
+
+        innerdd.addEventListener("click", async () => {
+            window.alert(await (await api_calls.buy_item(itemidentifier)).json())
+        })
+
+        const outerdd = document.createElement("dd")
+        outerdd.innerHTML = `${item["desc"]}`
+
+        div.appendChild(img)
+        div.appendChild(innerdd)
+
+        dl.appendChild(dt)
+        dl.appendChild(div)
+        dl.appendChild(outerdd)
+
+        figure.appendChild(dl)
+
+
+        return figure
     }
 
 
@@ -201,4 +224,3 @@ slot5.addEventListener("drop", async (event) =>{
     load_player_data()
 
 })
-

@@ -130,7 +130,16 @@ app.MapPost("/swap", async (SwapSlots swapping) => {
 });
 
 
+app.MapPost("/buy", async (BuyingJson buying) => {
+    clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
 
+    // if you have enough renown to buy this thing
+    if (JsonSerializer.Deserialize<int>(clients[buying.token]["renown"]) > JsonSerializer.Deserialize<int>(items[buying.itemname]["price"])){
+        //find an empty spot
+    }
+
+    return JsonSerializer.Serialize("failure");
+});
 
 
 
@@ -668,3 +677,12 @@ public class SwapSlots {
     public int fromslot {get; set;}
     public int toslot {get; set;}
 }
+
+
+public class BuyingJson {
+    public string token {get; set;}
+    public string itemname {get; set;}
+}
+
+
+

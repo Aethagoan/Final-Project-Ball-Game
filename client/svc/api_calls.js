@@ -5,7 +5,8 @@ export default {
     get_game_state,
     get_teams_data,
     get_items,
-    swap_items
+    swap_items,
+    buy_item
 }
 
 // IMPORTANT: CHANGE THIS IS YOU REDO THE WEB APP!
@@ -82,6 +83,26 @@ async function swap_items(from, to){
                 "token": localStorage.getItem("token"),
                 "fromslot": from,
                 "toslot": to
+            })
+        }
+    )
+}
+
+async function buy_item(itemname) {
+    /*
+    itemname must be one of the following:
+    "pop-corn-bucket"
+    "stadium-horn"
+    "soda-can"
+    */
+    return await fetch(
+        "http://localhost:" + API_PORT + "/buy",
+        {
+            method: "POST",
+            headers: { "Content-type": "application/json; charset=UTF-8" },
+            body: JSON.stringify({
+                "token": localStorage.getItem("token"),
+                "itemname": itemname
             })
         }
     )
