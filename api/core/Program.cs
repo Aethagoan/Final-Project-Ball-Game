@@ -143,22 +143,31 @@ app.MapPost("/buy", async (BuyingJson buying) => {
     // Console.WriteLine(JsonSerializer.Deserialize<int>(clients[buying.token]["renown"]));
     // Console.WriteLine(JsonSerializer.Deserialize<int>(items[buying.itemname]["price"]));
 
-    if (JsonSerializer.Deserialize<int>(clients[buying.token]["renown"]) > JsonSerializer.Deserialize<int>(items[buying.itemname]["price"])){
+    if (JsonSerializer.Deserialize<int>(clients[buying.token]["renown"]) >= JsonSerializer.Deserialize<int>(items[buying.itemname]["price"])){
         //find an empty spot
         if (JsonSerializer.Deserialize<string>(clients[buying.token]["inventory"]["slot1"]) == ""){
             clients[buying.token]["inventory"]["slot1"] = buying.itemname;
+            clients[buying.token]["renown"] = JsonSerializer.Deserialize<int>(clients[buying.token]["renown"]) - JsonSerializer.Deserialize<int>(items[buying.itemname]["price"]);
         }
         else if (JsonSerializer.Deserialize<string>(clients[buying.token]["inventory"]["slot2"]) == ""){
             clients[buying.token]["inventory"]["slot2"] = buying.itemname;
+            clients[buying.token]["renown"] = JsonSerializer.Deserialize<int>(clients[buying.token]["renown"]) - JsonSerializer.Deserialize<int>(items[buying.itemname]["price"]);
+
         }
         else if (JsonSerializer.Deserialize<string>(clients[buying.token]["inventory"]["slot3"]) == ""){
             clients[buying.token]["inventory"]["slot3"] = buying.itemname;
+            clients[buying.token]["renown"] = JsonSerializer.Deserialize<int>(clients[buying.token]["renown"]) - JsonSerializer.Deserialize<int>(items[buying.itemname]["price"]);
+
         }
         else if (JsonSerializer.Deserialize<string>(clients[buying.token]["inventory"]["slot4"]) == ""){
             clients[buying.token]["inventory"]["slot4"] = buying.itemname;
+            clients[buying.token]["renown"] = JsonSerializer.Deserialize<int>(clients[buying.token]["renown"]) - JsonSerializer.Deserialize<int>(items[buying.itemname]["price"]);
+
         }
         else if (JsonSerializer.Deserialize<string>(clients[buying.token]["inventory"]["slot5"]) == ""){
             clients[buying.token]["inventory"]["slot5"] = buying.itemname;
+            clients[buying.token]["renown"] = JsonSerializer.Deserialize<int>(clients[buying.token]["renown"]) - JsonSerializer.Deserialize<int>(items[buying.itemname]["price"]);
+
         }
         else {
             return JsonSerializer.Serialize("All slots are full!");
@@ -173,6 +182,20 @@ app.MapPost("/buy", async (BuyingJson buying) => {
     File.WriteAllText("../memory/clients.json", JsonSerializer.Serialize(clients));
     return JsonSerializer.Serialize($"success! enjoy the {items[buying.itemname]["name"]}");
 });
+
+
+app.MapPost("/discard", async (DiscardJson discarding) => {
+    clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
+
+    clients[discarding.token]["inventory"][$"slot{discarding.slot}"] = "";
+
+    File.WriteAllText("../memory/clients.json", JsonSerializer.Serialize(clients));
+
+    return;
+});
+
+
+
 
 
 
@@ -527,7 +550,7 @@ Task RunGame()
         {
             game_state.play = message;
             File.WriteAllText("../memory/gamestate.json", JsonSerializer.Serialize(game_state).ToString());
-            Thread.Sleep(1 * 1000); // I like 5 and 3 second intervals, but for testing purposes, 1 or less might be good
+            Thread.Sleep(2 * 1000); // I like 5 and 3 second intervals, but for testing purposes, 1 or less might be good
         }
 
 
@@ -716,6 +739,13 @@ public class BuyingJson {
     public string token {get; set;}
     public string itemname {get; set;}
 }
+
+
+public class DiscardJson {
+    public string token {get; set;}
+    public int slot {get; set;}
+}
+
 
 
 

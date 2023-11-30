@@ -24,34 +24,164 @@ load_player_data()
 async function load_player_data(){
     playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json());
 
+    let icon
+    let discard
+
     document.getElementById("current-renown").innerText = `Your Renown: ${playerdata.renown}`
     if (playerdata.inventory.slot1 != "") {
-        document.getElementById("slot1").innerHTML = `<img src="${items[playerdata.inventory.slot1].img}" draggable="false">`
-    } else {
+
+        icon = document.createElement("img")
+        icon.classList.add("icon")
+        icon.setAttribute("src", items[playerdata.inventory.slot1].img)
+        icon.setAttribute("draggable", "false")
+
+        discard = document.createElement("img")
+        discard.classList.add("cancel")
+        discard.setAttribute("src", "./img/cancel.png")
+        discard.setAttribute("draggable", "false")
+
+        discard.addEventListener("click", async () => {
+            if (confirm(`Do you want to discard ${items[playerdata.inventory.slot1].name}? (THIS CAN'T BE UNDONE!)`)){
+                await api_calls.discard_item(1)
+                load_player_data()
+            }
+        })
+
+        document.getElementById("slot1").innerHTML = ``
+
+        document.getElementById("slot1").appendChild(icon)
+        document.getElementById("slot1").appendChild(discard)
+
+    } 
+    else {
         document.getElementById("slot1").innerHTML = `<p>slot 1</p>`
     }
 
+
     if (playerdata.inventory.slot2 != "") {
-        document.getElementById("slot2").innerHTML = `<img src="${items[playerdata.inventory.slot2].img}" draggable="false">`
-    }else {
+        
+        
+        icon = document.createElement("img")
+        icon.classList.add("icon")
+        icon.setAttribute("src", items[playerdata.inventory.slot2].img)
+        icon.setAttribute("draggable", "false")
+
+        discard = document.createElement("img")
+        discard.classList.add("cancel")
+        discard.setAttribute("src", "./img/cancel.png")
+        discard.setAttribute("draggable", "false")
+
+        discard.addEventListener("click", async () => {
+            if (confirm(`Do you want to discard ${items[playerdata.inventory.slot2].name}? (THIS CAN'T BE UNDONE!)`)){
+                await api_calls.discard_item(2)
+                load_player_data()
+            }
+        })
+
+        document.getElementById("slot2").innerHTML = ``
+
+        document.getElementById("slot2").appendChild(icon)
+        document.getElementById("slot2").appendChild(discard)
+
+    
+    }
+    else {
         document.getElementById("slot2").innerHTML = `<p>slot 2</p>`
     }
 
+
     if (playerdata.inventory.slot3 != "") {
-        document.getElementById("slot3").innerHTML = `<img src="${items[playerdata.inventory.slot3].img}" draggable="false">`
-    }else {
+        
+        
+        icon = document.createElement("img")
+        icon.classList.add("icon")
+        icon.setAttribute("src", items[playerdata.inventory.slot3].img)
+        icon.setAttribute("draggable", "false")
+
+        discard = document.createElement("img")
+        discard.classList.add("cancel")
+        discard.setAttribute("src", "./img/cancel.png")
+        discard.setAttribute("draggable", "false")
+
+        discard.addEventListener("click", async () => {
+            if (confirm(`Do you want to discard ${items[playerdata.inventory.slot3].name}? (THIS CAN'T BE UNDONE!)`)){
+                await api_calls.discard_item(3)
+                load_player_data()
+            }
+        })
+
+        document.getElementById("slot3").innerHTML = ``
+
+        document.getElementById("slot3").appendChild(icon)
+        document.getElementById("slot3").appendChild(discard)
+
+
+    }
+    else {
         document.getElementById("slot3").innerHTML = `<p>slot 3</p>`
     }
 
+    
     if (playerdata.inventory.slot4 != "") {
-        document.getElementById("slot4").innerHTML = `<img src="${items[playerdata.inventory.slot4].img}" draggable="false">`
-    }else {
+        
+        
+        icon = document.createElement("img")
+        icon.classList.add("icon")
+        icon.setAttribute("src", items[playerdata.inventory.slot4].img)
+        icon.setAttribute("draggable", "false")
+
+        discard = document.createElement("img")
+        discard.classList.add("cancel")
+        discard.setAttribute("src", "./img/cancel.png")
+        discard.setAttribute("draggable", "false")
+
+        discard.addEventListener("click", async () => {
+            if (confirm(`Do you want to discard ${items[playerdata.inventory.slot4].name}? (THIS CAN'T BE UNDONE!)`)){
+                await api_calls.discard_item(4)
+                load_player_data()
+            }
+        })
+
+        document.getElementById("slot4").innerHTML = ``
+
+        document.getElementById("slot4").appendChild(icon)
+        document.getElementById("slot4").appendChild(discard)
+
+
+    }
+    else {
         document.getElementById("slot4").innerHTML = `<p>slot 4</p>`
     }
 
+
     if (playerdata.inventory.slot5 != "") {
-        document.getElementById("slot5").innerHTML = `<img src="${items[playerdata.inventory.slot5].img}" draggable="false">`
-    }else {
+        
+        
+        icon = document.createElement("img")
+        icon.classList.add("icon")
+        icon.setAttribute("src", items[playerdata.inventory.slot5].img)
+        icon.setAttribute("draggable", "false")
+
+        discard = document.createElement("img")
+        discard.classList.add("cancel")
+        discard.setAttribute("src", "./img/cancel.png")
+        discard.setAttribute("draggable", "false")
+
+        discard.addEventListener("click", async () => {
+            if (confirm(`Do you want to discard ${items[playerdata.inventory.slot5].name}? (THIS CAN'T BE UNDONE!)`)){
+                await api_calls.discard_item(5)
+                load_player_data()
+            }
+        })
+
+        document.getElementById("slot5").innerHTML = ``
+
+        document.getElementById("slot5").appendChild(icon)
+        document.getElementById("slot5").appendChild(discard)
+
+
+    }
+    else {
         document.getElementById("slot5").innerHTML = `<p>slot 5</p>`
     }
 
@@ -108,8 +238,10 @@ async function render_store(){
         innerdd.innerHTML = `buy for ${item["price"]} renown`
 
         innerdd.addEventListener("click", async () => {
-            window.alert(await (await api_calls.buy_item(itemidentifier)).json())
-            load_player_data()
+            if (confirm(`Are you sure you want to buy ${item.name}?`)){
+                alert(await (await api_calls.buy_item(itemidentifier)).json())
+                load_player_data()
+            }
         })
 
         const outerdd = document.createElement("dd")

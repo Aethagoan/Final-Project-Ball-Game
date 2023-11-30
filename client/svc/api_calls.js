@@ -6,7 +6,8 @@ export default {
     get_teams_data,
     get_items,
     swap_items,
-    buy_item
+    buy_item,
+    discard_item
 }
 
 // IMPORTANT: CHANGE THIS IS YOU REDO THE WEB APP!
@@ -103,6 +104,20 @@ async function buy_item(itemname) {
             body: JSON.stringify({
                 "token": localStorage.getItem("token"),
                 "itemname": itemname
+            })
+        }
+    )
+}
+
+async function discard_item(slot) {
+    return await fetch(
+        "http://localhost:" + API_PORT + "/discard",
+        { 
+            method: "POST",
+            headers: { "Content-type": "application/json; charset=UTF-8" },
+            body: JSON.stringify({
+                "token": localStorage.getItem("token"),
+                "slot": slot
             })
         }
     )
