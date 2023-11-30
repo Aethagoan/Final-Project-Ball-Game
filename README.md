@@ -64,7 +64,8 @@ This is the hard part. If I take on a game that is too complex, I will end tryin
 
 **Other notes**  
 I want a dark theme, Here's my general guidelines: 80% black, 15% white, and 5% neon colors of all kinds.  
-I haven't picked a name just quite yet, but the current competitors are Cricket + Baseball = Crackball or Baseball + Cricket = Brisket
+~I haven't picked a name just quite yet, but the current competitors are Cricket + Baseball = Crackball or Baseball + Cricket = Brisket~  
+I have decided on Briscket.
 
 > [!IMPORTANT]
 > Make sure the app builds with the correct version of dotnet you have installed. If all else fails, remake the web app and paste in the program file from github, but before that try changing the dotnet target in the .csproj file in /api/core from net8.0 to net7.0 or vice versa. Good luck.  
