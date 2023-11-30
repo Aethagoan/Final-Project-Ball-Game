@@ -589,7 +589,12 @@ string generate_random_token()
 
     for (int i = 0; i < 20; i++)
     {
-        returnme += tokenCharacters[new Random().Next(tokenCharacters.Length)];
+        returnme += tokenCharacters[new Random(Environment.TickCount).Next(tokenCharacters.Length)];
+    }
+
+    // if this token already exists try again
+    if (clients[returnme] != null){
+        returnme = generate_random_token();
     }
 
     return returnme;
