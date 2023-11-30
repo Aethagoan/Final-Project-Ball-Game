@@ -22,11 +22,11 @@ if (!File.Exists("../memory/clients.json")){
 }
 
 if (!File.Exists("../memory/gamestate.json")){
-    File.WriteAllText("../memory/gamestate.json","{\"HomeTeam\": \"\",\"\": \"Team 2\",\"inning\": {\"orientation\": \"top\",\"count\": 0},\"HomeScore\": 0,\"AwayScore\": 0,\"outs\": 0,\"strikes\": 0,\"balls\": 0,\"batter\": \"\",\"onbase\": \"first\",\"firstbasepitcher": \"\",\"secondbasepitcher": \"\",\"play\": \"Looks Like the Field is empty\",\"throws\": 0}\"");
+    File.WriteAllText("../memory/gamestate.json","{\"HomeTeam\": \"\",\"\": \"Team 2\",\"inning\": {\"orientation\": \"top\",\"count\": 0},\"HomeScore\": 0,\"AwayScore\": 0,\"outs\": 0,\"strikes\": 0,\"balls\": 0,\"batter\": \"\",\"onbase\": \"first\",\"firstbasepitcher\": \"\",\"secondbasepitcher\": \"\",\"play\": \"Looks Like the Field is empty\",\"throws\": 0}\"");
 }
 
 if (!File.Exists("../memory/items.json")){
-    File.WriteAllText("../memory/items.json", "{\"pop-corn-bucket\": {\"name\": \"Pop-Corn Bucket\",\"img\": \"./img/popcorn.png\",\"desc\": \"Ah, Pop-corns. Can't get enough of em. You get 25 Renown every time your favorite team wins a game.\",\"price\": 100},\"stadium-horn\": {\"name\": \"Staduim Horn\",\"img\": \"./img/stadium-horn.png\",\"desc\": \"Make some noise! Start a chant! We want a pitcher! Not a. . . well, you get the idea. Doubles the amount of renown you recieve.\",\"price\": 500},\"soda-can\": {\"name\": \"Soda Can\",\"img\": \"./img/soda-can.png\",\"desc\": \"Sluurrrrp. How Refreshing! You get 12 Renown every time your favorite team Loses.\",\"price\": 50");
+    File.WriteAllText("../memory/items.json", "{\"pop-corn-bucket\": {\"name\": \"Pop-Corn Bucket\",\"img\": \"./img/popcorn.png\",\"desc\": \"Ah, Pop-corns. Can't get enough of em. You get 25 Renown every time your favorite team wins a game.\",\"price\": 100},\"stadium-horn\":{\"name\":\"Staduim Horn\",\"img\": \"./img/stadium-horn.png\",\"desc\":\"Make some noise! Start a chant! We want a pitcher! Not a. . . well, you get the idea. Doubles the amount of renown you recieve.\",\"price\":500},\"soda-can\":{\"name\":\"Soda Can\",\"img\":\"./img/soda-can.png\",\"desc\":\"Sluurrrrp. How Refreshing! You get 12 Renown every time your favorite team Loses.\",\"price\": 50}}");
 }
 
 if (!File.Exists("../memory/teams.json")){
