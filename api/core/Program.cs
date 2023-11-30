@@ -133,12 +133,45 @@ app.MapPost("/swap", async (SwapSlots swapping) => {
 app.MapPost("/buy", async (BuyingJson buying) => {
     clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
 
-    // if you have enough renown to buy this thing
-    if (JsonSerializer.Deserialize<int>(clients[buying.token]["renown"]) > JsonSerializer.Deserialize<int>(items[buying.itemname]["price"])){
-        //find an empty spot
+    // make sure the item name is valid
+    // Console.WriteLine(items[buying.itemname]);
+    if (items[buying.itemname] == null){
+        return JsonSerializer.Serialize("invalid item-name!");
     }
 
-    return JsonSerializer.Serialize("failure");
+    // if you have enough renown to buy this thing
+    // Console.WriteLine(JsonSerializer.Deserialize<int>(clients[buying.token]["renown"]));
+    // Console.WriteLine(JsonSerializer.Deserialize<int>(items[buying.itemname]["price"]));
+
+    if (JsonSerializer.Deserialize<int>(clients[buying.token]["renown"]) > JsonSerializer.Deserialize<int>(items[buying.itemname]["price"])){
+        //find an empty spot
+        if (JsonSerializer.Deserialize<string>(clients[buying.token]["inventory"]["slot1"]) == ""){
+            clients[buying.token]["inventory"]["slot1"] = buying.itemname;
+        }
+        else if (JsonSerializer.Deserialize<string>(clients[buying.token]["inventory"]["slot2"]) == ""){
+            clients[buying.token]["inventory"]["slot2"] = buying.itemname;
+        }
+        else if (JsonSerializer.Deserialize<string>(clients[buying.token]["inventory"]["slot3"]) == ""){
+            clients[buying.token]["inventory"]["slot3"] = buying.itemname;
+        }
+        else if (JsonSerializer.Deserialize<string>(clients[buying.token]["inventory"]["slot4"]) == ""){
+            clients[buying.token]["inventory"]["slot4"] = buying.itemname;
+        }
+        else if (JsonSerializer.Deserialize<string>(clients[buying.token]["inventory"]["slot5"]) == ""){
+            clients[buying.token]["inventory"]["slot5"] = buying.itemname;
+        }
+        else {
+            return JsonSerializer.Serialize("All slots are full!");
+        }
+        
+        
+    }
+    else {
+        return JsonSerializer.Serialize("Not enough Renown!");
+    }
+
+    File.WriteAllText("../memory/clients.json", JsonSerializer.Serialize(clients));
+    return JsonSerializer.Serialize($"success! enjoy the {items[buying.itemname]["name"]}");
 });
 
 

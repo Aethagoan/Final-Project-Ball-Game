@@ -16,7 +16,7 @@ else {
 }
 
 let items = await ( await api_calls.get_items()).json()
-console.log(items);
+// console.log(items);
 
 
 load_player_data()
@@ -109,6 +109,7 @@ async function render_store(){
 
         innerdd.addEventListener("click", async () => {
             window.alert(await (await api_calls.buy_item(itemidentifier)).json())
+            load_player_data()
         })
 
         const outerdd = document.createElement("dd")
