@@ -51,7 +51,11 @@ async function get_game_state(){
     return await fetch(
         "http://localhost:" + API_PORT + "/game",
         {
-            method: "GET"
+            method: "POST",
+            headers: { "Content-type": "application/json; charset=UTF-8" },
+            body: JSON.stringify({
+                "token": localStorage.getItem("token"),
+            })
         }
     )
 }

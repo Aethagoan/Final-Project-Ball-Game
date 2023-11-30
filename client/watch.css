@@ -3,6 +3,22 @@
     --away-team-color: rgb(39, 39, 184);
 }
 
+#current-renown {
+    align-self: flex-end;
+    font-size: 2rem;
+
+    position: sticky;
+    top: 6rem;
+    background-color: black;
+    padding: .5rem;
+
+    border-style: solid;
+    border-color: white;
+    border-width: .2rem;
+    border-radius: 1.2rem;
+    z-index: 2;
+}
+
 article {
     margin: 5em auto;
     display: flex;

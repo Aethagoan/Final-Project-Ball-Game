@@ -20,6 +20,7 @@ var app = builder.Build();
 var clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
 var items = JsonObject.Parse(File.ReadAllText("../memory/items.json"));
 
+var observers = new List<string>();
 
 // Console.WriteLine(clients["exampletoken"]); // this is how we get values out
 
@@ -104,8 +105,12 @@ app.MapGet("/teams", async () =>
 });
 
 
-app.MapGet("/game", async () =>
+app.MapPost("/game", async (tokenString observer) =>
 {
+    // this is me keeping track of who's watching, this should get cleared by another function every so often (and award renown)
+    if (!observers.Contains(observer.token)){
+        observers.Add(observer.token);
+    }
     return (File.ReadAllText("../memory/gamestate.json"));
 });
 
@@ -202,8 +207,12 @@ app.MapPost("/discard", async (DiscardJson discarding) => {
 // executes in the background
 Task.Run(() => RunGame());
 
-
-
+Task.Run(() => {
+    while (true){
+        RewardObservers();
+        Thread.Sleep(1*1000);
+    }
+});
 
 
 app.Run();
@@ -568,6 +577,49 @@ Task RunGame()
 
 
 
+Task RewardObservers(){
+    clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
+
+    foreach(var watcher in observers){
+        // Console.WriteLine(watcher + "is watching!");
+        int numhorns = 0;
+
+        // Console.WriteLine(JsonSerializer.Deserialize<string>(clients[watcher]["inventory"]["slot1"]));
+
+        // I tried to do this elegantly with a foreach loop but couldn't find a good json serialization option to make it happen :/
+
+        if (JsonSerializer.Deserialize<string>(clients[watcher]["inventory"]["slot1"]) == "stadium-horn"){
+            numhorns++;
+        }
+
+        if (JsonSerializer.Deserialize<string>(clients[watcher]["inventory"]["slot2"]) == "stadium-horn"){
+            numhorns++;
+        }
+
+        if (JsonSerializer.Deserialize<string>(clients[watcher]["inventory"]["slot3"]) == "stadium-horn"){
+            numhorns++;
+        }
+
+        if (JsonSerializer.Deserialize<string>(clients[watcher]["inventory"]["slot4"]) == "stadium-horn"){
+            numhorns++;
+        }
+
+        if (JsonSerializer.Deserialize<string>(clients[watcher]["inventory"]["slot5"]) == "stadium-horn"){
+            numhorns++;
+        }
+
+        // Console.WriteLine(Math.Pow(2,  numhorns));
+
+        clients[watcher]["renown"] = JsonSerializer.Deserialize<long>(clients[watcher]["renown"]) + (1 * Math.Pow(2,  numhorns));
+        
+    }
+
+    File.WriteAllText("../memory/clients.json", JsonSerializer.Serialize(clients));
+
+    observers.Clear();
+
+    return Task.CompletedTask;
+}
 
 
 

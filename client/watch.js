@@ -35,6 +35,11 @@ while(true) {
         setTimeout(r, 500); // half a second in milliseconds?
     });
 
+    const playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json())
+    
+
+    document.getElementById("current-renown").innerText = `Your Renown: ${playerdata.renown}`
+
     const game_state = await (await api_calls.get_game_state()).json()
     
     // console.log(game_state)
