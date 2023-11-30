@@ -134,7 +134,7 @@ I haven't picked a name just quite yet, but the current competitors are Cricket 
 > - [ ] Hard Things Fulfilled.  
 > 
 > - [ ] Interactivity Fulfilled (except query strings).  
-> - [ ] Drag and Drop Fulfilled.  
+> - [x] Drag and Drop Fulfilled.  
 > 
 > filter search in league page for players  
 > - [x] Filter Bar Fulfilled.  
