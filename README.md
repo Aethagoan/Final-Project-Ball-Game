@@ -120,7 +120,7 @@ I haven't picked a name just quite yet, but the current competitors are Cricket 
 >[!NOTE]
 >>
 >> - [x] ground work  
->> - [ ] parts currently functioning  
+>> - [x] parts currently functioning  
 >> - [ ] total completion of parts to my satisfaction  
 > 
 >   
