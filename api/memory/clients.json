@@ -1,1 +1,78 @@
-{"exampletoken":{"alias":"exampleman","renown":0,"favoriteteam":"team-name","inventory":{"slot1":"","slot2":"","slot3":"","slot4":"","slot5":""},"pop_corns":1,"QFS":false,"DES":false,"TLD":false,"CIA":false,"EPS":false,"IFS":false},"ef24PswBGqh8RY2gBLzF":{"alias":"My Alias Here","renown":500,"favoriteteam":null,"inventory":{"slot1":"pop-corn-bucket","slot2":"soda-can","slot3":"","slot4":"","slot5":""},"pop_corns":0,"QFS":false,"DES":false,"TLD":false,"CIA":false,"EPS":false,"IFS":false},"66666666666666666666":{"alias":"Placeholder SeventySeven","renown":9960,"favoriteteam":null,"inventory":{"slot1":"stadium-horn","slot2":"stadium-horn","slot3":"stadium-horn","slot4":"stadium-horn","slot5":"stadium-horn"},"pop_corns":100000,"QFS":false,"DES":false,"TLD":false,"CIA":false,"EPS":false,"IFS":true},"YYYYYYYYYYYYYYYYYYYY":{"alias":"Second Guy","renown":4693,"favoriteteam":null,"inventory":{"slot1":"stadium-horn","slot2":"stadium-horn","slot3":"stadium-horn","slot4":"stadium-horn","slot5":""},"pop_corns":0,"QFS":false,"DES":false,"TLD":false,"CIA":false,"EPS":false,"IFS":false}}
+{
+    "exampletoken": {
+        "alias": "exampleman",
+        "renown": 0,
+        "favoriteteam": "team-name",
+        "inventory": {
+            "slot1": "",
+            "slot2": "",
+            "slot3": "",
+            "slot4": "",
+            "slot5": ""
+        },
+        "pop_corns": 1,
+        "QFS": false,
+        "DES": false,
+        "TLD": false,
+        "CIA": false,
+        "EPS": false,
+        "IFS": false
+    },
+    "ef24PswBGqh8RY2gBLzF": {
+        "alias": "My Alias Here",
+        "renown": 500,
+        "favoriteteam": null,
+        "inventory": {
+            "slot1": "pop-corn-bucket",
+            "slot2": "soda-can",
+            "slot3": "",
+            "slot4": "",
+            "slot5": ""
+        },
+        "pop_corns": 0,
+        "QFS": false,
+        "DES": false,
+        "TLD": false,
+        "CIA": false,
+        "EPS": false,
+        "IFS": false
+    },
+    "66666666666666666666": {
+        "alias": "Placeholder SeventySeven",
+        "renown": 9960,
+        "favoriteteam": null,
+        "inventory": {
+            "slot1": "stadium-horn",
+            "slot2": "stadium-horn",
+            "slot3": "stadium-horn",
+            "slot4": "stadium-horn",
+            "slot5": "stadium-horn"
+        },
+        "pop_corns": 100000,
+        "QFS": false,
+        "DES": false,
+        "TLD": false,
+        "CIA": false,
+        "EPS": false,
+        "IFS": true
+    },
+    "YYYYYYYYYYYYYYYYYYYY": {
+        "alias": "Second Guy",
+        "renown": 4693,
+        "favoriteteam": null,
+        "inventory": {
+            "slot1": "stadium-horn",
+            "slot2": "stadium-horn",
+            "slot3": "stadium-horn",
+            "slot4": "stadium-horn",
+            "slot5": ""
+        },
+        "pop_corns": 0,
+        "QFS": false,
+        "DES": false,
+        "TLD": false,
+        "CIA": false,
+        "EPS": false,
+        "IFS": false
+    }
+}

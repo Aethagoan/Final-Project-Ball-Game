@@ -17,6 +17,22 @@ var app = builder.Build();
 
 
 // get stuff from database storage jsons
+if (!File.Exists("../memory/clients.json")){
+    File.WriteAllText("../memory/clients.json", "{}");
+}
+
+if (!File.Exists("../memory/gamestate.json")){
+    File.WriteAllText("../memory/gamestate.json","{\"HomeTeam\": \"\",\"\": \"Team 2\",\"inning\": {\"orientation\": \"top\",\"count\": 0},\"HomeScore\": 0,\"AwayScore\": 0,\"outs\": 0,\"strikes\": 0,\"balls\": 0,\"batter\": \"\",\"onbase\": \"first\",\"firstbasepitcher": \"\",\"secondbasepitcher": \"\",\"play\": \"Looks Like the Field is empty\",\"throws\": 0}\"");
+}
+
+if (!File.Exists("../memory/items.json")){
+    File.WriteAllText("../memory/items.json", "{\"pop-corn-bucket\": {\"name\": \"Pop-Corn Bucket\",\"img\": \"./img/popcorn.png\",\"desc\": \"Ah, Pop-corns. Can't get enough of em. You get 25 Renown every time your favorite team wins a game.\",\"price\": 100},\"stadium-horn\": {\"name\": \"Staduim Horn\",\"img\": \"./img/stadium-horn.png\",\"desc\": \"Make some noise! Start a chant! We want a pitcher! Not a. . . well, you get the idea. Doubles the amount of renown you recieve.\",\"price\": 500},\"soda-can\": {\"name\": \"Soda Can\",\"img\": \"./img/soda-can.png\",\"desc\": \"Sluurrrrp. How Refreshing! You get 12 Renown every time your favorite team Loses.\",\"price\": 50");
+}
+
+if (!File.Exists("../memory/teams.json")){
+    File.WriteAllText("../memory/teams.json", "{\"Team 1\": {\"Wins\": 0,\"Losses\": 0,\"Ties\": 0,\"Player1\": {\"alias\": \"Fred Burgermiester 1\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player2\": {\"alias\": \"Fred Burgermiester 2\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player3\": {\"alias\": \"Fred Burgermiester 3\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player4\": {\"alias\": \"Fred Burgermiester 4\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player5\": {\"alias\": \"Fred Burgermiester 5\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player6\": {\"alias\": \"Fred Burgermiester 6\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player7\": {\"alias\": \"Fred Burgermiester 7\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player8\": {\"alias\": \"Fred Burgermiester 8\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player9\": {\"alias\": \"Fred Burgermiester 9\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player10\": {\"alias\": \"Fred Burgermiester 10\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player11\": {\"alias\": \"Fred Burgermiester 11\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1}},\"Team 2\": {\"Wins\": 0,\"Losses\": 0,\"Ties\": 0,\"Player1\": {\"alias\": \"John Burgermiester 1\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player2\": {\"alias\": \"John Burgermiester 2\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player3\": {\"alias\": \"John Burgermiester 3\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player4\": {\"alias\": \"John Burgermiester 4\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player5\": {\"alias\": \"John Burgermiester 5\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player6\": {\"alias\": \"John Burgermiester 6\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player7\": {\"alias\": \"John Burgermiester 7\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player8\": {\"alias\": \"John Burgermiester 8\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player9\": {\"alias\": \"John Burgermiester 9\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player10\": {\"alias\": \"John Burgermiester 10\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player11\": { \"alias\": \"John Burgermiester 11\", \"run_score\": 0.7, \"throw_score\": 0.8, \"bat_score\": 1}}}");
+}
+
 var clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
 var items = JsonObject.Parse(File.ReadAllText("../memory/items.json"));
 
@@ -654,7 +670,7 @@ string generate_random_token()
 
     for (int i = 0; i < 20; i++)
     {
-        returnme += tokenCharacters[new Random(Environment.TickCount).Next(tokenCharacters.Length)];
+        returnme += tokenCharacters[new Random().Next(tokenCharacters.Length)];
     }
 
     // if this token already exists try again
