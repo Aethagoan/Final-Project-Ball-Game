@@ -219,6 +219,19 @@ app.Run();
 
 
 
+Task RewardTeamPicks(string winningteam, string losingteam) {
+    clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
+    
+    // for every token, look at their favorite team.
+    // if their favorite team won, look for popcorn in their slots + horns
+
+    // if their favorite team lost, look for soda in their slots + horns
+    
+
+    return Task.CompletedTask;
+}
+
+
 // game loop? needs to run async.
 Task RunGame()
 {
