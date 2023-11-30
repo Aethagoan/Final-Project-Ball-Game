@@ -11,11 +11,11 @@ export default {
 }
 
 // IMPORTANT: CHANGE THIS IS YOU REDO THE WEB APP!
-const API_PORT = "5184"
+// const API_PORT = "5184"
 
 async function testapithing() {
     return await fetch(
-        "http://localhost:" + API_PORT + "/random",
+        "briscket.azurewebsites.net" + "/random",
         {
             method: "GET"
         }
@@ -25,7 +25,7 @@ async function testapithing() {
 async function submit_contract(requestObject) {
 
     return await fetch(
-        "http://localhost:" + API_PORT + "/newcontract",
+        "briscket.azurewebsites.net" + "/newcontract",
         {
             method: "POST",
             headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -36,7 +36,7 @@ async function submit_contract(requestObject) {
 
 async function get_player_data(sendtoken) {
     return await fetch(
-        "http://localhost:" + API_PORT + "/token",
+        "briscket.azurewebsites.net" + "/token",
         {
             method: "POST",
             headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -49,7 +49,7 @@ async function get_player_data(sendtoken) {
 
 async function get_game_state(){
     return await fetch(
-        "http://localhost:" + API_PORT + "/game",
+        "briscket.azurewebsites.net" + "/game",
         {
             method: "POST",
             headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -62,7 +62,7 @@ async function get_game_state(){
 
 async function get_teams_data(){
     return await fetch(
-        "http://localhost:" + API_PORT + "/teams",
+        "briscket.azurewebsites.net" + "/teams",
         {
             method: "GET"
         }
@@ -71,7 +71,7 @@ async function get_teams_data(){
 
 async function get_items(){
     return await fetch(
-        "http://localhost:" + API_PORT + "/items",
+        "briscket.azurewebsites.net" + "/items",
         {
             method: "GET",
         }
@@ -80,7 +80,7 @@ async function get_items(){
 
 async function swap_items(from, to){
     return await fetch(
-        "http://localhost:" + API_PORT + "/swap",
+        "briscket.azurewebsites.net" + "/swap",
         {
             method: "POST",
             headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -101,7 +101,7 @@ async function buy_item(itemname) {
     "soda-can"
     */
     return await fetch(
-        "http://localhost:" + API_PORT + "/buy",
+        "briscket.azurewebsites.net" + "/buy",
         {
             method: "POST",
             headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -115,7 +115,7 @@ async function buy_item(itemname) {
 
 async function discard_item(slot) {
     return await fetch(
-        "http://localhost:" + API_PORT + "/discard",
+        "briscket.azurewebsites.net" + "/discard",
         { 
             method: "POST",
             headers: { "Content-type": "application/json; charset=UTF-8" },
