@@ -15,6 +15,10 @@ else {
 
 }
 
+let items = await ( await api_calls.get_items()).json()
+
+
+
 load_player_data()
 
 async function load_player_data(){
@@ -23,26 +27,34 @@ async function load_player_data(){
     document.getElementById("current-renown").innerText = `Your Renown: ${playerdata.renown}`
     if (playerdata.inventory.slot1 != "") {
         document.getElementById("slot1").innerHTML = `<img src="${items[playerdata.inventory.slot1].img}" draggable="false">`
+    } else {
+        document.getElementById("slot1").innerHTML = `<p>slot 1</p>`
     }
 
     if (playerdata.inventory.slot2 != "") {
         document.getElementById("slot2").innerHTML = `<img src="${items[playerdata.inventory.slot2].img}" draggable="false">`
+    }else {
+        document.getElementById("slot2").innerHTML = `<p>slot 2</p>`
     }
 
     if (playerdata.inventory.slot3 != "") {
         document.getElementById("slot3").innerHTML = `<img src="${items[playerdata.inventory.slot3].img}" draggable="false">`
+    }else {
+        document.getElementById("slot3").innerHTML = `<p>slot 3</p>`
     }
 
     if (playerdata.inventory.slot4 != "") {
         document.getElementById("slot4").innerHTML = `<img src="${items[playerdata.inventory.slot4].img}" draggable="false">`
+    }else {
+        document.getElementById("slot4").innerHTML = `<p>slot 4</p>`
     }
 
     if (playerdata.inventory.slot5 != "") {
         document.getElementById("slot5").innerHTML = `<img src="${items[playerdata.inventory.slot5].img}" draggable="false">`
+    }else {
+        document.getElementById("slot5").innerHTML = `<p>slot 5</p>`
     }
 
-
-   
 
 }
 
@@ -50,7 +62,6 @@ render_store();
 
 
 async function render_store(){
-    items = await ((await api_calls.get_items()).json());
     const store = document.getElementById("store")
 
     /*
@@ -157,36 +168,36 @@ slot5.addEventListener("dragstart", (event) => {
 
 
 
-slot1.addEventListener("drop", (event) =>{
-    console.log(event.dataTransfer.getData("text"), 1)
-    api_calls.swap_items(event.dataTransfer.getData("text"), 1)
+slot1.addEventListener("drop", async (event) =>{
+    // console.log(event.dataTransfer.getData("text"), 1)
+    await api_calls.swap_items(event.dataTransfer.getData("text"), 1)
     load_player_data()
 })
 
-slot2.addEventListener("drop", (event) =>{
-    console.log(event.dataTransfer.getData("text"), 2)
-    api_calls.swap_items(event.dataTransfer.getData("text"), 2)
+slot2.addEventListener("drop", async (event) =>{
+    // console.log(event.dataTransfer.getData("text"), 2)
+    await api_calls.swap_items(event.dataTransfer.getData("text"), 2)
     load_player_data()
     
 })
 
-slot3.addEventListener("drop", (event) =>{
-    console.log(event.dataTransfer.getData("text"), 3)
-    api_calls.swap_items(event.dataTransfer.getData("text"), 3)
+slot3.addEventListener("drop", async (event) =>{
+    // console.log(event.dataTransfer.getData("text"), 3)
+    await api_calls.swap_items(event.dataTransfer.getData("text"), 3)
     load_player_data()
 
 })
 
-slot4.addEventListener("drop", (event) =>{
-    console.log(event.dataTransfer.getData("text"), 4)
-    api_calls.swap_items(event.dataTransfer.getData("text"), 4)
+slot4.addEventListener("drop", async (event) =>{
+    // console.log(event.dataTransfer.getData("text"), 4)
+    await api_calls.swap_items(event.dataTransfer.getData("text"), 4)
     load_player_data()
 
 })
 
-slot5.addEventListener("drop", (event) =>{
-    console.log(event.dataTransfer.getData("text"), 5)
-    api_calls.swap_items(event.dataTransfer.getData("text"), 5)
+slot5.addEventListener("drop", async (event) =>{
+    // console.log(event.dataTransfer.getData("text"), 5)
+    await api_calls.swap_items(event.dataTransfer.getData("text"), 5)
     load_player_data()
 
 })
