@@ -131,9 +131,9 @@ I haven't picked a name just quite yet, but the current competitors are Cricket 
 > 
 > store, inventory, items added (drag and drop items in inventory spaces)  
 > 
-> - [ ] Hard Things Fulfilled.  
+> - [x] Hard Things Fulfilled. (I think, I made My own API, which covers the 25)  
 > 
-> - [ ] Interactivity Fulfilled (except query strings).  
+> - [x] Interactivity Fulfilled (pretty much. Missing Query string, Map function, Some Structure organization. Calling my own API is technically an external call, right?).  
 > - [x] Drag and Drop Fulfilled.  
 > 
 > filter search in league page for players  
