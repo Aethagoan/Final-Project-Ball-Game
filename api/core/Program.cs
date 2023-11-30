@@ -16,6 +16,10 @@ builder.Services.AddCors();
 var app = builder.Build();
 
 
+if (!Directory.Exists("../memory")){
+    Directory.CreateDirectory("../memory");
+}
+
 // get stuff from database storage jsons
 if (!File.Exists("../memory/gamestate.json")){
     File.WriteAllText("../memory/gamestate.json","{\"HomeTeam\": \"\",\"\": \"Team 2\",\"inning\": {\"orientation\": \"top\",\"count\": 0},\"HomeScore\": 0,\"AwayScore\": 0,\"outs\": 0,\"strikes\": 0,\"balls\": 0,\"batter\": \"\",\"onbase\": \"first\",\"firstbasepitcher\": \"\",\"secondbasepitcher\": \"\",\"play\": \"Looks Like the Field is empty\",\"throws\": 0}\"");
