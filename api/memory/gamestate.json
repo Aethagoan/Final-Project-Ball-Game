@@ -1,1 +1,19 @@
-{"HomeTeam":"Team 1","AwayTeam":"Team 2","inning":{"orientation":"top","count":6},"HomeScore":45,"AwayScore":15,"outs":0,"strikes":0,"balls":1,"batter":"\u0022Fred Burgermiester 5\u0022","onbase":"first","firstbasepitcher":"\u0022John Burgermiester 2\u0022","secondbasepitcher":"\u0022John Burgermiester 3\u0022","play":"\u0022John Burgermiester 7\u0022 picks the ball up!","throws":1}
+{
+    "HomeTeam": "",
+    "AwayTeam": "",
+    "inning": {
+        "orientation": "",
+        "count": 0
+    },
+    "HomeScore": 0,
+    "AwayScore": 0,
+    "outs": 0,
+    "strikes": 0,
+    "balls": 0,
+    "batter": "",
+    "onbase": "first",
+    "firstbasepitcher": "",
+    "secondbasepitcher": "",
+    "play": "Play ball!",
+    "throws": 0
+}
