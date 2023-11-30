@@ -1,13 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Text.Json;
 using System.Text.Json.Nodes;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components.Web;
-using System.Text.Encodings.Web;
-using System.Text.Json;
-using System.Text.Unicode;
 
 
 // web app stuff
@@ -18,6 +10,15 @@ var app = builder.Build();
 
 if (!Directory.Exists("../memory")){
     Directory.CreateDirectory("../memory");
+}
+
+try{
+File.Delete("../memory/clients.json");
+File.Delete("../memory/gamestate.json");
+File.Delete("../memory/items.json");
+File.Delete("../memory/teams.json");}
+catch (Exception e) {
+    Console.WriteLine("expecting a file not found error:" + e.Message);
 }
 
 // get stuff from database storage jsons
