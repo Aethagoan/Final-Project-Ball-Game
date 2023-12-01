@@ -105,7 +105,7 @@ async function submission(event) {
 
     console.log(await (await api_calls.get_player_data(localStorage.getItem("token"))).json())
 
-    window.location.replace("/contract.html")
+    window.location.replace("./contract.html")
 }
 
 
