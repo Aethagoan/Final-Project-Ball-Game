@@ -252,7 +252,7 @@ Task RewardTeamPicks(string winningteam, string losingteam) {
 Task RunGame()
 {
 
-    gameState game_state = JsonSerializer.Deserialize<gameState>(File.ReadAllText("../backups/gamestate.json"));
+    gameState game_state = JsonSerializer.Deserialize<gameState>(File.ReadAllText("../memory/gamestate.json"));
 
     var All_Team_Data = JsonObject.Parse(File.ReadAllText("../memory/teams.json"));
 
