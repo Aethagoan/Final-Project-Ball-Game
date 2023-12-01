@@ -7,11 +7,22 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
 var app = builder.Build();
 
+// no firewall yeeet
+app.UseCors(policy =>
+    policy
+        .AllowAnyOrigin()
+            .AllowAnyMethod()
+                .AllowAnyHeader()
+);
 
+
+
+//if the directory doesn't exist, make it
 if (!Directory.Exists("../memory")){
     Directory.CreateDirectory("../memory");
 }
 
+// delete stuff if it exists, if it doesn't it'll throw an exception so I'll catch that and just move on.
 try {
     File.Delete("../memory/clients.json");
     File.Delete("../memory/gamestate.json");
@@ -22,7 +33,7 @@ catch (Exception e) {
     Console.WriteLine("expecting a file not found error:" + e.Message);
 }
 
-// get stuff from database storage jsons
+// create files that don't exist yet
 if (!File.Exists("../memory/gamestate.json")){
     File.WriteAllText("../memory/gamestate.json", "{\"HomeTeam\": \"\", \"AwayTeam\": \"\" ,\"inning\": {\"orientation\": \"top\",\"count\": 0},\"HomeScore\": 0,\"AwayScore\": 0,\"outs\": 0,\"strikes\": 0,\"balls\": 0,\"batter\": \"\",\"onbase\": \"first\",\"firstbasepitcher\": \"\",\"secondbasepitcher\": \"\",\"play\": \"Looks Like the Field is empty\",\"throws\": 0}");
 }
@@ -39,34 +50,16 @@ if (!File.Exists("../memory/teams.json")){
     File.WriteAllText("../memory/teams.json", "{\"Team 1\": {\"Wins\": 0,\"Losses\": 0,\"Ties\": 0,\"Player1\": {\"alias\": \"Fred Burgermiester 1\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player2\": {\"alias\": \"Fred Burgermiester 2\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player3\": {\"alias\": \"Fred Burgermiester 3\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player4\": {\"alias\": \"Fred Burgermiester 4\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player5\": {\"alias\": \"Fred Burgermiester 5\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player6\": {\"alias\": \"Fred Burgermiester 6\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player7\": {\"alias\": \"Fred Burgermiester 7\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player8\": {\"alias\": \"Fred Burgermiester 8\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player9\": {\"alias\": \"Fred Burgermiester 9\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player10\": {\"alias\": \"Fred Burgermiester 10\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player11\": {\"alias\": \"Fred Burgermiester 11\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1}},\"Team 2\": {\"Wins\": 0,\"Losses\": 0,\"Ties\": 0,\"Player1\": {\"alias\": \"John Burgermiester 1\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player2\": {\"alias\": \"John Burgermiester 2\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player3\": {\"alias\": \"John Burgermiester 3\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player4\": {\"alias\": \"John Burgermiester 4\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player5\": {\"alias\": \"John Burgermiester 5\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player6\": {\"alias\": \"John Burgermiester 6\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player7\": {\"alias\": \"John Burgermiester 7\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player8\": {\"alias\": \"John Burgermiester 8\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player9\": {\"alias\": \"John Burgermiester 9\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player10\": {\"alias\": \"John Burgermiester 10\",\"run_score\": 0.7,\"throw_score\": 0.8,\"bat_score\": 1},\"Player11\": { \"alias\": \"John Burgermiester 11\", \"run_score\": 0.7, \"throw_score\": 0.8, \"bat_score\": 1}}}");
 }
 
-
+// get stuff from database storage jsons
 var items = JsonObject.Parse(File.ReadAllText("../memory/items.json"));
 var clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
 
 var observers = new List<string>();
 
-// Console.WriteLine(clients["exampletoken"]); // this is how we get values out
-
-
-// no firewall yeeet
-app.UseCors(policy =>
-    policy
-        .AllowAnyOrigin()
-            .AllowAnyMethod()
-                .AllowAnyHeader()
-);
 
 
 
-
-// get
-app.MapGet("/random", () =>
-{
-    return new { message = "hey this is working" };
-});
-
-
-
+// sign up
 app.MapPost("/newcontract", (contractEntry recieved) =>
 {
     //we should get the right thing in the right format, so here goes nothing?
@@ -115,19 +108,19 @@ app.MapPost("/newcontract", (contractEntry recieved) =>
     return new { token = newToken };
 });
 
-
+// returns player data
 app.MapPost("/token", (tokenString recievedtoken) =>
 {
     return JsonSerializer.Serialize(getToken(recievedtoken.token));
 });
 
-
+// for the league page
 app.MapGet("/teams", () =>
 {
     return (File.ReadAllText("../memory/teams.json"));
 });
 
-
+// reports game data and also handles watching renown gain
 app.MapPost("/game", (tokenString observer) =>
 {
     // this is me keeping track of who's watching, this should get cleared by another function every so often (and award renown)
@@ -137,12 +130,12 @@ app.MapPost("/game", (tokenString observer) =>
     return (File.ReadAllText("../memory/gamestate.json"));
 });
 
-
+// returns the items
 app.MapGet("/items", () => {
     return (File.ReadAllText("../memory/items.json"));
 });
 
-
+// inventory manipulation
 app.MapPost("/swap", (SwapSlots swapping) => {
     clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
 
@@ -157,7 +150,7 @@ app.MapPost("/swap", (SwapSlots swapping) => {
     return true;
 });
 
-
+// buying items
 app.MapPost("/buy", (BuyingJson buying) => {
     clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
 
@@ -211,7 +204,7 @@ app.MapPost("/buy", (BuyingJson buying) => {
     return JsonSerializer.Serialize($"success! enjoy the {items[buying.itemname]["name"]}");
 });
 
-
+// trashing items
 app.MapPost("/discard", (DiscardJson discarding) => {
     clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
 
@@ -241,7 +234,7 @@ Task.Run(() => {
 app.Run();
 
 
-
+// I think I intend to make a list with everyone's tokens who has favorite teams and do it that way, not implemented yet.
 Task RewardTeamPicks(string winningteam, string losingteam) {
     clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
     
@@ -255,7 +248,7 @@ Task RewardTeamPicks(string winningteam, string losingteam) {
 }
 
 
-// game loop? needs to run async.
+// game loop needs to run async.
 Task RunGame()
 {
 
@@ -612,7 +605,7 @@ Task RunGame()
 }
 
 
-
+// rewards people currently watching on the watch page
 Task RewardObservers(){
     clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
 
