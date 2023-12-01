@@ -268,7 +268,7 @@ Task RunGame()
     void game(string team1name, string team2name)
     {
         Console.WriteLine("Game has started");
-        game_state = JsonSerializer.Deserialize<gameState>(File.ReadAllText("../backups/gamestate.json"));
+        game_state = JsonSerializer.Deserialize<gameState>(File.ReadAllText("../memory/gamestate.json"));
 
         game_state.HomeTeam = team1name;
         game_state.AwayTeam = team2name;
