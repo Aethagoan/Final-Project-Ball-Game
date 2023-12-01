@@ -12,11 +12,12 @@ if (!Directory.Exists("../memory")){
     Directory.CreateDirectory("../memory");
 }
 
-try{
-File.Delete("../memory/clients.json");
-File.Delete("../memory/gamestate.json");
-File.Delete("../memory/items.json");
-File.Delete("../memory/teams.json");}
+try {
+    File.Delete("../memory/clients.json");
+    File.Delete("../memory/gamestate.json");
+    File.Delete("../memory/items.json");
+    File.Delete("../memory/teams.json");
+}
 catch (Exception e) {
     Console.WriteLine("expecting a file not found error:" + e.Message);
 }
