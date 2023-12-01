@@ -28,7 +28,7 @@ if (!File.Exists("../memory/gamestate.json")){
 }
 
 if (!File.Exists("../memory/clients.json")){
-    File.WriteAllText("../memory/clients.json", "{}");
+    File.WriteAllText("../memory/clients.json", "{\"exampletoken\": { \"alias\": \"exampleman\", \"renown\": 0, \"favoriteteam\": \"team-name\", \"inventory\": {  \"slot1\": \"\",  \"slot2\": \"\",  \"slot3\": \"\",  \"slot4\": \"\",  \"slot5\": \"\" }, \"pop_corns\": 1, \"QFS\": false, \"DES\": false, \"TLD\": false, \"CIA\": false, \"EPS\": false, \"IFS\": false}}");
 }
 
 if (!File.Exists("../memory/items.json")){
