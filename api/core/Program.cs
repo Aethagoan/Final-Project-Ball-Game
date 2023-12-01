@@ -261,12 +261,14 @@ Task RunGame()
     while (true)
     {
         // reset the game state
+        File.Delete("../memory/gamestate.json");
         File.WriteAllText("../memory/gamestate.json", "{\"HomeTeam\": \"\", \"AwayTeam\": \"\" ,\"inning\": {\"orientation\": \"top\",\"count\": 0},\"HomeScore\": 0,\"AwayScore\": 0,\"outs\": 0,\"strikes\": 0,\"balls\": 0,\"batter\": \"\",\"onbase\": \"first\",\"firstbasepitcher\": \"\",\"secondbasepitcher\": \"\",\"play\": \"Looks Like the Field is empty\",\"throws\": 0}");
         game_state = JsonSerializer.Deserialize<gameState>(File.ReadAllText("../memory/gamestate.json"));
         game("Team 1", "Team 2");
 
 
         // reset the game state
+        File.Delete("../memory/gamestate.json");
         File.WriteAllText("../memory/gamestate.json", "{\"HomeTeam\": \"\", \"AwayTeam\": \"\" ,\"inning\": {\"orientation\": \"top\",\"count\": 0},\"HomeScore\": 0,\"AwayScore\": 0,\"outs\": 0,\"strikes\": 0,\"balls\": 0,\"batter\": \"\",\"onbase\": \"first\",\"firstbasepitcher\": \"\",\"secondbasepitcher\": \"\",\"play\": \"Looks Like the Field is empty\",\"throws\": 0}");
         game_state = JsonSerializer.Deserialize<gameState>(File.ReadAllText("../memory/gamestate.json"));
         game("Team 2", "Team 1");
