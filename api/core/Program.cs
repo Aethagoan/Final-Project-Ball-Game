@@ -24,7 +24,7 @@ catch (Exception e) {
 
 // get stuff from database storage jsons
 if (!File.Exists("../memory/gamestate.json")){
-    File.WriteAllText("../memory/gamestate.json","{\"HomeTeam\": \"\", \"AwayTeam\": \"\" ,\"inning\": {\"orientation\": \"top\",\"count\": 0},\"HomeScore\": 0,\"AwayScore\": 0,\"outs\": 0,\"strikes\": 0,\"balls\": 0,\"batter\": \"\",\"onbase\": \"first\",\"firstbasepitcher\": \"\",\"secondbasepitcher\": \"\",\"play\": \"Looks Like the Field is empty\",\"throws\": 0}");
+    File.WriteAllText("../memory/gamestate.json", "{\"HomeTeam\": \"\", \"AwayTeam\": \"\" ,\"inning\": {\"orientation\": \"top\",\"count\": 0},\"HomeScore\": 0,\"AwayScore\": 0,\"outs\": 0,\"strikes\": 0,\"balls\": 0,\"batter\": \"\",\"onbase\": \"first\",\"firstbasepitcher\": \"\",\"secondbasepitcher\": \"\",\"play\": \"Looks Like the Field is empty\",\"throws\": 0}");
 }
 
 if (!File.Exists("../memory/clients.json")){
@@ -67,7 +67,7 @@ app.MapGet("/random", () =>
 
 
 
-app.MapPost("/newcontract", async (contractEntry recieved) =>
+app.MapPost("/newcontract", (contractEntry recieved) =>
 {
     //we should get the right thing in the right format, so here goes nothing?
 
@@ -116,19 +116,19 @@ app.MapPost("/newcontract", async (contractEntry recieved) =>
 });
 
 
-app.MapPost("/token", async (tokenString recievedtoken) =>
+app.MapPost("/token", (tokenString recievedtoken) =>
 {
     return JsonSerializer.Serialize(getToken(recievedtoken.token));
 });
 
 
-app.MapGet("/teams", async () =>
+app.MapGet("/teams", () =>
 {
     return (File.ReadAllText("../memory/teams.json"));
 });
 
 
-app.MapPost("/game", async (tokenString observer) =>
+app.MapPost("/game", (tokenString observer) =>
 {
     // this is me keeping track of who's watching, this should get cleared by another function every so often (and award renown)
     if (!observers.Contains(observer.token)){
@@ -138,12 +138,12 @@ app.MapPost("/game", async (tokenString observer) =>
 });
 
 
-app.MapGet("/items", async () => {
+app.MapGet("/items", () => {
     return (File.ReadAllText("../memory/items.json"));
 });
 
 
-app.MapPost("/swap", async (SwapSlots swapping) => {
+app.MapPost("/swap", (SwapSlots swapping) => {
     clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
 
     var temp = JsonSerializer.Deserialize<string>(clients[swapping.token]["inventory"][$"slot{swapping.toslot}"]);
@@ -158,7 +158,7 @@ app.MapPost("/swap", async (SwapSlots swapping) => {
 });
 
 
-app.MapPost("/buy", async (BuyingJson buying) => {
+app.MapPost("/buy", (BuyingJson buying) => {
     clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
 
     // make sure the item name is valid
@@ -212,7 +212,7 @@ app.MapPost("/buy", async (BuyingJson buying) => {
 });
 
 
-app.MapPost("/discard", async (DiscardJson discarding) => {
+app.MapPost("/discard", (DiscardJson discarding) => {
     clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
 
     clients[discarding.token]["inventory"][$"slot{discarding.slot}"] = "";
