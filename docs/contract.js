@@ -103,7 +103,7 @@ async function submission(event) {
     // subit the contract, get the token back, put it into local storage.
     localStorage.setItem("token", (await (await api_calls.submit_contract(requestObject)).json()).token)
 
-    console.log(await (await api_calls.get_player_data(localStorage.getItem("token"))).json())
+    // console.log(await (await api_calls.get_player_data(localStorage.getItem("token"))).json())
 
     window.location.replace("./contract.html")
 }
