@@ -317,16 +317,19 @@ Task RunGame()
             write_to_play("Home Team " + game_state.HomeTeam + " Wins!");
             home_team.Wins++;
             away_team.Losses++;
+            Thread.Sleep(15*1000);
         }
         else if (game_state.HomeScore < game_state.AwayScore){
             write_to_play("Away Team " + game_state.AwayTeam + " Wins!");
             home_team.Losses++;
             away_team.Wins++;
+            Thread.Sleep(15*1000);
         }
         else if (game_state.HomeScore == game_state.AwayScore){
             write_to_play("It's a tie??????");
             home_team.Ties++;
             away_team.Ties++;
+            Thread.Sleep(15*1000);
         }
         else {
             // ????????
