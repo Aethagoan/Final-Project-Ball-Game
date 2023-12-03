@@ -39,21 +39,8 @@ while(true) {
         setTimeout(r, 500); // half a second in milliseconds?
     });
     
-    try {
-        playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json())
-    }
-    catch {
-        while (1){
-            try{
-                setTimeout(r, 500);
-                playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json())
-                break
-            }
-            catch (e) {
-                console.log(e)
-            }
-        }
-    }
+    playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json())
+    if (playerdata == null) continue
 
     document.getElementById("current-renown").innerText = `Your Renown: ${playerdata.renown}`
 
