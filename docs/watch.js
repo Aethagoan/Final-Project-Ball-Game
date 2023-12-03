@@ -44,12 +44,9 @@ while(true) {
 
     document.getElementById("current-renown").innerText = `Your Renown: ${playerdata.renown}`
 
-    try {
-        game_state = await (await api_calls.get_game_state()).json()
-    }
-    catch {
-        window.location.replace("./watch.html")
-     }
+    
+    game_state = await (await api_calls.get_game_state()).json()
+    if (game_state == null) continue
     
     // console.log(game_state)
 
