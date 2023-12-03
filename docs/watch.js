@@ -10,8 +10,9 @@ if (localStorage.length < 1) {
 else {
     playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json())
 
-    if (playerdata == null) {
-        window.location.replace("./contract.html")
+    while (playerdata == null) {
+        playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json())
+        setTimeout(r, 500);
     }
 
 }
