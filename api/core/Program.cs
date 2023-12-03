@@ -584,8 +584,11 @@ Task RunGame()
 
             float gen_rand()
             {
+                // 0 to 3
                 string whole = (new Random(Environment.TickCount).Next(4)).ToString();
+                // 0 to 99
                 string fraction = (new Random(Environment.TickCount).Next(100)).ToString();
+                // concat
                 string random = whole + "." + fraction;
                 // Console.WriteLine("Generated " + random);
                 return float.Parse(random);
@@ -598,7 +601,7 @@ Task RunGame()
             game_state.play = message;
             Console.WriteLine(message);
             File.WriteAllText("../memory/gamestate.json", JsonSerializer.Serialize(game_state).ToString());
-            Thread.Sleep(1 * 1000); // I like 5 and 3 second intervals, but for testing purposes, 1 or less might be good
+            Thread.Sleep(2 * 1000); // I like 5 and 3 second intervals, but for testing purposes, 1 or less might be good
         }
 
 
