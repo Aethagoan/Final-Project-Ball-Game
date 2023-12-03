@@ -1,11 +1,14 @@
 import api_calls from "./svc/api_calls.js"
 
+let playerdata
+let game_state
+
 // redirect to contract if no token
 if (localStorage.length < 1) {
     window.location.replace("./contract.html")
 }
 else {
-    const playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json())
+    playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json())
 
     if (playerdata == null) {
         window.location.replace("./contract.html")
@@ -35,12 +38,21 @@ while(true) {
         setTimeout(r, 500); // half a second in milliseconds?
     });
 
-    const playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json())
-    
+    try {
+    playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json())
+    }
+    catch {
+        window.location.replace("./watch.html")
+    }
 
     document.getElementById("current-renown").innerText = `Your Renown: ${playerdata.renown}`
 
-    const game_state = await (await api_calls.get_game_state()).json()
+    try {
+        game_state = await (await api_calls.get_game_state()).json()
+    }
+    catch {
+        window.location.replace("./watch.html")
+     }
     
     // console.log(game_state)
 

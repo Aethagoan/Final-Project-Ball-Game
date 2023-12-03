@@ -251,26 +251,15 @@ Task RewardTeamPicks(string winningteam, string losingteam) {
 // game loop needs to run async.
 Task RunGame()
 {
-    // reset the game state
-    File.WriteAllText("../memory/gamestate.json", "{\"HomeTeam\": \"\", \"AwayTeam\": \"\" ,\"inning\": {\"orientation\": \"top\",\"count\": 0},\"HomeScore\": 0,\"AwayScore\": 0,\"outs\": 0,\"strikes\": 0,\"balls\": 0,\"batter\": \"\",\"onbase\": \"first\",\"firstbasepitcher\": \"\",\"secondbasepitcher\": \"\",\"play\": \"Looks Like the Field is empty\",\"throws\": 0}");
-    gameState game_state = JsonSerializer.Deserialize<gameState>(File.ReadAllText("../memory/gamestate.json"));
-
+    gameState game_state = new gameState();
     var All_Team_Data = JsonObject.Parse(File.ReadAllText("../memory/teams.json"));
+    Console.WriteLine(All_Team_Data);
 
     // repeat this indefinately.
     while (true)
     {
-        // reset the game state
-        File.Delete("../memory/gamestate.json");
-        File.WriteAllText("../memory/gamestate.json", "{\"HomeTeam\": \"\", \"AwayTeam\": \"\" ,\"inning\": {\"orientation\": \"top\",\"count\": 0},\"HomeScore\": 0,\"AwayScore\": 0,\"outs\": 0,\"strikes\": 0,\"balls\": 0,\"batter\": \"\",\"onbase\": \"first\",\"firstbasepitcher\": \"\",\"secondbasepitcher\": \"\",\"play\": \"Looks Like the Field is empty\",\"throws\": 0}");
-        game_state = JsonSerializer.Deserialize<gameState>(File.ReadAllText("../memory/gamestate.json"));
         game("Team 1", "Team 2");
-
-
-        // reset the game state
-        File.Delete("../memory/gamestate.json");
-        File.WriteAllText("../memory/gamestate.json", "{\"HomeTeam\": \"\", \"AwayTeam\": \"\" ,\"inning\": {\"orientation\": \"top\",\"count\": 0},\"HomeScore\": 0,\"AwayScore\": 0,\"outs\": 0,\"strikes\": 0,\"balls\": 0,\"batter\": \"\",\"onbase\": \"first\",\"firstbasepitcher\": \"\",\"secondbasepitcher\": \"\",\"play\": \"Looks Like the Field is empty\",\"throws\": 0}");
-        game_state = JsonSerializer.Deserialize<gameState>(File.ReadAllText("../memory/gamestate.json"));
+        
         game("Team 2", "Team 1");
     }
 
@@ -278,8 +267,14 @@ Task RunGame()
 
     void game(string team1name, string team2name)
     {
-        Console.WriteLine("Game has started");
+
+        // reset the game state
+        Console.WriteLine("Reseting the gamestate");
+        File.Delete("../memory/gamestate.json");
+        File.WriteAllText("../memory/gamestate.json", "{\"HomeTeam\": \"\", \"AwayTeam\": \"\" ,\"inning\": {\"orientation\": \"top\",\"count\": 0},\"HomeScore\": 0,\"AwayScore\": 0,\"outs\": 0,\"strikes\": 0,\"balls\": 0,\"batter\": \"\",\"onbase\": \"first\",\"firstbasepitcher\": \"\",\"secondbasepitcher\": \"\",\"play\": \"Looks Like the Field is empty\",\"throws\": 0}");
         game_state = JsonSerializer.Deserialize<gameState>(File.ReadAllText("../memory/gamestate.json"));
+
+        Console.WriteLine("Game has started");
 
         game_state.HomeTeam = team1name;
         game_state.AwayTeam = team2name;
@@ -324,20 +319,20 @@ Task RunGame()
 
         if (game_state.HomeScore > game_state.AwayScore) {
             write_to_play("Home Team " + game_state.HomeTeam + " Wins!");
-            home_team.Wins++;
-            away_team.Losses++;
+            All_Team_Data[team1name]["Wins"] = JsonSerializer.Deserialize<int>(Team_1["Wins"]) + 1;
+            All_Team_Data[team2name]["Losses"] = JsonSerializer.Deserialize<int>(Team_2["Losses"]) + 1;
             Thread.Sleep(15*1000);
         }
         else if (game_state.HomeScore < game_state.AwayScore){
             write_to_play("Away Team " + game_state.AwayTeam + " Wins!");
-            home_team.Losses++;
-            away_team.Wins++;
+            All_Team_Data[team1name]["Losses"] = JsonSerializer.Deserialize<int>(Team_1["Losses"]) + 1;
+            All_Team_Data[team2name]["Wins"] = JsonSerializer.Deserialize<int>(Team_2["Wins"]) + 1;
             Thread.Sleep(15*1000);
         }
         else if (game_state.HomeScore == game_state.AwayScore){
             write_to_play("It's a tie??????");
-            home_team.Ties++;
-            away_team.Ties++;
+            All_Team_Data[team1name]["Ties"] = JsonSerializer.Deserialize<int>(Team_1["Ties"]) + 1;
+            All_Team_Data[team2name]["Ties"] = JsonSerializer.Deserialize<int>(Team_2["Ties"]) + 1;
             Thread.Sleep(15*1000);
         }
         else {
@@ -601,13 +596,15 @@ Task RunGame()
         void write_to_play(string message)
         {
             game_state.play = message;
+            Console.WriteLine(message);
             File.WriteAllText("../memory/gamestate.json", JsonSerializer.Serialize(game_state).ToString());
-            Thread.Sleep(2 * 1000); // I like 5 and 3 second intervals, but for testing purposes, 1 or less might be good
+            Thread.Sleep(3 * 1000); // I like 5 and 3 second intervals, but for testing purposes, 1 or less might be good
         }
 
 
         void save_teams(){
-            string writestring = "{" + "\"" + game_state.HomeTeam + "\":" + JsonSerializer.Serialize(home_team) + ",\"" + game_state.AwayTeam + "\":" + JsonSerializer.Serialize(away_team) + "}";
+            // string writestring = "{" + "\"" + game_state.HomeTeam + "\":" + JsonSerializer.Serialize(home_team) + ",\"" + game_state.AwayTeam + "\":" + JsonSerializer.Serialize(away_team) + "}";
+            string writestring = JsonSerializer.Serialize(All_Team_Data);
             File.WriteAllText("../memory/teams.json", writestring);
         }
 
