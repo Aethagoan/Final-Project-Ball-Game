@@ -598,7 +598,7 @@ Task RunGame()
             game_state.play = message;
             Console.WriteLine(message);
             File.WriteAllText("../memory/gamestate.json", JsonSerializer.Serialize(game_state).ToString());
-            Thread.Sleep(3 * 1000); // I like 5 and 3 second intervals, but for testing purposes, 1 or less might be good
+            Thread.Sleep(1 * 1000); // I like 5 and 3 second intervals, but for testing purposes, 1 or less might be good
         }
 
 
