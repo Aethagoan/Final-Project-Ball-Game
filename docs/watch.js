@@ -8,12 +8,13 @@ if (localStorage.length < 1) {
     window.location.replace("./contract.html")
 }
 else {
-    playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json())
-
-    while (playerdata == null) {
+    try{
         playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json())
-        setTimeout(r, 500);
     }
+    catch {
+
+    }
+    if (playerdata == null) window.location.replace("./contract.html")
 
 }
 
@@ -39,16 +40,24 @@ while(true) {
         setTimeout(r, 500); // half a second in milliseconds?
     });
     
-    playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json())
-    if (playerdata == null) continue
+    
+    try {
+        playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json())
+    }
+    catch {
+        continue
+    }
+
+    try {
+        game_state = await (await api_calls.get_game_state()).json()
+    }
+    catch {
+        continue
+    }
+
 
     document.getElementById("current-renown").innerText = `Your Renown: ${playerdata.renown}`
 
-    
-    game_state = await (await api_calls.get_game_state()).json()
-    if (game_state == null) continue
-    
-    // console.log(game_state)
 
     home_team.innerText = "Home Team: " + format_string(game_state.HomeTeam);
     away_team.innerText = "Away Team: " + format_string(game_state.AwayTeam);
