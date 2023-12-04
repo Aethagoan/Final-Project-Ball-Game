@@ -237,12 +237,94 @@ app.Run();
 // I think I intend to make a list with everyone's tokens who has favorite teams and do it that way, not implemented yet.
 Task RewardTeamPicks(string winningteam, string losingteam) {
     clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
-    
-    // for every token, look at their favorite team.
-    // if their favorite team won, look for popcorn in their slots + horns
 
-    // if their favorite team lost, look for soda in their slots + horns
-    
+    int numitems = 0;
+
+    for (int i = 0; i < (int) clients["Count"]; i++){
+        // for every token, look at their favorite team.
+        // if their favorite team won, look for popcorn in their slots + horns
+        if (JsonSerializer.Deserialize<string>(clients[i]["favoriteteam"]) == winningteam) {
+            int numbuckets = 0;
+
+            if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot1"]) == "pop-corn-bucket") {
+                numbuckets += 25;
+            
+            }
+
+            if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot2"]) == "pop-corn-bucket"){
+                    numbuckets += 25;
+            }
+            
+
+            if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot3"]) == "pop-corn-bucket"){
+                    numbuckets += 25;
+            }
+            
+
+            if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot4"]) == "pop-corn-bucket"){
+                    numbuckets += 25;
+            }
+            
+            if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot5"]) == "pop-corn-bucket"){
+                    numbuckets += 25;
+            }
+            numitems = numbuckets;
+        }
+         // if their favorite team lost, look for soda in their slots + horns
+        else if (JsonSerializer.Deserialize<string>(clients[i]["favoriteteam"]) == losingteam) {
+            int numsodas = 0;
+
+            if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot1"]) == "soda-can"){
+                numsodas += 12;
+            }
+
+            if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot2"]) == "soda-can"){
+                numsodas += 12;
+            }
+
+            if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot3"]) == "soda-can"){
+                numsodas += 12;
+            }
+
+            if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot4"]) == "soda-can"){
+                numsodas += 12;
+            }
+
+            if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot5"]) == "soda-can"){
+                numsodas += 12;
+            }
+            numitems = numsodas;
+        }
+        else {
+            continue;
+        }
+
+        int numhorns = 0;
+
+        if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot1"]) == "stadium-horn"){
+            numhorns++;
+        }
+
+        if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot2"]) == "stadium-horn"){
+            numhorns++;
+        }
+
+        if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot3"]) == "stadium-horn"){
+            numhorns++;
+        }
+
+        if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot4"]) == "stadium-horn"){
+            numhorns++;
+        }
+
+        if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot5"]) == "stadium-horn"){
+            numhorns++;
+        }
+
+        // Console.WriteLine(Math.Pow(2,  numhorns));
+
+        clients[i]["renown"] = JsonSerializer.Deserialize<long>(clients[i]["renown"]) + (numitems * Math.Pow(2,  numhorns));
+    }
 
     return Task.CompletedTask;
 }
@@ -314,19 +396,19 @@ Task RunGame()
             halfinning(team2name, ref Team_2_Batter_Up, team1name, ref Team_1_Pitcher_Up);
         }
 
-        Team home_team = JsonSerializer.Deserialize<Team>(JsonSerializer.Serialize(All_Team_Data[game_state.HomeTeam]));
-        Team away_team = JsonSerializer.Deserialize<Team>(JsonSerializer.Serialize(All_Team_Data[game_state.AwayTeam]));
 
         if (game_state.HomeScore > game_state.AwayScore) {
             write_to_play("Home Team " + game_state.HomeTeam + " Wins!");
             All_Team_Data[team1name]["Wins"] = JsonSerializer.Deserialize<int>(Team_1["Wins"]) + 1;
             All_Team_Data[team2name]["Losses"] = JsonSerializer.Deserialize<int>(Team_2["Losses"]) + 1;
+            RewardTeamPicks(team1name, team2name);
             Thread.Sleep(15*1000);
         }
         else if (game_state.HomeScore < game_state.AwayScore){
             write_to_play("Away Team " + game_state.AwayTeam + " Wins!");
             All_Team_Data[team1name]["Losses"] = JsonSerializer.Deserialize<int>(Team_1["Losses"]) + 1;
             All_Team_Data[team2name]["Wins"] = JsonSerializer.Deserialize<int>(Team_2["Wins"]) + 1;
+            RewardTeamPicks(team2name, team1name);
             Thread.Sleep(15*1000);
         }
         else if (game_state.HomeScore == game_state.AwayScore){
