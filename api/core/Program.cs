@@ -99,7 +99,7 @@ app.MapPost("/newcontract", (contractEntry recieved) =>
     clients[newToken] = newclient;
 
     //write!
-    File.WriteAllText("../memory/clients.json", clients);
+    File.WriteAllText("../memory/clients.json", JsonSerializer.Serialize(clients));
 
     return new { token = newToken };
 });
