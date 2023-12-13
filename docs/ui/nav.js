@@ -34,7 +34,7 @@ async function build_nav() {
 
 
     let currentlocation = location.href
-    currentlocation = currentlocation.split("/")[3]
+    currentlocation = currentlocation.split("/")[currentlocation.length - 1]
     if (currentlocation) {
         currentlocation = currentlocation.split(".")[0]
     }
