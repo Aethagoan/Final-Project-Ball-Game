@@ -82,10 +82,6 @@ app.MapPost("/newcontract", (contractEntry recieved) =>
 
     newclient.alias = recieved.alias;
     newclient.renown = 0;
-
-
-
-
     newclient.pop_corns = recieved.pop_corns;
     newclient.QFS = recieved.QFS;
     newclient.DES = recieved.DES;
@@ -94,25 +90,16 @@ app.MapPost("/newcontract", (contractEntry recieved) =>
     newclient.EPS = recieved.EPS;
     newclient.IFS = recieved.IFS;
 
-
     string newToken = generate_random_token();
 
-    // Console.WriteLine(JsonSerializer.Serialize(newclient));
+    while (clients.ContainsKey(newToken)){
+        newToken = generate_random_token();
+    }
 
-    string clientsstring = JsonSerializer.Serialize(clients);
-    string newclientstring = JsonSerializer.Serialize(newclient);
-
-    // Console.WriteLine(newclientstring);
-
-    newclientstring = newclientstring.Replace("\"inventory\":null,", "\"inventory\": { \"slot1\":\"\",\"slot2\":\"\",\"slot3\":\"\",\"slot4\":\"\",\"slot5\":\"\"},");
-
-    clientsstring = clientsstring[0..^1]; // remove the last } to add back in later.
-    clientsstring += "," + "\"" + newToken + "\"" + ":" + newclientstring + "}";
-
-    // Console.WriteLine(clientsstring);
+    clients[newToken] = newclient
 
     //write!
-    File.WriteAllText("../memory/clients.json", clientsstring);
+    File.WriteAllText("../memory/clients.json", clients);
 
     return new { token = newToken };
 });
@@ -1021,9 +1008,6 @@ string generate_random_token()
 
     return returnme;
 }
-
-
-
 
 
 
