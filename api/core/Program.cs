@@ -96,7 +96,7 @@ app.MapPost("/newcontract", (contractEntry recieved) =>
         newToken = generate_random_token();
     }
 
-    clients[newToken] = newclient
+    clients[newToken] = newclient;
 
     //write!
     File.WriteAllText("../memory/clients.json", clients);
