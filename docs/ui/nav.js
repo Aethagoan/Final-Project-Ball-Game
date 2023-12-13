@@ -34,12 +34,14 @@ async function build_nav() {
 
 
     let currentlocation = location.href
-    currentlocation = currentlocation.split("/")[currentlocation.length - 1]
+    
+    currentlocation = currentlocation.split("/")
+    currentlocation = currentlocation[currentlocation.length - 1]
+    
     if (currentlocation) {
         currentlocation = currentlocation.split(".")[0]
     }
 
-    // console.log(currentlocation)
 
     if (currentlocation == "" || currentlocation == "index" ) {
         home.classList.add("current");
