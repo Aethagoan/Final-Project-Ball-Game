@@ -71,6 +71,7 @@ var gamestate = JsonSerializer.Deserialize<gameState>(File.ReadAllText("../memor
 // sign up
 app.MapPost("/newcontract", (contractEntry recieved) =>
 {
+    Console.WriteLine("New Contract!")
     //we should get the right thing in the right format, so here goes nothing?
 
     // update program's copy
