@@ -18,54 +18,63 @@ app.UseCors(policy =>
 
 
 //if the directory doesn't exist, make it
-if (!Directory.Exists("../memory")){
+if (!Directory.Exists("../memory"))
+{
     Directory.CreateDirectory("../memory");
 }
 
 // delete stuff if it exists, if it doesn't it'll throw an exception so I'll catch that and just move on.
-try {
+try
+{
     File.Delete("../memory/clients.json");
     File.Delete("../memory/gamestate.json");
     File.Delete("../memory/items.json");
     File.Delete("../memory/teams.json");
 }
-catch (Exception e) {
+catch (Exception e)
+{
     Console.WriteLine("expecting a file not found error:" + e.Message);
 }
 
 // create files that don't exist yet
-if (!File.Exists("../memory/gamestate.json")){
+if (!File.Exists("../memory/gamestate.json"))
+{
     File.WriteAllText("../memory/gamestate.json", "{\"HomeTeam\": \"\", \"AwayTeam\": \"\" ,\"inning\": {\"orientation\": \"top\",\"count\": 0},\"HomeScore\": 0,\"AwayScore\": 0,\"outs\": 0,\"strikes\": 0,\"balls\": 0,\"batter\": \"\",\"onbase\": \"first\",\"firstbasepitcher\": \"\",\"secondbasepitcher\": \"\",\"play\": \"Looks Like the Field is empty\",\"throws\": 0}");
 }
 
-if (!File.Exists("../memory/clients.json")){
+if (!File.Exists("../memory/clients.json"))
+{
     File.WriteAllText("../memory/clients.json", "{\"exampletoken\": { \"alias\": \"exampleman\", \"renown\": 0, \"favoriteteam\": \"team-name\", \"inventory\": {  \"slot1\": \"\",  \"slot2\": \"\",  \"slot3\": \"\",  \"slot4\": \"\",  \"slot5\": \"\" }, \"pop_corns\": 1, \"QFS\": false, \"DES\": false, \"TLD\": false, \"CIA\": false, \"EPS\": false, \"IFS\": false}}");
 }
 
-if (!File.Exists("../memory/items.json")){
+if (!File.Exists("../memory/items.json"))
+{
     File.WriteAllText("../memory/items.json", "{\"pop-corn-bucket\": {\"name\": \"Pop-Corn Bucket\",\"img\": \"./img/popcorn.png\",\"desc\": \"Ah, Pop-corns. Can't get enough of em. You get 25 Renown every time your favorite team wins a game.\",\"price\": 100},\"stadium-horn\":{\"name\":\"Staduim Horn\",\"img\": \"./img/stadium-horn.png\",\"desc\":\"Make some noise! Start a chant! We want a pitcher! Not a. . . well, you get the idea. Doubles the amount of renown you recieve.\",\"price\":500},\"soda-can\":{\"name\":\"Soda Can\",\"img\":\"./img/soda-can.png\",\"desc\":\"Sluurrrrp. How Refreshing! You get 12 Renown every time your favorite team Loses.\",\"price\": 50}}");
 }
 
-if (!File.Exists("../memory/teams.json")){
+if (!File.Exists("../memory/teams.json"))
+{
     File.WriteAllText("../memory/teams.json", "{\"Team 1\": {\"Wins\": 0,\"Losses\": 0,\"Ties\": 0,\"Player1\": {\"alias\": \"Fred Burgermiester 1\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1},\"Player2\": {\"alias\": \"Fred Burgermiester 2\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1},\"Player3\": {\"alias\": \"Fred Burgermiester 3\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1},\"Player4\": {\"alias\": \"Fred Burgermiester 4\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1},\"Player5\": {\"alias\": \"Fred Burgermiester 5\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1},\"Player6\": {\"alias\": \"Fred Burgermiester 6\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1},\"Player7\": {\"alias\": \"Fred Burgermiester 7\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1},\"Player8\": {\"alias\": \"Fred Burgermiester 8\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1},\"Player9\": {\"alias\": \"Fred Burgermiester 9\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1},\"Player10\": {\"alias\": \"Fred Burgermiester 10\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1},\"Player11\": {\"alias\": \"Fred Burgermiester 11\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1}},\"Team 2\": {\"Wins\": 0,\"Losses\": 0,\"Ties\": 0,\"Player1\": {\"alias\": \"John Burgermiester 1\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1},\"Player2\": {\"alias\": \"John Burgermiester 2\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1},\"Player3\": {\"alias\": \"John Burgermiester 3\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1},\"Player4\": {\"alias\": \"John Burgermiester 4\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1},\"Player5\": {\"alias\": \"John Burgermiester 5\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1},\"Player6\": {\"alias\": \"John Burgermiester 6\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1},\"Player7\": {\"alias\": \"John Burgermiester 7\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1},\"Player8\": {\"alias\": \"John Burgermiester 8\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1},\"Player9\": {\"alias\": \"John Burgermiester 9\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1},\"Player10\": {\"alias\": \"John Burgermiester 10\",\"run_score\": 1,\"throw_score\": 1,\"bat_score\": 1},\"Player11\": { \"alias\": \"John Burgermiester 11\", \"run_score\": 1, \"throw_score\": 1, \"bat_score\": 1}}}");
 }
 
 // get stuff from database storage jsons
-var items = JsonObject.Parse(File.ReadAllText("../memory/items.json"));
-var clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
+var items = JsonSerializer.Deserialize<Dictionary<string, itemJSON>>(File.ReadAllText("../memory/items.json"));
+
+var clients = JsonSerializer.Deserialize<Dictionary<string, spectatorJSON>>(File.ReadAllText("../memory/clients.json"));
 
 var observers = new List<string>();
 
+var teams = JsonSerializer.Deserialize<Team>(File.ReadAllText("../memory/teams.json"));
 
-
+var gamestate = JsonSerializer.Deserialize<gameState>(File.ReadAllText("../memory/gamestate.json"));
 
 // sign up
 app.MapPost("/newcontract", (contractEntry recieved) =>
 {
     //we should get the right thing in the right format, so here goes nothing?
 
-    //update program's copy
-    clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
+    // update program's copy
+    // clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
 
 
     // Console.WriteLine("new contract recieved!");
@@ -117,46 +126,228 @@ app.MapPost("/token", (tokenString recievedtoken) =>
 // for the league page
 app.MapGet("/teams", () =>
 {
-    return (File.ReadAllText("../memory/teams.json"));
+    return JsonSerializer.Serialize(teams);
 });
 
 // reports game data and also handles watching renown gain
 app.MapPost("/game", (tokenString observer) =>
 {
     // this is me keeping track of who's watching, this should get cleared by another function every so often (and award renown)
-    if (!observers.Contains(observer.token)){
+    if (!observers.Contains(observer.token))
+    {
         observers.Add(observer.token);
     }
-    return (File.ReadAllText("../memory/gamestate.json"));
+    return JsonSerializer.Serialize(gamestate);
 });
 
 // returns the items
-app.MapGet("/items", () => {
-    return (File.ReadAllText("../memory/items.json"));
+app.MapGet("/items", () =>
+{
+    return JsonSerializer.Serialize(items);
 });
 
 // inventory manipulation
-app.MapPost("/swap", (SwapSlots swapping) => {
-    clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
+app.MapPost("/swap", (SwapSlots swapping) =>
+{
+    if (swapping.fromslot == 1) {
+        if (swapping.toslot == 1) {
+            var temp = clients[swapping.token].inventory.slot1;
 
-    var temp = JsonSerializer.Deserialize<string>(clients[swapping.token]["inventory"][$"slot{swapping.toslot}"]);
+            clients[swapping.token].inventory.slot1 = clients[swapping.token].inventory.slot1;
 
-    clients[swapping.token]["inventory"][$"slot{swapping.toslot}"] = JsonSerializer.Deserialize<string>(clients[swapping.token]["inventory"][$"slot{swapping.fromslot}"]);
+            clients[swapping.token].inventory.slot1 = temp;
+        }
+        else if (swapping.toslot == 2){
+            var temp = clients[swapping.token].inventory.slot2;
 
-    clients[swapping.token]["inventory"][$"slot{swapping.fromslot}"] = temp;
+            clients[swapping.token].inventory.slot2 = clients[swapping.token].inventory.slot1;
+
+            clients[swapping.token].inventory.slot1 = temp;
+        }
+        else if (swapping.toslot == 3){
+            var temp = clients[swapping.token].inventory.slot3;
+
+            clients[swapping.token].inventory.slot3 = clients[swapping.token].inventory.slot1;
+
+            clients[swapping.token].inventory.slot1 = temp;
+        }
+        else if (swapping.toslot == 4){
+            var temp = clients[swapping.token].inventory.slot4;
+
+            clients[swapping.token].inventory.slot4 = clients[swapping.token].inventory.slot1;
+
+            clients[swapping.token].inventory.slot1 = temp;
+        }
+        else if (swapping.toslot == 5){
+            var temp = clients[swapping.token].inventory.slot5;
+
+            clients[swapping.token].inventory.slot5 = clients[swapping.token].inventory.slot1;
+
+            clients[swapping.token].inventory.slot1 = temp;
+        }
+
+    }
+    else if (swapping.fromslot == 2) {
+        if (swapping.toslot == 1) {
+            var temp = clients[swapping.token].inventory.slot1;
+
+            clients[swapping.token].inventory.slot1 = clients[swapping.token].inventory.slot2;
+
+            clients[swapping.token].inventory.slot1 = temp;
+        }
+        else if (swapping.toslot == 2){
+            var temp = clients[swapping.token].inventory.slot2;
+
+            clients[swapping.token].inventory.slot2 = clients[swapping.token].inventory.slot2;
+
+            clients[swapping.token].inventory.slot2 = temp;
+        }
+        else if (swapping.toslot == 3){
+            var temp = clients[swapping.token].inventory.slot3;
+
+            clients[swapping.token].inventory.slot3 = clients[swapping.token].inventory.slot2;
+
+            clients[swapping.token].inventory.slot2 = temp;
+        }
+        else if (swapping.toslot == 4){
+            var temp = clients[swapping.token].inventory.slot4;
+
+            clients[swapping.token].inventory.slot4 = clients[swapping.token].inventory.slot2;
+
+            clients[swapping.token].inventory.slot2 = temp;
+        }
+        else if (swapping.toslot == 5){
+            var temp = clients[swapping.token].inventory.slot5;
+
+            clients[swapping.token].inventory.slot5 = clients[swapping.token].inventory.slot2;
+
+            clients[swapping.token].inventory.slot2 = temp;
+        }
+    }
+    else if (swapping.fromslot == 3){
+        if (swapping.toslot == 1) {
+            var temp = clients[swapping.token].inventory.slot1;
+
+            clients[swapping.token].inventory.slot1 = clients[swapping.token].inventory.slot3;
+
+            clients[swapping.token].inventory.slot3 = temp;
+        }
+        else if (swapping.toslot == 2){
+            var temp = clients[swapping.token].inventory.slot2;
+
+            clients[swapping.token].inventory.slot2 = clients[swapping.token].inventory.slot3;
+
+            clients[swapping.token].inventory.slot3 = temp;
+        }
+        else if (swapping.toslot == 3){
+            var temp = clients[swapping.token].inventory.slot3;
+
+            clients[swapping.token].inventory.slot3 = clients[swapping.token].inventory.slot3;
+
+            clients[swapping.token].inventory.slot3 = temp;
+        }
+        else if (swapping.toslot == 4){
+            var temp = clients[swapping.token].inventory.slot4;
+
+            clients[swapping.token].inventory.slot4 = clients[swapping.token].inventory.slot3;
+
+            clients[swapping.token].inventory.slot3 = temp;
+        }
+        else if (swapping.toslot == 5){
+            var temp = clients[swapping.token].inventory.slot5;
+
+            clients[swapping.token].inventory.slot5 = clients[swapping.token].inventory.slot3;
+
+            clients[swapping.token].inventory.slot3 = temp;
+        }
+    }
+    else if (swapping.fromslot == 4){
+        if (swapping.toslot == 1) {
+            var temp = clients[swapping.token].inventory.slot1;
+
+            clients[swapping.token].inventory.slot1 = clients[swapping.token].inventory.slot4;
+
+            clients[swapping.token].inventory.slot4 = temp;
+        }
+        else if (swapping.toslot == 2){
+            var temp = clients[swapping.token].inventory.slot2;
+
+            clients[swapping.token].inventory.slot2 = clients[swapping.token].inventory.slot4;
+
+            clients[swapping.token].inventory.slot4 = temp;
+        }
+        else if (swapping.toslot == 3){
+            var temp = clients[swapping.token].inventory.slot3;
+
+            clients[swapping.token].inventory.slot3 = clients[swapping.token].inventory.slot4;
+
+            clients[swapping.token].inventory.slot4 = temp;
+        }
+        else if (swapping.toslot == 4){
+            var temp = clients[swapping.token].inventory.slot4;
+
+            clients[swapping.token].inventory.slot4 = clients[swapping.token].inventory.slot4;
+
+            clients[swapping.token].inventory.slot4 = temp;
+        }
+        else if (swapping.toslot == 5){
+            var temp = clients[swapping.token].inventory.slot5;
+
+            clients[swapping.token].inventory.slot5 = clients[swapping.token].inventory.slot4;
+
+            clients[swapping.token].inventory.slot4 = temp;
+        }
+    }
+    else if (swapping.fromslot == 5){
+        if (swapping.toslot == 1) {
+            var temp = clients[swapping.token].inventory.slot1;
+
+            clients[swapping.token].inventory.slot1 = clients[swapping.token].inventory.slot5;
+
+            clients[swapping.token].inventory.slot5 = temp;
+        }
+        else if (swapping.toslot == 2){
+            var temp = clients[swapping.token].inventory.slot2;
+
+            clients[swapping.token].inventory.slot2 = clients[swapping.token].inventory.slot5;
+
+            clients[swapping.token].inventory.slot5 = temp;
+        }
+        else if (swapping.toslot == 3){
+            var temp = clients[swapping.token].inventory.slot3;
+
+            clients[swapping.token].inventory.slot3 = clients[swapping.token].inventory.slot5;
+
+            clients[swapping.token].inventory.slot5 = temp;
+        }
+        else if (swapping.toslot == 4){
+            var temp = clients[swapping.token].inventory.slot4;
+
+            clients[swapping.token].inventory.slot4 = clients[swapping.token].inventory.slot5;
+
+            clients[swapping.token].inventory.slot5 = temp;
+        }
+        else if (swapping.toslot == 5){
+            var temp = clients[swapping.token].inventory.slot5;
+
+            clients[swapping.token].inventory.slot5 = clients[swapping.token].inventory.slot5;
+
+            clients[swapping.token].inventory.slot5 = temp;
+        }
+    }
 
     File.WriteAllText("../memory/clients.json", JsonSerializer.Serialize(clients));
-
     return true;
 });
 
 // buying items
-app.MapPost("/buy", (BuyingJson buying) => {
-    clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
+app.MapPost("/buy", (BuyingJson buying) =>
+{
 
     // make sure the item name is valid
     // Console.WriteLine(items[buying.itemname]);
-    if (items[buying.itemname] == null){
+    if (items[buying.itemname] == null)
+    {
         return JsonSerializer.Serialize("invalid item-name!");
     }
 
@@ -164,51 +355,78 @@ app.MapPost("/buy", (BuyingJson buying) => {
     // Console.WriteLine(JsonSerializer.Deserialize<int>(clients[buying.token]["renown"]));
     // Console.WriteLine(JsonSerializer.Deserialize<int>(items[buying.itemname]["price"]));
 
-    if (JsonSerializer.Deserialize<int>(clients[buying.token]["renown"]) >= JsonSerializer.Deserialize<int>(items[buying.itemname]["price"])){
+    if (clients[buying.token].renown >= items[buying.itemname].price)
+    {
         //find an empty spot
-        if (JsonSerializer.Deserialize<string>(clients[buying.token]["inventory"]["slot1"]) == ""){
-            clients[buying.token]["inventory"]["slot1"] = buying.itemname;
-            clients[buying.token]["renown"] = JsonSerializer.Deserialize<int>(clients[buying.token]["renown"]) - JsonSerializer.Deserialize<int>(items[buying.itemname]["price"]);
+        if (clients[buying.token].inventory.slot1 == "")
+        {
+            clients[buying.token].inventory.slot1 = buying.itemname;
+            clients[buying.token].renown = clients[buying.token].renown - items[buying.itemname].price;
         }
-        else if (JsonSerializer.Deserialize<string>(clients[buying.token]["inventory"]["slot2"]) == ""){
-            clients[buying.token]["inventory"]["slot2"] = buying.itemname;
-            clients[buying.token]["renown"] = JsonSerializer.Deserialize<int>(clients[buying.token]["renown"]) - JsonSerializer.Deserialize<int>(items[buying.itemname]["price"]);
+        else if (clients[buying.token].inventory.slot2 == "")
+        {
+            clients[buying.token].inventory.slot2 = buying.itemname;
+            clients[buying.token].renown = clients[buying.token].renown - items[buying.itemname].price;
 
         }
-        else if (JsonSerializer.Deserialize<string>(clients[buying.token]["inventory"]["slot3"]) == ""){
-            clients[buying.token]["inventory"]["slot3"] = buying.itemname;
-            clients[buying.token]["renown"] = JsonSerializer.Deserialize<int>(clients[buying.token]["renown"]) - JsonSerializer.Deserialize<int>(items[buying.itemname]["price"]);
+        else if (clients[buying.token].inventory.slot3 == "")
+        {
+            clients[buying.token].inventory.slot3 = buying.itemname;
+            clients[buying.token].renown = clients[buying.token].renown - items[buying.itemname].price;
 
         }
-        else if (JsonSerializer.Deserialize<string>(clients[buying.token]["inventory"]["slot4"]) == ""){
-            clients[buying.token]["inventory"]["slot4"] = buying.itemname;
-            clients[buying.token]["renown"] = JsonSerializer.Deserialize<int>(clients[buying.token]["renown"]) - JsonSerializer.Deserialize<int>(items[buying.itemname]["price"]);
+        else if (clients[buying.token].inventory.slot4 == "")
+        {
+            clients[buying.token].inventory.slot4 = buying.itemname;
+            clients[buying.token].renown = clients[buying.token].renown - items[buying.itemname].price;
 
         }
-        else if (JsonSerializer.Deserialize<string>(clients[buying.token]["inventory"]["slot5"]) == ""){
-            clients[buying.token]["inventory"]["slot5"] = buying.itemname;
-            clients[buying.token]["renown"] = JsonSerializer.Deserialize<int>(clients[buying.token]["renown"]) - JsonSerializer.Deserialize<int>(items[buying.itemname]["price"]);
+        else if (clients[buying.token].inventory.slot5 == "")
+        {
+            clients[buying.token].inventory.slot5 = buying.itemname;
+            clients[buying.token].renown = clients[buying.token].renown - items[buying.itemname].price;
 
         }
-        else {
+        else
+        {
             return JsonSerializer.Serialize("All slots are full!");
         }
-        
-        
+
+
     }
-    else {
+    else
+    {
         return JsonSerializer.Serialize("Not enough Renown!");
     }
 
     File.WriteAllText("../memory/clients.json", JsonSerializer.Serialize(clients));
-    return JsonSerializer.Serialize($"success! enjoy the {items[buying.itemname]["name"]}");
+    return JsonSerializer.Serialize($"success! enjoy the {items[buying.itemname].name}");
 });
 
 // trashing items
-app.MapPost("/discard", (DiscardJson discarding) => {
-    clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
+app.MapPost("/discard", (DiscardJson discarding) =>
+{
 
-    clients[discarding.token]["inventory"][$"slot{discarding.slot}"] = "";
+    if (discarding.slot == 1)
+    {
+        clients[discarding.token].inventory.slot1 = "";
+    }
+    else if (discarding.slot == 2)
+    {
+        clients[discarding.token].inventory.slot2 = "";
+    }
+    else if (discarding.slot == 3)
+    {
+        clients[discarding.token].inventory.slot3 = "";
+    }
+    else if (discarding.slot == 4)
+    {
+        clients[discarding.token].inventory.slot4 = "";
+    }
+    else if (discarding.slot == 5)
+    {
+        clients[discarding.token].inventory.slot5 = "";
+    }
 
     File.WriteAllText("../memory/clients.json", JsonSerializer.Serialize(clients));
 
@@ -217,16 +435,15 @@ app.MapPost("/discard", (DiscardJson discarding) => {
 
 
 
-
-
-
 // executes in the background
 Task.Run(() => RunGame());
 
-Task.Run(() => {
-    while (true){
+Task.Run(() =>
+{
+    while (true)
+    {
         RewardObservers();
-        Thread.Sleep(1*1000);
+        Thread.Sleep(1 * 1000);
     }
 });
 
@@ -235,96 +452,115 @@ app.Run();
 
 
 // I think I intend to make a list with everyone's tokens who has favorite teams and do it that way, not implemented yet.
-Task RewardTeamPicks(string winningteam, string losingteam) {
-    clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
-
+Task RewardTeamPicks(string winningteam, string losingteam)
+{
     int numitems = 0;
 
-    for (int i = 0; i < (int) clients["Count"]; i++){
+    foreach (string key in clients.Keys)
+    {
         // for every token, look at their favorite team.
         // if their favorite team won, look for popcorn in their slots + horns
-        if (JsonSerializer.Deserialize<string>(clients[i]["favoriteteam"]) == winningteam) {
+        if (clients[key].favoriteteam == winningteam)
+        {
             int numbuckets = 0;
 
-            if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot1"]) == "pop-corn-bucket") {
+            if (clients[key].inventory.slot1 == "pop-corn-bucket")
+            {
                 numbuckets += 25;
-            
             }
 
-            if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot2"]) == "pop-corn-bucket"){
-                    numbuckets += 25;
+            if (clients[key].inventory.slot2 == "pop-corn-bucket")
+            {
+                numbuckets += 25;
             }
-            
 
-            if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot3"]) == "pop-corn-bucket"){
-                    numbuckets += 25;
-            }
-            
 
-            if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot4"]) == "pop-corn-bucket"){
-                    numbuckets += 25;
+            if (clients[key].inventory.slot3 == "pop-corn-bucket")
+            {
+                numbuckets += 25;
             }
-            
-            if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot5"]) == "pop-corn-bucket"){
-                    numbuckets += 25;
+
+
+            if (clients[key].inventory.slot4 == "pop-corn-bucket")
+            {
+                numbuckets += 25;
+            }
+
+            if (clients[key].inventory.slot5 == "pop-corn-bucket")
+            {
+                numbuckets += 25;
             }
             numitems = numbuckets;
         }
-         // if their favorite team lost, look for soda in their slots + horns
-        else if (JsonSerializer.Deserialize<string>(clients[i]["favoriteteam"]) == losingteam) {
+        // if their favorite team lost, look for soda in their slots + horns
+        else if (clients[key].favoriteteam == losingteam)
+        {
             int numsodas = 0;
 
-            if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot1"]) == "soda-can"){
+            if (clients[key].inventory.slot1 == "soda-can")
+            {
                 numsodas += 12;
             }
 
-            if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot2"]) == "soda-can"){
+            if (clients[key].inventory.slot2 == "soda-can")
+            {
                 numsodas += 12;
             }
 
-            if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot3"]) == "soda-can"){
+            if (clients[key].inventory.slot3 == "soda-can")
+            {
                 numsodas += 12;
             }
 
-            if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot4"]) == "soda-can"){
+            if (clients[key].inventory.slot4 == "soda-can")
+            {
                 numsodas += 12;
             }
 
-            if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot5"]) == "soda-can"){
+            if (clients[key].inventory.slot5 == "soda-can")
+            {
                 numsodas += 12;
             }
             numitems = numsodas;
         }
-        else {
+        else
+        {
             continue;
         }
 
         int numhorns = 0;
 
-        if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot1"]) == "stadium-horn"){
+        if (clients[key].inventory.slot1 == "stadium-horn")
+        {
             numhorns++;
         }
 
-        if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot2"]) == "stadium-horn"){
+        if (clients[key].inventory.slot2 == "stadium-horn")
+        {
             numhorns++;
         }
 
-        if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot3"]) == "stadium-horn"){
+        if (clients[key].inventory.slot3 == "stadium-horn")
+        {
             numhorns++;
         }
 
-        if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot4"]) == "stadium-horn"){
+        if (clients[key].inventory.slot4 == "stadium-horn")
+        {
             numhorns++;
         }
 
-        if (JsonSerializer.Deserialize<string>(clients[i]["inventory"]["slot5"]) == "stadium-horn"){
+        if (clients[key].inventory.slot5 == "stadium-horn")
+        {
             numhorns++;
         }
 
         // Console.WriteLine(Math.Pow(2,  numhorns));
 
-        clients[i]["renown"] = JsonSerializer.Deserialize<long>(clients[i]["renown"]) + (numitems * Math.Pow(2,  numhorns));
+        clients[key].renown = clients[key].renown + (int)(numitems * Math.Pow(2, numhorns));
     }
+
+    File.WriteAllText("../memory/clients.json", JsonSerializer.Serialize(clients));
 
     return Task.CompletedTask;
 }
@@ -335,13 +571,13 @@ Task RunGame()
 {
     gameState game_state = new gameState();
     var All_Team_Data = JsonObject.Parse(File.ReadAllText("../memory/teams.json"));
-    Console.WriteLine(All_Team_Data);
+    // Console.WriteLine(All_Team_Data);
 
     // repeat this indefinately.
     while (true)
     {
         game("Team 1", "Team 2");
-        
+
         game("Team 2", "Team 1");
     }
 
@@ -383,7 +619,7 @@ Task RunGame()
         LinkedListNode<JsonNode> Team_2_Batter_Up = Team_2_Batters.Last;
         LinkedListNode<JsonNode> Team_2_Pitcher_Up = Team_2_Fielders.First;
 
-        
+
         // 9 innings. count starts at 0.
         while (game_state.inning.count < 9)
         {
@@ -397,27 +633,31 @@ Task RunGame()
         }
 
 
-        if (game_state.HomeScore > game_state.AwayScore) {
+        if (game_state.HomeScore > game_state.AwayScore)
+        {
             write_to_play("Home Team " + game_state.HomeTeam + " Wins!");
             All_Team_Data[team1name]["Wins"] = JsonSerializer.Deserialize<int>(Team_1["Wins"]) + 1;
             All_Team_Data[team2name]["Losses"] = JsonSerializer.Deserialize<int>(Team_2["Losses"]) + 1;
             RewardTeamPicks(team1name, team2name);
-            Thread.Sleep(15*1000);
+            Thread.Sleep(15 * 1000);
         }
-        else if (game_state.HomeScore < game_state.AwayScore){
+        else if (game_state.HomeScore < game_state.AwayScore)
+        {
             write_to_play("Away Team " + game_state.AwayTeam + " Wins!");
             All_Team_Data[team1name]["Losses"] = JsonSerializer.Deserialize<int>(Team_1["Losses"]) + 1;
             All_Team_Data[team2name]["Wins"] = JsonSerializer.Deserialize<int>(Team_2["Wins"]) + 1;
             RewardTeamPicks(team2name, team1name);
-            Thread.Sleep(15*1000);
+            Thread.Sleep(15 * 1000);
         }
-        else if (game_state.HomeScore == game_state.AwayScore){
+        else if (game_state.HomeScore == game_state.AwayScore)
+        {
             write_to_play("It's a tie??????");
             All_Team_Data[team1name]["Ties"] = JsonSerializer.Deserialize<int>(Team_1["Ties"]) + 1;
             All_Team_Data[team2name]["Ties"] = JsonSerializer.Deserialize<int>(Team_2["Ties"]) + 1;
-            Thread.Sleep(15*1000);
+            Thread.Sleep(15 * 1000);
         }
-        else {
+        else
+        {
             // ????????
         }
 
@@ -460,8 +700,8 @@ Task RunGame()
 
                 game_state.firstbasepitcher = JsonSerializer.Serialize(pitcher.Value["alias"]);
                 game_state.secondbasepitcher = JsonSerializer.Serialize(pitcher.Next != null ? pitcher.Next.Value["alias"] : pitcher.List.First.Value["alias"]);
-                
-                
+
+
                 batter = batter.Next != null ? batter.Next : batter.List.First;
                 game_state.batter = JsonSerializer.Serialize(batter.Value["alias"]);
                 game_state.onbase = "first";
@@ -475,7 +715,7 @@ Task RunGame()
                     write_to_play(JsonSerializer.Serialize(batter.Value["alias"]) + " lines up to bat.");
 
                     // until 3 strikes, 4 balls, or a hit (break)
-                    
+
                     while (true)
                     {
                         if (game_state.throws >= 6)
@@ -637,7 +877,7 @@ Task RunGame()
 
                     }
 
-                    
+
                     void advance()
                     {
                         if (game_state.onbase == "first")
@@ -687,7 +927,8 @@ Task RunGame()
         }
 
 
-        void save_teams(){
+        void save_teams()
+        {
             // string writestring = "{" + "\"" + game_state.HomeTeam + "\":" + JsonSerializer.Serialize(home_team) + ",\"" + game_state.AwayTeam + "\":" + JsonSerializer.Serialize(away_team) + "}";
             string writestring = JsonSerializer.Serialize(All_Team_Data);
             File.WriteAllText("../memory/teams.json", writestring);
@@ -696,47 +937,53 @@ Task RunGame()
 
     }
 
-    
+
 
 }
 
 
 // rewards people currently watching on the watch page
-Task RewardObservers(){
-    clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
+Task RewardObservers()
+{
 
-    foreach(var watcher in observers){
+    foreach (var watcher in observers)
+    {
         // Console.WriteLine(watcher + "is watching!");
         int numhorns = 0;
 
-        // Console.WriteLine(JsonSerializer.Deserialize<string>(clients[watcher]["inventory"]["slot1"]));
+        // Console.WriteLine(clients[watcher].inventory.["slot1"]));
 
         // I tried to do this elegantly with a foreach loop but couldn't find a good json serialization option to make it happen :/
 
-        if (JsonSerializer.Deserialize<string>(clients[watcher]["inventory"]["slot1"]) == "stadium-horn"){
+        if (clients[watcher].inventory.slot1 == "stadium-horn")
+        {
             numhorns++;
         }
 
-        if (JsonSerializer.Deserialize<string>(clients[watcher]["inventory"]["slot2"]) == "stadium-horn"){
+        if (clients[watcher].inventory.slot2 == "stadium-horn")
+        {
             numhorns++;
         }
 
-        if (JsonSerializer.Deserialize<string>(clients[watcher]["inventory"]["slot3"]) == "stadium-horn"){
+        if (clients[watcher].inventory.slot3 == "stadium-horn")
+        {
             numhorns++;
         }
 
-        if (JsonSerializer.Deserialize<string>(clients[watcher]["inventory"]["slot4"]) == "stadium-horn"){
+        if (clients[watcher].inventory.slot4 == "stadium-horn")
+        {
             numhorns++;
         }
 
-        if (JsonSerializer.Deserialize<string>(clients[watcher]["inventory"]["slot5"]) == "stadium-horn"){
+        if (clients[watcher].inventory.slot5 == "stadium-horn")
+        {
             numhorns++;
         }
 
         // Console.WriteLine(Math.Pow(2,  numhorns));
 
-        clients[watcher]["renown"] = JsonSerializer.Deserialize<long>(clients[watcher]["renown"]) + (1 * Math.Pow(2,  numhorns));
-        
+        clients[watcher].renown = clients[watcher].renown + (int)(1 * Math.Pow(2, numhorns));
+
     }
 
     File.WriteAllText("../memory/clients.json", JsonSerializer.Serialize(clients));
@@ -749,11 +996,8 @@ Task RewardObservers(){
 
 
 // functions
-JsonNode getToken(string token)
+spectatorJSON getToken(string token)
 {
-
-    clients = JsonObject.Parse(File.ReadAllText("../memory/clients.json"));
-
     return clients[token];
 }
 
@@ -770,7 +1014,8 @@ string generate_random_token()
     }
 
     // if this token already exists try again
-    if (clients[returnme] != null){
+    if (clients[returnme] != null)
+    {
         returnme = generate_random_token();
     }
 
@@ -784,12 +1029,13 @@ string generate_random_token()
 
 
 // Data Structures
+
 public class tokenString
 {
     public string token { get; set; }
 }
 
-public class itemString 
+public class itemString
 {
     public string item { get; set; }
 }
@@ -850,6 +1096,7 @@ public class itemJSON
     public string name { get; set; }
     public string img { get; set; }
     public string desc { get; set; }
+    public int price { get; set; }
 
     public itemJSON()
     {
@@ -884,7 +1131,8 @@ public class currentinning
     public int count { get; set; }
 }
 
-public class Team {
+public class Team
+{
     public int Wins { get; set; }
     public int Losses { get; set; }
     public int Ties { get; set; }
@@ -901,7 +1149,8 @@ public class Team {
     public Player Player11 { get; set; }
 }
 
-public class Player {
+public class Player
+{
     public string alias { get; set; }
     public float run_score { get; set; }
     public float throw_score { get; set; }
@@ -909,23 +1158,26 @@ public class Player {
 }
 
 
-public class SwapSlots {
+public class SwapSlots
+{
 
-    public string token {get; set;}
-    public int fromslot {get; set;}
-    public int toslot {get; set;}
+    public string token { get; set; }
+    public int fromslot { get; set; }
+    public int toslot { get; set; }
 }
 
 
-public class BuyingJson {
-    public string token {get; set;}
-    public string itemname {get; set;}
+public class BuyingJson
+{
+    public string token { get; set; }
+    public string itemname { get; set; }
 }
 
 
-public class DiscardJson {
-    public string token {get; set;}
-    public int slot {get; set;}
+public class DiscardJson
+{
+    public string token { get; set; }
+    public int slot { get; set; }
 }
 
 

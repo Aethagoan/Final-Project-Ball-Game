@@ -15,7 +15,7 @@
 }
 
 #container {
-    display:flex;
+    display: flex;
     flex-direction: row;
 }
 
@@ -27,10 +27,10 @@
     width: 40%;
 
     flex: 2 0 0;
-    
+
     margin-right: 3rem;
 
-    
+
 }
 
 #store figure {
@@ -70,10 +70,10 @@
 
 
 .slot {
-    height:10rem;
+    height: 10rem;
     width: 10rem;
     margin: .2rem 0;
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -97,8 +97,8 @@
     height: 90%;
     z-index: -1;
     display: inline-block;
-    
-    
+
+
 }
 
 .slot .cancel {
@@ -106,16 +106,16 @@
     height: 30%;
     filter: invert(100%);
     z-index: 0;
-    position:absolute;
+    position: absolute;
     translate: 100% -100%;
 }
 
 .slot .cancel:hover {
-    filter:invert(100%)brightness(60%);
+    filter: invert(100%)brightness(60%);
 }
 
 .midsection {
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
