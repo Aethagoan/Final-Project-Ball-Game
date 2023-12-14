@@ -976,7 +976,8 @@ Task RewardObservers()
 
     foreach (string watcher in observers)
     {
-        // Console.WriteLine(watcher + "is watching!");
+        
+        Console.WriteLine(clients[watcher].alias + "is watching!");
         int numhorns = 0;
 
         // Console.WriteLine(clients[watcher].inventory.["slot1"]));
