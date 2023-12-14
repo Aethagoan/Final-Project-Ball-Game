@@ -70,7 +70,7 @@ async function build_nav() {
 
         const playerdata = await ((await api_calls.get_player_data(localStorage.getItem("token"))).json())
         // console.log(playerdata)
-        if (playerdata != null){
+        if (playerdata.alias != null){
             nav.outerHTML += `<a id="welcome-message" href="./contract.html">Welcome back, ${playerdata.alias}</a>`
         }
     }

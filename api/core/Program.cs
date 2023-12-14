@@ -120,7 +120,7 @@ app.MapGet("/teams", () =>
 app.MapPost("/game", (tokenString observer) =>
 {
     // this is me keeping track of who's watching, this should get cleared by another function every so often (and award renown)
-    Console.WriteLine(clients[observer.token].alias + "requested watching.");
+    Console.WriteLine(clients[observer.token].alias + " requested watching.");
     if (!observers.Contains(observer.token))
     {
         observers.Add(observer.token);
@@ -978,7 +978,7 @@ Task RewardObservers()
     foreach (string watcher in observers)
     {
         
-        Console.WriteLine(clients[watcher].alias + "is watching!");
+        Console.WriteLine(clients[watcher].alias + " is watching!");
         int numhorns = 0;
 
         // Console.WriteLine(clients[watcher].inventory.["slot1"]));
@@ -1018,7 +1018,7 @@ Task RewardObservers()
 
     File.WriteAllText("../memory/clients.json", JsonSerializer.Serialize(clients));
 
-    observers.Clear();
+    observers = new List<string>();
 
     return Task.CompletedTask;
 }
