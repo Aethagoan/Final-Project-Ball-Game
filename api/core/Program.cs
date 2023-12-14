@@ -974,12 +974,15 @@ Task RunGame()
 // rewards people currently watching on the watch page
 Task RewardObservers()
 {
-    if (observers.Count == 0){
+    if (observers.Count < 1){
         return Task.CompletedTask;
     }
 
     foreach (string watcher in observers)
     {
+        if (!clients.ContainsKey(watcher)){
+            continue;
+        }
         
         Console.WriteLine(clients[watcher].alias + " is watching!");
         int numhorns = 0;
