@@ -104,7 +104,7 @@ app.MapPost("/newcontract", (contractEntry recieved) =>
 // returns player data
 app.MapPost("/token", (tokenString recievedtoken) =>
 {
-    if clients.ContainsKey(recievedtoken.token){
+    if (clients.ContainsKey(recievedtoken.token)){
         return JsonSerializer.Serialize(clients[recievedtoken.token]);
     }
     else return false;
