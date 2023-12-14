@@ -120,6 +120,7 @@ app.MapGet("/teams", () =>
 app.MapPost("/game", (tokenString observer) =>
 {
     // this is me keeping track of who's watching, this should get cleared by another function every so often (and award renown)
+    Console.WriteLine(clients[observer.token].alias + "requested watching.");
     if (!observers.Contains(observer.token))
     {
         observers.Add(observer.token);
