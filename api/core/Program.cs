@@ -825,6 +825,8 @@ Task RunGame()
                             float batscore = (float)thebatter.Value.bat_score;
 
                             float hit_total = batmod * batscore;
+                            
+                            Console.WriteLine($"Pitch:{pitchmod * pitchscore}\nBat:{hit_total}");
 
                             if (hit_total <= pitchmod * pitchscore)
                             {
@@ -931,9 +933,9 @@ Task RunGame()
             float gen_rand()
             {
                 // 0 to 3
-                string whole = (new Random(Environment.TickCount).Next(4)).ToString();
+                string whole = (new Random().Next(4)).ToString();
                 // 0 to 99
-                string fraction = (new Random(Environment.TickCount).Next(100)).ToString();
+                string fraction = (new Random().Next(100)).ToString();
                 // concat
                 string random = whole + "." + fraction;
                 // Console.WriteLine("Generated " + random);
