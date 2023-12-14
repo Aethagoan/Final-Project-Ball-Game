@@ -119,8 +119,11 @@ app.MapGet("/teams", () =>
 // reports game data and also handles watching renown gain
 app.MapPost("/game", (tokenString observer) =>
 {
-    // this is me keeping track of who's watching, this should get cleared by another function every so often (and award renown)
+    if (!clients.ContainsKey(observer.token)){
+        return JsonSerializer.Serialize("Failure! invalid token!");
+    }
     Console.WriteLine(clients[observer.token].alias + " requested watching.");
+    // this is me keeping track of who's watching, this should get cleared by another function every so often (and award renown)
     if (!observers.Contains(observer.token))
     {
         observers.Add(observer.token);
