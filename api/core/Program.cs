@@ -122,7 +122,7 @@ app.MapPost("/game", (tokenString observer) =>
     if (!clients.ContainsKey(observer.token)){
         return JsonSerializer.Serialize("Failure! invalid token!");
     }
-    Console.WriteLine(clients[observer.token].alias + " requested watching.");
+    // Console.WriteLine(clients[observer.token].alias + " requested watching.");
     // this is me keeping track of who's watching, this should get cleared by another function every so often (and award renown)
     if (!observers.Contains(observer.token))
     {
@@ -429,14 +429,7 @@ app.MapPost("/discard", (DiscardJson discarding) =>
 // executes in the background
 Task.Run(() => RunGame());
 
-Task.Run(() =>
-{
-    while (true)
-    {
-        RewardObservers();
-        Thread.Sleep(1 * 1000);
-    }
-});
+Task.Run(() => RewardObservers());
 
 
 app.Run();
@@ -974,60 +967,65 @@ Task RunGame()
 // rewards people currently watching on the watch page
 Task RewardObservers()
 {
-    Console.WriteLine(observers.Count + " currently watching.");
-    if (observers.Count < 1){
-        return Task.CompletedTask;
-    }
-
-    foreach (string watcher in observers)
+    while (true)
     {
-        if (!clients.ContainsKey(watcher)){
-            continue;
-        }
+        Thread.Sleep(1 * 1000);
         
-        Console.WriteLine(clients[watcher].alias + " is watching!");
-        int numhorns = 0;
+        Console.WriteLine(observers.Count + " currently watching.");
+        if (!(observers.Count < 1)){
 
-        // Console.WriteLine(clients[watcher].inventory.["slot1"]));
+            foreach (string watcher in observers)
+            {
+                if (!clients.ContainsKey(watcher)){
+                    continue;
+                }
+                
+                Console.WriteLine(clients[watcher].alias + " is watching!");
+                int numhorns = 0;
 
-        // I tried to do this elegantly with a foreach loop but couldn't find a good json serialization option to make it happen :/
+                // Console.WriteLine(clients[watcher].inventory.["slot1"]));
 
-        if (clients[watcher].inventory.slot1 == "stadium-horn")
-        {
-            numhorns++;
+                // I tried to do this elegantly with a foreach loop but couldn't find a good json serialization option to make it happen :/
+
+                if (clients[watcher].inventory.slot1 == "stadium-horn")
+                {
+                    numhorns++;
+                }
+
+                if (clients[watcher].inventory.slot2 == "stadium-horn")
+                {
+                    numhorns++;
+                }
+
+                if (clients[watcher].inventory.slot3 == "stadium-horn")
+                {
+                    numhorns++;
+                }
+
+                if (clients[watcher].inventory.slot4 == "stadium-horn")
+                {
+                    numhorns++;
+                }
+
+                if (clients[watcher].inventory.slot5 == "stadium-horn")
+                {
+                    numhorns++;
+                }
+
+                // Console.WriteLine(Math.Pow(2,  numhorns));
+
+                clients[watcher].renown = clients[watcher].renown + (int)(1 * Math.Pow(2, numhorns));
+
+            }
+
+            File.WriteAllText("../memory/clients.json", JsonSerializer.Serialize(clients));
+
+            observers = new List<string>();
         }
-
-        if (clients[watcher].inventory.slot2 == "stadium-horn")
-        {
-            numhorns++;
-        }
-
-        if (clients[watcher].inventory.slot3 == "stadium-horn")
-        {
-            numhorns++;
-        }
-
-        if (clients[watcher].inventory.slot4 == "stadium-horn")
-        {
-            numhorns++;
-        }
-
-        if (clients[watcher].inventory.slot5 == "stadium-horn")
-        {
-            numhorns++;
-        }
-
-        // Console.WriteLine(Math.Pow(2,  numhorns));
-
-        clients[watcher].renown = clients[watcher].renown + (int)(1 * Math.Pow(2, numhorns));
-
     }
-
-    File.WriteAllText("../memory/clients.json", JsonSerializer.Serialize(clients));
-
-    observers = new List<string>();
 
     return Task.CompletedTask;
+    
 }
 
 

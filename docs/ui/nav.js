@@ -73,5 +73,9 @@ async function build_nav() {
         if (playerdata.alias != null){
             nav.outerHTML += `<a id="welcome-message" href="./contract.html">Welcome back, ${playerdata.alias}</a>`
         }
+        else {
+            console.log("there was a problem, reseting local storage")
+            localStorage.clear()
+        }
     }
 }
