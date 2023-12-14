@@ -825,7 +825,7 @@ Task RunGame()
                             float batscore = (float)thebatter.Value.bat_score;
 
                             float hit_total = batmod * batscore;
-                            
+
                             Console.WriteLine($"Pitch:{pitchmod * pitchscore}\nBat:{hit_total}");
 
                             if (hit_total <= pitchmod * pitchscore)
@@ -970,8 +970,11 @@ Task RunGame()
 // rewards people currently watching on the watch page
 Task RewardObservers()
 {
+    if (observers.Count == 0){
+        return Task.CompletedTask;
+    }
 
-    foreach (var watcher in observers)
+    foreach (string watcher in observers)
     {
         // Console.WriteLine(watcher + "is watching!");
         int numhorns = 0;
