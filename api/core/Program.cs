@@ -93,10 +93,6 @@ app.MapPost("/newcontract", (contractEntry recieved) =>
 
     string newToken = generate_random_token();
 
-    while (clients.ContainsKey(newToken)){
-        newToken = generate_random_token();
-    }
-
     clients[newToken] = newclient;
 
     //write!
@@ -1001,7 +997,7 @@ string generate_random_token()
     }
 
     // if this token already exists try again
-    if (clients[returnme] != null)
+    if (clients.ContainsKey(returnme))
     {
         returnme = generate_random_token();
     }
