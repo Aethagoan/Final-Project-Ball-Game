@@ -972,7 +972,7 @@ Task RewardObservers()
         Thread.Sleep(1 * 1000);
         
         Console.WriteLine(observers.Count + " currently watching.");
-        if (!(observers.Count < 1)){
+        if (observers.Count > 0){
 
             foreach (string watcher in observers)
             {
