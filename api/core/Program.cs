@@ -107,7 +107,7 @@ app.MapPost("/token", (tokenString recievedtoken) =>
     if clients.ContainsKey(recievedtoken.token){
         return JsonSerializer.Serialize(clients[recievedtoken.token]);
     }
-    else return false
+    else return false;
 });
 
 // for the league page
