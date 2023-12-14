@@ -974,6 +974,7 @@ Task RunGame()
 // rewards people currently watching on the watch page
 Task RewardObservers()
 {
+    Console.WriteLine(observers.Count + " currently watching.");
     if (observers.Count < 1){
         return Task.CompletedTask;
     }
